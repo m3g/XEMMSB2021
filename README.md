@@ -5,7 +5,7 @@
 O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
 
 ```
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XXEMSB2021
+XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMSB2021
 ```
 
 Redefina esta variável para instalar no diretório de sua preferência.
