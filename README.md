@@ -61,9 +61,8 @@ mkdir build
 cd build
 cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DGMX_MPI=ON -DGMX_GPU=OFF -DCMAKE_C_COMPILER=gcc -DGMX_FFT_LIBRARY=fftpack -DCMAKE_INSTALL_PREFIX=$XEMMSB_dir/gromacs-2019.4
 make -j 4
-make check
 make install
-source $XEMMSB_dir/bin/GMXRC
+source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 ```
 
 ### Para Gromacs
