@@ -1,8 +1,6 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
-## Instalação dos programas
-
-### Diretório de instalação:
+## 1. Diretório de instalação
 
 O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
 
@@ -12,7 +10,7 @@ XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 
 Redefina esta variável para instalar no diretório de sua preferência.
 
-### Estou com sorte e sem paciência:
+### 1.1 Estou com sorte
 
 Se você usa `bash`, uma distribuição Linux derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
@@ -24,9 +22,9 @@ chmod +x ./install.sh
 
 Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias. 
 
-Vá direto ao passo 5 para testar se a instalação funcionou.
+Vá direto ao passo 6 para testar se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
 
-## 1. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
+## 2. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
 
 ```
 sudo apt-get update -y
@@ -48,7 +46,7 @@ make install
 
 Atenção nos passos seguintes, que será necessário, neste caso, ajustar o caminho para o executável do `cmake` definido acima.
 
-## 2. Instalação do Plumed
+## 3. Instalação do Plumed
 
 ```
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
@@ -70,7 +68,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
 export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 ```
 
-## 3. Instalação do Gromacs
+## 4. Instalação do Gromacs
 
 ```
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
@@ -85,25 +83,7 @@ make install
 source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 ```
 
-## 5. Teste
-
-Se tudo correu bem, execute o comando:
-
-```
-gmx_mpi mdrun -h
-```
-
-Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se a opção `-hrex` aparece:
-
-```
- -[no]hrex                  (no)
-
-           Enable hamiltonian replica exchange
-```
-
-Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
-
-## 6. Variáveis de ambiente:
+## 5. Variáveis de ambiente:
 
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
@@ -124,6 +104,23 @@ Alterntativamente, acrecente a linha acima ao seu `~/.bashrc`:
 echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
 ```
 
+## 6. Teste
+
+Se tudo correu bem, execute o comando:
+
+```
+gmx_mpi mdrun -h
+```
+
+Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se a opção `-hrex` aparece:
+
+```
+ -[no]hrex                  (no)
+
+           Enable hamiltonian replica exchange
+```
+
+Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
 
 
 
