@@ -39,12 +39,14 @@ Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `
 wget https://cmake.org/files/v3.20/cmake-3.20.1.tar.gz
 tar -zxvf cmake-3.20.1.tar.gz
 cd cmake-3.20.1
+./configure  --prefix=$XEMMSB_dir/cmake
 mkdir build
 cd build
-sudo   ../configure  --prefix=$XEMMSB_dir/cmake
-sudo make
-sudo make install
+make
+make install
 ```
+
+Atenção nos passos seguintes, que será necessário, neste caso, ajustar o caminho para o executável do `cmake` definido acima.
 
 ## 2. Instalação do Plumed
 
