@@ -5,7 +5,7 @@
 O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
 
 ```
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMSB2021
+XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 ```
 
 Redefina esta variável para instalar no diretório de sua preferência.
@@ -59,11 +59,16 @@ source $XEMMSB_dir/bin/GMXRC
 
 ## 4. Variáveis de ambiente (podem ser colocadas no `.bashrc`)
 
+### Para Plumed
 ```
+XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 export PATH=$PATH:/$XEMMSB_dir/plumed-2.5.5/src/lib
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed-2.5.5/src/lib
 export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed
 ```
+
+### Para Gromacs
+
 
 ## 5. Teste
 
