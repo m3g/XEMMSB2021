@@ -1,9 +1,20 @@
-#
-# Modifique este diretorio:
-#
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
+#!/bin/bash
+
+XEMMSB_dir=$1
+
+if [ -z "$XEMMSB_dir" ]; then
+  echo "Run with: ./install.sh /home/user/installation_dir"
+  exit
+fi
+
+if [[ ! -d "$XEMMSB_dir" ]]; then
+    echo "$XEMMSB_dir does not exist. Create it first. "
+    exit
+fi
 
 cd $SEMMSB_dir
+
+exit
 
 ## 1. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
 
@@ -35,4 +46,11 @@ cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DGMX_MPI=ON -DGM
 make -j 4
 make install
 source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
+
+# Adicionando as variáveis de ambiente ao .bashrc
+
+wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/setenv.sh
+chmod +x setenv.sh
+./setenv.sh $XEMMSB_dir
+echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
 

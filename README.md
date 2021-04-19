@@ -2,6 +2,8 @@
 
 ## Simulação de enovelamento de proteínas e efeitos de solvente
 
+### Diretório de instalação:
+
 O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
 
 ```
@@ -9,6 +11,20 @@ XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 ```
 
 Redefina esta variável para instalar no diretório de sua preferência.
+
+### Estou com sorte e sem paciência:
+
+Se você usa `bash`, uma distribuição Linux derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
+
+```
+wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/install.sh
+chmod +x ./install.sh
+./install.sh $XEMMSB_dir
+```
+
+Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias. 
+
+Vá direto ao passo 5 para testar se a instalação funcionou.
 
 ## 1. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
 
