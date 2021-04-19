@@ -32,8 +32,11 @@ sudo make install
 
 ## 2. Instalação do Plumed
 
+https://drive.google.com/file/d/1kh6oYE-S6NPa-l_xr5vcpZOpeyLdPI-C/view?usp=sharing
+
 ```
-tar -xvzf plumed-2.5.5.tgz
+https://github.com/plumed/plumed2/archive/refs/tags/v2.2.5.tar.gz
+tar -xvzf v2.5.5.tar.gz
 cd plumed-2.5.5
 ./configure --prefix=$XEMMSB_dir
 make -j 4
