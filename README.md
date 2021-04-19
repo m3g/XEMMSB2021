@@ -85,7 +85,7 @@ Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se
 
 Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
 
-## 5. Variáveis de ambiente:
+## 6. Variáveis de ambiente:
 
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
@@ -95,22 +95,15 @@ chmod +x setenv.sh
 ./setenv.sh $XEMMSB_dir
 ```
 
-Isto criará o arquivo `setenv.sh` modificado com o conteúdo abaixo:
+Agora, quando abrir uma nova `shell`, vá ao diretório `$XEMMSB_dir` e execute:
 
 ```
-# Configuration of environment for XEMMSB2021 course
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
-export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
-export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
-source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
+source setenv.sh
 ```
 
-que deve ser executado `./setenv.sh` em cada `shell` onde for trabalhar com este programas.
-Você tambem adicionar o comando correspondente no seu `.bashrc`:
+Alterntativamente, acrecente a linha acima ao seu `~/.bashrc`:
 ```
-echo "$XEMMSB_dir/setenv.sh" >> .bashrc
-
+echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
 ```
 
 
