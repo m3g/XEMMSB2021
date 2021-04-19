@@ -43,6 +43,8 @@ make install
 
 ### Variáveis de ambiente (podem ser colocadas no `.bashrc`)
 
+Execute estes comandos antes de iniciar a instalação do Gromacs:
+
 ```
 XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
@@ -65,9 +67,6 @@ make install
 source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 ```
 
-### Para Gromacs
-
-
 ## 5. Teste
 
 Se tudo correu bem, execute o comando:
@@ -85,6 +84,38 @@ Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se
 ```
 
 Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
+
+## Variáveis de ambiente:
+
+É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `env.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
+
+```
+wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/setenv.sh
+chmod +x setenv.sh
+./setenv.sh $XEMMSB_dir
+```
+
+Isto criará o arquivo `setenv.sh` modificado com o conteúdo abaixo:
+
+```
+# Configuration of environment for XEMMSB2021 course
+XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
+export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
+export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
+source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
+```
+
+que deve ser executado `./setenv.sh` em cada `shell` onde for trabalhar com este programas.
+Você tambem adicionar o comando correspondente no seu `.bashrc`:
+```
+echo "$XEMMSB_dir/setenv.sh" >> .bashrc
+
+```
+
+
+
+
 
 
 
