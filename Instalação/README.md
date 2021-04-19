@@ -1,6 +1,6 @@
-# XEMMSB 2021
+# Simulação de enovelamento de proteínas e efeitos de solvente
 
-## Simulação de enovelamento de proteínas e efeitos de solvente
+## Instalação dos programas
 
 ### Diretório de instalação:
 
