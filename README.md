@@ -17,7 +17,7 @@ sudo apt-get update -y
 sudo apt-get install -y gfortran gcc open-mpi cmake
 ```
 
-Caso no seu sistema esteja instalado um `cmake` antigo, é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:
+Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `3.16.3` que estava instalado no Linux Mint 20.1), é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:
 
 ```
 wget https://cmake.org/files/v3.20/cmake-3.20.1.tar.gz
