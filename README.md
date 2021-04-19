@@ -85,9 +85,9 @@ Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se
 
 Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
 
-## Variáveis de ambiente:
+## 5. Variáveis de ambiente:
 
-É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `env.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
+É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
 ```
 wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/setenv.sh

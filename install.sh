@@ -19,7 +19,9 @@ cd plumed2-2.5.5
 make -j 4
 make install
 
-### Variáveis de ambiente (podem ser colocadas no `.bashrc`)
+export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
+export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 
 ## 3. Instalação do Gromacs
 
@@ -32,16 +34,5 @@ cd build
 cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DGMX_MPI=ON -DGMX_GPU=OFF -DCMAKE_C_COMPILER=gcc -DGMX_FFT_LIBRARY=fftpack -DCMAKE_INSTALL_PREFIX=$XEMMSB_dir/gromacs-2019.4
 make -j 4
 make install
-
-envfile=$XEMMSB_dir/env.sh
-echo "
-# Configuration for PLUMED:
-XEMMSB_dir=$XEMMSB_dir
-export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
-export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
-For Gromacs:
 source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
-" > $envfile
-
 
