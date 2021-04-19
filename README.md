@@ -33,7 +33,7 @@ sudo make install
 ## 2. Instalação do Plumed
 
 ```
-wget https://github.com/plumed/plumed2/archive/refs/tags/v2.2.5.tar.gz
+wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
 tar -xvzf v2.5.5.tar.gz
 cd plumed-2.5.5
 ./configure --prefix=$XEMMSB_dir
