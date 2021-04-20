@@ -65,7 +65,7 @@ tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 # Adicionando as variáveis de ambiente ao .bashrc
 
 cd $XEMMSB_dir
-wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/setenv.sh
+wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/setenv.sh
 chmod +x setenv.sh
 ./setenv.sh $XEMMSB_dir
 echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
