@@ -22,7 +22,7 @@ chmod +x ./install.sh
 
 Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias. 
 
-Vá direto ao passo 6 para testar se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
+Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
 
 ## 2. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
 
@@ -70,6 +70,8 @@ export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 
 ## 4. Instalação do Gromacs
 
+Gromacs é o programa que usaremos para fazer as simulações.
+
 ```
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
 tar xfz gromacs-2019.4.tar.gz
@@ -83,7 +85,30 @@ make install
 source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 ```
 
-## 5. Variáveis de ambiente:
+## 5. Instalação do Packmol
+
+[Packmol](http://m3g.iqm.unicamp.br/packmol) será usado para construção das caixas de simulação, em particular com misturas de solventes.
+
+```
+cd $SEMMSB_dir
+wget http://leandro.iqm.unicamp.br/m3g/packmol/packmol.tar.gz
+tar -xzf packmol.tar.gz
+\rm -f packmol.tar.gz
+cd packmol
+make
+```
+
+## 5. Instalação de Julia
+
+[Julia](https://julialang.org) é uma linguagem de programação dinâmica e de alto desempenho na qual foram escritos alguns scripts e o principal programa de análise que usaremos. Pode ser instalada com:
+
+```
+cd $SEMMSB_dir
+wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz
+tar -xzf julia-1.6.0-linux-x86_64.tar.gz
+```
+
+## 6. Variáveis de ambiente:
 
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
@@ -104,7 +129,11 @@ Alterntativamente, acrecente a linha acima ao seu `~/.bashrc`:
 echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
 ```
 
-## 6. Teste
+<a name="testes">
+
+## 7. Teste
+
+### 7.1 Gromacs e plumed
 
 Se tudo correu bem, execute o comando:
 
@@ -123,9 +152,42 @@ Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se
 Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
 
 
+### 7.2 Packmol
 
+Execute o comando:
 
+```
+packmol  
+```
 
+Você deve ver esta saída (aperte Control-C) para sair:
+
+```
+################################################################################
+
+ PACKMOL - Packing optimization for the automated generation of
+ starting configurations for molecular dynamics simulations.
+ 
+                                                              Version 20.2.1 
+
+################################################################################
+
+  Packmol must be run with: packmol < inputfile.inp 
+
+  Userguide at: http://m3g.iqm.unicamp.br/packmol 
+
+  Reading input file... (Control-C aborts)
+
+```
+
+### 7.3 Julia
+
+Execute o comando:
+```
+julia
+```
+
+que deverá abrir um terminal (REPL) de Julia. Para sair, use `Conrol-d` (ou digite `exit()`).
 
 
 
