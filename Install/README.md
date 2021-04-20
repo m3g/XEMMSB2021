@@ -102,7 +102,6 @@ source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 cd $XEMMSB_dir
 wget http://leandro.iqm.unicamp.br/m3g/packmol/packmol.tar.gz
 tar -xzf packmol.tar.gz
-\rm -f packmol.tar.gz
 cd packmol
 make
 ```
