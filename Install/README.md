@@ -7,8 +7,12 @@ O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir
 ```
 XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 ```
-
 Redefina esta variável para instalar no diretório de sua preferência.
+
+Crie o diretório:
+```
+mkdir -p $XEMMSB_dir
+```
 
 ### 1.1 Estou com sorte
 
