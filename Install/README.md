@@ -41,7 +41,7 @@ Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `
 ```
 cd $XEMMSB_dir
 wget https://cmake.org/files/v3.20/cmake-3.20.1.tar.gz
-tar -zxvf cmake-3.20.1.tar.gz
+tar -zxf cmake-3.20.1.tar.gz
 cd cmake-3.20.1
 ./configure  --prefix=$XEMMSB_dir/cmake
 mkdir build
@@ -59,7 +59,7 @@ Atenção nos passos seguintes, que será necessário, neste caso, ajustar o cam
 ```
 cd $XEMMSB_dir
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
-tar -xvzf v2.5.5.tar.gz
+tar -xzf v2.5.5.tar.gz
 cd plumed2-2.5.5
 ./configure --prefix=$XEMMSB_dir/plumed2
 make -j 4
