@@ -41,7 +41,7 @@ Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `
 ```
 cd $XEMMSB_dir
 wget https://cmake.org/files/v3.20/cmake-3.20.1.tar.gz
-tar -zxf cmake-3.20.1.tar.gz
+tar -xzf cmake-3.20.1.tar.gz
 cd cmake-3.20.1
 ./configure  --prefix=$XEMMSB_dir/cmake
 mkdir build
@@ -83,7 +83,7 @@ export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 ```
 cd $XEMMSB_dir
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
-tar xfz gromacs-2019.4.tar.gz
+tar -xzf gromacs-2019.4.tar.gz
 cd gromacs-2019.4
 plumed-patch -p -e gromacs-2019.4
 mkdir build
