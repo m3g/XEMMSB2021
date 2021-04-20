@@ -16,16 +16,17 @@ mkdir -p $XEMMSB_dir
 
 ### 1.1 Estou com sorte
 
-Se você usa `bash`, uma distribuição Linux derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
+Se você usa `bash`, uma distribuição Linux de 64bits derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
 ```
 cd $XEMMSB_dir
 wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/install.sh 
 chmod +x ./install.sh
 ./install.sh $XEMMSB_dir
+source $XEMMSB_dir/setenv.sh
 ```
 
-Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias. 
+Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias cada vez que você reiniciar um terminal.
 
 Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
 
