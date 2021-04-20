@@ -48,6 +48,8 @@ Atenção nos passos seguintes, que será necessário, neste caso, ajustar o cam
 
 ## 3. Instalação do Plumed
 
+[Plumed](https://www.plumed.org/) é um pacote que implementa uma série de algoritmos de simulação e análise, interagindo com outros pacotes de simulação. Usaremos sua implementação do Hamiltonian-Exchange Molecular Dynamics (método de amostragem ampliada):
+
 ```
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
 tar -xvzf v2.5.5.tar.gz
@@ -70,7 +72,7 @@ export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 
 ## 4. Instalação do Gromacs
 
-Gromacs é o programa que usaremos para fazer as simulações.
+[Gromacs](https://www.gromacs.org/) é o programa que usaremos para fazer as simulações.
 
 ```
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
