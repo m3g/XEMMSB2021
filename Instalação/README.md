@@ -129,6 +129,8 @@ Alterntativamente, acrecente a linha acima ao seu `~/.bashrc`:
 echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
 ```
 
+Além das variáveis de ambiente, este script colocará no `PATH` os diretórios onde foram instalados o `Packmol` e o `Julia`. 
+
 <a name="testes">
 
 ## 7. Teste
