@@ -33,7 +33,7 @@ Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, 
 
 ```
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc openmpi-bin cmake
+sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
 ```
 
 Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `3.16.3` que estava instalada no Linux Mint 20.1), é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:

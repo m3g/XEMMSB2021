@@ -17,7 +17,7 @@ fi
 
 cd $XEMMSB_dir
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc openmpi-bin cmake
+sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
 
 ## 2. Instalação do Plumed
 
