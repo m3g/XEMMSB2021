@@ -15,9 +15,10 @@ Redefina esta variável para instalar no diretório de sua preferência.
 Se você usa `bash`, uma distribuição Linux derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
 ```
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/install.sh
+wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/install.sh 
 chmod +x ./install.sh
 ./install.sh $XEMMSB_dir
+
 ```
 
 Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias. 
@@ -115,7 +116,7 @@ tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
 ```
-wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/setenv.sh
+wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/setenv.sh
 chmod +x setenv.sh
 ./setenv.sh $XEMMSB_dir
 ```
