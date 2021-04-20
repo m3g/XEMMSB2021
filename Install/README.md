@@ -71,7 +71,6 @@ make install
 Execute estes comandos antes de iniciar a instalação do Gromacs:
 
 ```
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
 export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
 export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
