@@ -29,11 +29,11 @@ Vai ser requisitada a sua senha, mas é só para instalar, se necessário, algun
 
 Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
 
-## 2. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
+## 2. Instalação das dependências: `openmpi`, `gfortran`, `gcc`, `cmake`
 
 ```
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc open-mpi cmake
+sudo apt-get install -y gfortran gcc openmpi-bin cmake
 ```
 
 Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `3.16.3` que estava instalada no Linux Mint 20.1), é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:
