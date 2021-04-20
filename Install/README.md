@@ -39,6 +39,7 @@ sudo apt-get install -y gfortran gcc openmpi-bin cmake
 Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `3.16.3` que estava instalada no Linux Mint 20.1), é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:
 
 ```
+cd $XEMMSB_dir
 wget https://cmake.org/files/v3.20/cmake-3.20.1.tar.gz
 tar -zxvf cmake-3.20.1.tar.gz
 cd cmake-3.20.1
@@ -56,6 +57,7 @@ Atenção nos passos seguintes, que será necessário, neste caso, ajustar o cam
 [Plumed](https://www.plumed.org/) é um pacote que implementa uma série de algoritmos de simulação e análise, interagindo com outros pacotes de simulação. Usaremos sua implementação do Hamiltonian-Exchange Molecular Dynamics (método de amostragem ampliada):
 
 ```
+cd $XEMMSB_dir
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
 tar -xvzf v2.5.5.tar.gz
 cd plumed2-2.5.5
@@ -80,6 +82,7 @@ export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 [Gromacs](https://www.gromacs.org/) é o programa que usaremos para fazer as simulações.
 
 ```
+cd $XEMMSB_dir
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
 tar xfz gromacs-2019.4.tar.gz
 cd gromacs-2019.4
@@ -120,6 +123,7 @@ tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
 ```
+cd $XEMMSB_dir
 wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/setenv.sh
 chmod +x setenv.sh
 ./setenv.sh $XEMMSB_dir
