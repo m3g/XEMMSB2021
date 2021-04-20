@@ -99,7 +99,7 @@ source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 [Packmol](http://m3g.iqm.unicamp.br/packmol) será usado para construção das caixas de simulação, em particular com misturas de solventes.
 
 ```
-cd $SEMMSB_dir
+cd $XEMMSB_dir
 wget http://leandro.iqm.unicamp.br/m3g/packmol/packmol.tar.gz
 tar -xzf packmol.tar.gz
 \rm -f packmol.tar.gz
@@ -112,7 +112,7 @@ make
 [Julia](https://julialang.org) é uma linguagem de programação dinâmica e de alto desempenho na qual foram escritos alguns scripts e o principal programa de análise que usaremos. Pode ser instalada com:
 
 ```
-cd $SEMMSB_dir
+cd $XEMMSB_dir
 wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz
 tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 ```
