@@ -8,9 +8,9 @@ Teste para os inputs!
 #O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
 
 ```
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUTS  # inputs
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/DADOS   # dados
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/run-md.sh
+wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUT_MD/INPUTS  # inputs
+wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUT_MD/DADOS   # dados
+wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUT_MD/run-md.sh
 
 
 
