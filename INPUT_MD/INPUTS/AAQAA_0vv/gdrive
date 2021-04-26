@@ -1,0 +1,118 @@
+#!/bin/bash
+#
+# use with:  gdrive push/pull         to copy files
+#            gdrive push/pull sync    to synchronize (be careful)
+#            gdrive push/pull check   to check differences
+#
+
+local=/home/ander/doutorado/aaqaa/AAQAA_0vv
+remote=PC-ANDER:/KAHUNA/doutorado/aaqaa/AAQAA_0vv
+
+#
+# The script will sync either the current folder or all drive.
+# If the current folder is a subfolder of the drive, the current
+# folder will be sync. Otherwise, the complete drive will be sync.
+#
+
+#
+# Default flags
+#
+
+flags="-v --update" 
+
+#
+# Check if directory is a Drive subfolder
+#
+
+current_dir=`pwd`"/"
+echo "Current dir: $current_dir"
+
+#
+# File containing base files to ignore
+#
+
+ignore_base=`dirname $0`"/GdriveIgnoreBase.txt"
+echo "Ignoring files listed in: $ignore_base"
+
+if [[ "$current_dir" == "$local"* ]] ; then
+
+  echo "Current dir is a drive subfolder"
+
+  len_local=${#local}
+  len_current=${#current_dir}
+  target=$remote${current_dir:$len_local:$len_current}
+  current_local=$current_dir
+  current_remote=$target
+
+else
+
+  current_local=$local
+  current_remote=$remote
+ 
+  echo "Current dir is NOT a $remote subfolder. Quitting."
+  exit
+
+fi
+
+#
+# Ignore files listed in .gdriveignore files of all subfolders
+#
+
+ignore_files=`find "$current_dir" -name .gdriveignore`
+igTMP=`pwd`/.gdriveignoreTMP
+echo "# $ignore_base" > "$igTMP"
+cat $ignore_base >> "$igTMP"
+echo "# This file:" >> "$igTMP"
+echo ".gdriveignoreTMP" >> "$igTMP"
+if [[ $ignore_files ]]; then
+    echo "Found .gitignore files."
+    for file in "$ignore_files" ; do
+      echo "# $file" >> "$igTMP"
+      dir=${file#"$current_dir"}
+      dir=${dir%".gdriveignore"}
+      list=`cat $file`
+      for str in "$list" ; do
+        n=`echo -n "$str" | wc -m`
+        if [[ $n -ne 0 ]]; then 
+          echo "$dir$str" >> "$igTMP"
+        fi
+      done
+    done
+else
+    echo "No .gitignore files found"
+fi
+
+gdrive_ignore="$igTMP"
+echo "Excluding files on $gdrive_ignore from sync "
+flags="$flags --exclude-from \"$gdrive_ignore\" "
+
+# Push or pull
+
+if [[ "$1" == "push" ]] ; then
+  type="copy"
+  source="$current_local"
+  destination="$current_remote"
+elif [[ "$1" == "pull" ]] ; then
+  type="copy"
+  source="$current_remote"
+  destination="$current_local"
+else
+  echo "ERROR: First argument must be 'push', 'pull'"
+  exit
+fi
+
+# Sync, check
+
+if [[ "$2" == "sync" ]] ; then
+  type="sync"
+elif [[ "$2" == "check" ]] ; then
+  type="check"
+elif [[ "$2" > " " ]] ; then
+  echo "ERROR: Second argument, if any, must be 'sync', 'check'"
+  exit
+fi
+
+echo "RUN: $type \"$source\" to \"$destination\""
+run="rclone $type $flags \"$source\" \"$destination\""
+echo "Command: $run"
+eval $run

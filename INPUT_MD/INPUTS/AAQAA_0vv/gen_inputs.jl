@@ -42,7 +42,7 @@
            
       # plumed partial-tempering calculation
       var = pars[h]
-      output = @capture_out run(pipeline(`cat processed.top`,`plumed partial_tempering $var`))    # se der erro, usar: plumed-partial_tempering   
+      output = @capture_out run(pipeline(`cat processed.top`,`plumed-partial_tempering $var`))      
       open("./$i/topol$i.top","w") do io
         write(io, output)  
       end

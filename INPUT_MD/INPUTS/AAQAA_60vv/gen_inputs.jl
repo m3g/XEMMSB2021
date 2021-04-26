@@ -6,8 +6,7 @@
     files_dir = "../"
     main_dir = pwd()
 
-    # temps = [300.00, 311.84, 324.14, 336.93, 350.23, 364.05, 378.41, 393.35, 408.87, 425.00]
-
+    #temps = [300.00, 311.84, 324.14, 336.93, 350.23, 364.05, 378.41, 393.35, 408.87, 425.00]
     temps  = [300.00, 300.00, 300.00, 300.00, 300.00, 300.00, 300.00, 300.00, 300.00, 300.00]
     pars   = [1.00, 0.96, 0.93, 0.89, 0.86, 0.82, 0.79, 0.76, 0.73, 0.71] 
     
@@ -36,7 +35,7 @@
            
       # plumed partial-tempering calculation
       var = pars[h]
-      output = @capture_out run(pipeline(`cat processed.top`,`plumed partial_tempering $var`))   # se der erro, usar: plumed-partial_tempering   
+      output = @capture_out run(pipeline(`cat processed.top`,`plumed-partial_tempering $var`))      
       open("./$i/topol$i.top","w") do io
         write(io, output)  
       end

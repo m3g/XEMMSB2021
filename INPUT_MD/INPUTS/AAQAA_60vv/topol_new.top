@@ -1,0 +1,46 @@
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	                    :-) GROMACS - gmx pdb2gmx, 2019.4 (-:
+;	
+;	Executable:   gromacs-2019.4/bin/gmx_mpi
+;	Data prefix:  gromacs-2019.4
+;	Working dir:  
+;	Command line:
+;	  gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topol.top
+;	Force field was read from current directory or a relative path - path added.
+;
+
+; Include forcefield parameters
+#include "./amber03w.ff/forcefield.itp"
+
+; Include cosolvents topology
+#include "tfe_atomtypes.itp"
+#include "tfe.itp"
+
+; Include chain topologies
+#include "topol_Protein_chain_X.itp"
+
+; Include water topology
+#include "./amber03w.ff/tip4p2005.itp"
+
+#ifdef POSRES_WATER
+; Position restraint for each water oxygen
+[ position_restraints ]
+;  i funct       fcx        fcy        fcz
+   1    1       1000       1000       1000
+#endif
+
+; Include topology for ions
+#include "./amber03w.ff/ions.itp"
+
+[ system ]
+; Name
+Built with Packmol
+
+[ molecules ]
+; Compound        #mols
+Protein_chain_X     1
+SOL              2307
+TFE              627
