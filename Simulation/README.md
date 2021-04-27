@@ -15,9 +15,13 @@ A simulação pode ser iniciado fazendo apenas:
 ```
 O script run-md.sh irá realizar todas as etapas da simulação:
 
+* [Minimização do sistema.]
 1 - Minimização do sistema.
 2 - Equilibração da temperatura e pressão.
 3 - Produção usando o método `Hamiltonian Replica Exchange Molecular Dynamics` com 4 réplicas. 
+
+
+
 
 # Table of Contents
 * [Team Members](#team-members)
