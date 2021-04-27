@@ -15,23 +15,26 @@ A simulação pode ser iniciado fazendo apenas:
 ```
 O script run-md.sh irá realizar todas as etapas da simulação:
 
-* [Minimização do sistema]()
-1 - Minimização do sistema.
-2 - Equilibração da temperatura e pressão.
-3 - Produção usando o método `Hamiltonian Replica Exchange Molecular Dynamics` com 4 réplicas. 
+* [Minimização do sistema](#min)
+* [Equilibração da temperatura e da pressão](#equi)
+* [Produção - HREMD](#prod)
+
+## 2. Descrição dos arquivos de input
 
 
 
+# <a name="min"></a>Minimização do sistema
+* "J. Jesus. P. Aguinaga" <admin@listforks.com>
 
-# Table of Contents
-* [Team Members](#team-members)
 
-# <a name="team-members"></a>Team Members
+# <a name="equi"></a>Equilibração da temperatura e da pressão
+* "J. Jesus. P. Aguinaga" <admin@listforks.com>
+
+# <a name="prod"></a>Produção - HREMD
 * "J. Jesus. P. Aguinaga" <admin@listforks.com>
 
 
 
-## 2. Descrição dos arquivos de input
 
 
 
