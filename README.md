@@ -1,6 +1,14 @@
 # XEMMSB 2021
 
-## Simulação de enovelamento de proteínas e efeitos de solvente
+## Simulação do enovelamento de proteínas e efeitos de solvente
+
+Neste curso serão abordadas de forma prática técnicas de amostragem ampliada para a simulação
+do enovelamento e equilíbrio conformacional de proteínas em solventes diversos. Serão abordadas
+metodologias de amostragem por troca de cópias, em particular usando aproximações das funções de
+energia. As simulações serão realizadas usando Gromacs e Plumed. Efeitos de solvente sobre o equilíbrio
+conformacional serão estudados usando funções de
+distribuição de mínima distância e a teoria de Kirkwood-Buff de soluções, calculadas com o software
+ComplexMixtures.jl.
 
 Este é o material do curso ministrado na XEMMSB de 2021.  
 
