@@ -1,4 +1,4 @@
-  XEMMSB_dir=$1
+  XEMMSB_dir_MD=$1
  
  if [ -z "$XEMMSB_dir" ]; then
    echo "Run with: ./install.sh /home/user/INPUT/AAQAA"
@@ -10,7 +10,7 @@
      exit
  fi
 
- cd $XEMMSB_dir
+ cd $XEMMSB_dir_MD
    
  # minimization
  gmx_mpi mdrun -s minimization.tpr -v -deffnm minimization

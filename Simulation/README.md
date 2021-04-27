@@ -1,31 +1,25 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
-## 1. Diretório de instalação
+## 1. Iniciando as simulações
 
-
-Teste para os inputs!
-
-#O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
+Existem inputs prontos para simulação do peptídeo `(AAQAA)3` com água e TFE: `0%v/v` e `60%v/v` de TFE. O diretório onde os arquivos de input estão no diretória que será definido pela variável `XEMMSB_dir_MD`. Por exemplo:
 
 ```
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUT_MD/INPUTS  # inputs
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUT_MD/DADOS   # dados
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/INPUT_MD/run-md.sh
-
-
-
-
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
+XEMMSB_dir_MD=/home/leandro/Drive/Disciplinas/XEMMSB2021/Simulation/INPUTS/AAQAA_60vv
 ```
 Redefina esta variável para instalar no diretório de sua preferência.
 
-Crie o diretório:
+A simulação pode ser iniciado fazendo apenas:
 ```
-mkdir -p $XEMMSB_dir
+./run-md.sh $XEMMSB_dir_MD
 ```
+O script run-md.sh irá realizar todas as etapas da simulação:
 
+1 - Minimização do sistema.
+2 - Equilibração da temperatura e pressão.
+3 - Produção usando o método `Hamiltonian Replica Exchange Molecular Dynamics` com 4 réplicas. 
 
-
+## 2. Descrição dos arquivos de input
 
 
 
