@@ -13,29 +13,46 @@ A simulação pode ser iniciado fazendo apenas:
 ```
 ./run-md.sh $XEMMSB_dir_MD
 ```
-O script run-md.sh irá realizar todas as etapas da simulação:
+O script run-md.sh irá realizar todas as etapas da simulação para o sistema com `60%v/v` de TFE:
 
 * [Minimização do sistema](#min)
 * [Equilibração da temperatura e da pressão](#equi)
 * [Produção - HREMD](#prod)
 
+
+
 ## 2. Descrição dos arquivos de input
+
+O arquivo `input-tfe-60.jl` cria um arquivo de input para o [Packmol](http://leandro.iqm.unicamp.br/m3g/packmol/home.shtml) que irá criar um caixa cúbica com seus lados medindo `56 Angstrons`, além de moléculas de água e TFE para que haja um solução de 60 %v/v de TFE. As quantidades de cada molécula podem ser verificadas no arquivo `box.inp`.
+
+Para criar a caixa usando o packmol basta fazer:
+```
+packmol < box.inp
+```
+
+
+
+
+[plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html)
+
+
+
+
 
 
 
 ### <a name="min"></a>Minimização do sistema
-* "J. Jesus. P. Aguinaga" <admin@listforks.com>
 
 
 ### <a name="equi"></a>Equilibração da temperatura e da pressão
-* "J. Jesus. P. Aguinaga" <admin@listforks.com>
+
 
 ### <a name="prod"></a>Produção - HREMD
-* "J. Jesus. P. Aguinaga" <admin@listforks.com>
 
 
 
 
+## 3. Verificação dos resultados
 
 
 
