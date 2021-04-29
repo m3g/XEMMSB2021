@@ -80,7 +80,7 @@ gmx_mpi mdrun -s minimization.tpr -v -deffnm minimization
 ```
 A minimização terá finalizado quando for printado no prompt:
 
-![Alt Text](https://github.com/viniciuspiccoli/XEMMSB2021/tree/main/Simulation/figs/fim_minimizacao.png)
+![Alt Text](https://github.com/m3g/XEMMSB2021/blob/main/Simulation/figs/fim_minimizacao.png)
 
 Agora, temos os seguintes arquivos:
 
