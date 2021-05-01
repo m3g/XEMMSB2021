@@ -166,6 +166,8 @@ O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima ré
 (ajustar latex)
 onde \(\lambda_i)\ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_i$ é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima efetiva.
 
+\(E = mc^2\)
+
 Temos, então, 4 simulações diferentes (uma simulação para cada réplica). Contudo, para as análises apenas a réplica de menor grau será utilizada (`&lambda; = 1`). No nosso método, a tentativa de trocas entre réplicas vizinhas ocorre a cada 400 passos da simulação (etapa de produção).
 
 
