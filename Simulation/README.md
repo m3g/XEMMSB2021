@@ -126,9 +126,7 @@ O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima ré
 
   
 
-<img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}">
-
-= e^{-i/(n-i) ln(T_{max}/T_{0}})
+<img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
 
 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
 
