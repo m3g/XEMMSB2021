@@ -125,7 +125,7 @@ O método que está sendo utilizado consiste em uma simulação de dinâmica mol
 O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
 
 <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
-onde $&lambda_{i}$ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_{i}$ é a temperatura efetiva, $T_{0}$ é a temperatura inicial e $T_{max}$ é a temperatura máxima.
+onde $\lambda_i$ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_i$ é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima.
 
 Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada replicata.
 
@@ -158,6 +158,8 @@ done
 
 
 ```
+Após os arquivos `isobaric.tpr` serem criados (em cada pasta da réplica deve haver um arquivo `isobaric.tpr`), vamos usar o comando abaixo para realizar a equilibração da temperatura:
+
 
 ```
 mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
@@ -169,9 +171,10 @@ mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2
 
 
 
+
 #Comentários sobre a importância das equilibrações
 
-
+escrever...
 
 
 
