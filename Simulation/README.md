@@ -121,10 +121,14 @@ plumed partial_tempering 0.89 < processed.top > topol3.top
    
 ```
 
-O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda; .  
+O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda; .Desta forma, a multiplicação dos potênciais pelo &lambda fará com que o sistema possua uma temperatura efetiva Ti. 
+O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
+
   
+
+<img src="https://render.githubusercontent.com/render/math?math= \lambda = \frac{T_{0}}{T_{i}} = exp(-\frac{i}{(n-i)}\ln(\frac{T_{max}}{T_{0}}))">
+
 <img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
-![formula](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
 
 
