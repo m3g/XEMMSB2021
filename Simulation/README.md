@@ -62,7 +62,7 @@ Primeiramente, o arquivo de topologia deve contar os parâmetros para a água, a
 
 ----------------------------------------
 
-
+[gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
 
 ### <a name="min"></a>Minimização do sistema
 Agora que os arquivos iniciais estão organizadas,podemos partir para a etapa de minimização. Precisamos criar um aquivo tpr para o gromacs. O arquivo Tpr é um binário usado para iniciar a simulação. O Tpr contém informações sobre a estrutura inicial da simulação, a topologia molecular e todos os parâmetros da simulação (como raios de corte, temperatura, pressão, número de passos, etc.).
@@ -99,7 +99,7 @@ Vamos, agora, utilizar arquivo processed.top gerado na criação do arquivo mini
 
 Assim, para copiar os arquivos fazemos:
 ```
-echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp prod.mdp
+echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp prod.mdp plumed.dat
 ```
 O próximo passo, agora é escalonar a temperatura de acordo com os hamiltonianos.
 Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1.
@@ -107,8 +107,45 @@ Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por 
 Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
 
 
+Nesta etapa, é importante selecionar os átomos que irão ser escalonados. Para isso, adicionamos um underline na frente dos átomos que queremos "aquecer". Na simulações tratadas neste curso, os átomos que serão escolonados são aqueles que compõem o poliptídeo.
 
-(talvez aqui seja bom sugerir um loop -  ver depois)
+Se você digitar `vi processed.top` e procurar pela proteína, encontrará o seguinte:
+```
+[ moleculetype ]
+; Name            nrexcl
+Protein_chain_X     3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 ALA rtp NALA q +1.0
+     1         N3     1    ALA      N      1     0.1414      14.01
+     2          H     1    ALA     H1      2     0.1997      1.008
+     3          H     1    ALA     H2      3     0.1997      1.008
+     4          H     1    ALA     H3      4     0.1997      1.008
+
+```
+
+O que precisa ser feito é adicionar _ na frente do nome de cada átomo, assim:
+
+
+```
+
+[ moleculetype ]
+; Name            nrexcl
+Protein_chain_X     3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 ALA rtp NALA q +1.0
+     1         N3_     1    ALA      N      1     0.1414      14.01
+     2          H_     1    ALA     H1      2     0.1997      1.008
+     3          H_     1    ALA     H2      3     0.1997      1.008
+     4          H_     1    ALA     H3      4     0.1997      1.008
+
+
+```
+Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
+
 ```
 cd $XEMMSB_dir_MD/0
 plumed partial_tempering 1.0 < processed.top > topol0.top
@@ -125,7 +162,12 @@ O método que está sendo utilizado consiste em uma simulação de dinâmica mol
 O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
 
 <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
-onde $\lambda_i$ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_i$ é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima.
+
+(ajustar latex)
+onde \(\lambda_i)\ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_i$ é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima efetiva.
+
+Temos, então, 4 simulações diferentes (uma simulação para cada réplica). Contudo, para as análises apenas a réplica de menor grau será utilizada (`&lambda; = 1`). No nosso método, a tentativa de trocas entre réplicas vizinhas ocorre a cada 400 passos da simulação (etapa de produção).
+
 
 Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada replicata.
 
@@ -184,15 +226,26 @@ escrever...
 ### <a name="prod"></a>Produção - HREMD
 
 
-```
+Agora, com a minimização e as equilibrações finalizadas, podemos então criar os arquivos tpr para as simulações de produção.
 
 
 ```
+
+for i in 0 1 2 3; do
+  gmx_mpi grompp -f $i/prod$i.mdp -p $i/topol$i.top -c $i/isobaric.gro  -o $i/production.tpr -maxwarn 1
+done
+
+
+```
+
+Assim, a simulação será feita usando o comando:
 
 
 ```
  mpirun -np $rep gmx_mpi mdrun -plumed plumed.dat -s production.tpr -v -deffnm production -multidir 0 1 2 3  -replex 400 -hrex -dlb no
 ```
+
+O comando acima possui alguns detalhes importantes que valhem a pena ser mencionados. Primeiramente
 
 
 
