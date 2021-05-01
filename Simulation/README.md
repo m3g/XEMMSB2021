@@ -121,7 +121,7 @@ plumed partial_tempering 0.89 < processed.top > topol3.top
    
 ```
 
-O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda.  
+O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda; .  
   
 
 
