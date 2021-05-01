@@ -124,11 +124,56 @@ plumed partial_tempering 0.89 < processed.top > topol3.top
 O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda; .Desta forma, a multiplicação dos potênciais pelo &lambda fará com que o sistema possua uma temperatura efetiva Ti. 
 O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
 
-  
-
 <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
+onde $&lambda_{i}$ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_{i}$ é a temperatura efetiva, $T_{0}$ é a temperatura inicial e $T_{max}$ é a temperatura máxima.
 
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada replicata.
+
+```
+for i in 0 1 2 3; do
+  gmx_mpi grompp -f $i/nvt$i.mdp -c minimization.gro  -p $i/topol$i.top -o $i/canonical.tpr -maxwarn 1
+done
+
+```
+A flag -maxwarn serve para ignorar os avisos que o gromacs dá. Muitos desses avisos são coisas que não tem impacto nenhum na simulação. Entretanto, é recomendado rodar, na primeira vez, sem essa flag para observar o que o gromacs está reportando. ALguns dos avisos podem ser potencialmente danosos para sua simulação, como, por exemplo, um sistema que não está eletricamente neutro. Mais informações podem ser obtidas em [Errors](https://www.gromacs.org/Documentation_of_outdated_versions/Errors).
+
+Agora que todos os arquivos tpr foram gerados, podemos iniciar a simulação da equilibração NVT fazendo:
+
+```
+mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
+
+```
+A flag -np indica o número de processos que serão iniciados. Neste caso, cada processo terá uma réplica. O mpi fará a distribuição de processadores disponíveis para cada processo automaticamente.
+
+#Colocar alguma coisa para as pessoas saberem se a simulação terminou
+
+
+A etapa de equilibração NPT usa, essencialmente, os mesmos comandos, apenas alterando os inputs:
+
+
+```
+for i in 0 1 2 3; do
+  gmx_mpi grompp -f $i/npt$i.mdp -c canonical.gro  -p $i/topol$i.top -o $i/isobaric.tpr -maxwarn 1
+done
+
+
+```
+
+```
+mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
+
+```
+
+
+
+
+
+
+#Comentários sobre a importância das equilibrações
+
+
+
+
 
 
 
@@ -136,9 +181,24 @@ O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima ré
 ### <a name="prod"></a>Produção - HREMD
 
 
+```
+
+
+```
+
+
+```
+ mpirun -np $rep gmx_mpi mdrun -plumed plumed.dat -s production.tpr -v -deffnm production -multidir 0 1 2 3  -replex 400 -hrex -dlb no
+```
+
+
+
 
 
 ## 3. Verificação dos resultados
+
+
+
 
 
 
