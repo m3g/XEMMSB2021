@@ -104,15 +104,27 @@ echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp prod.mdp
 O próximo passo, agora é escalonar a temperatura de acordo com os hamiltonianos.
 Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1.
 
-CONTINUAR DAQUI...
+Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
 
 
+
+(talvez aqui seja bom sugerir um loop -  ver depois)
 ```
 cd $XEMMSB_dir_MD/0
 plumed partial_tempering 1.0 < processed.top > topol0.top
+cd $XEMMSB_dir_MD/1
+plumed partial_tempering 0.96 < processed.top > topol1.top
+cd $XEMMSB_dir_MD/2
+plumed partial_tempering 0.93 < processed.top > topol2.top
+cd $XEMMSB_dir_MD/3
+plumed partial_tempering 0.89 < processed.top > topol3.top
    
 ```
+
+O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda.  
   
+
+
 
 
 
