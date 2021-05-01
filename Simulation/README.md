@@ -164,7 +164,7 @@ O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima ré
 <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
 
 (ajustar latex)
-onde \(\lambda_i)\ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, $T_i$ é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima efetiva.
+onde \(\lambda_i)\ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, ```$T_i$``` é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima efetiva.
 
 \(E = mc^2\)
 
