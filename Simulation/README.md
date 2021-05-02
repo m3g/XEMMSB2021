@@ -164,9 +164,8 @@ O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima ré
 <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
 
 (ajustar latex)
-onde \(\lambda_i)\ é o faotr de escalonamento da i-ésima replicata, $n$ é o número de replicatas, ```$T_i$``` é a temperatura efetiva, $T_0$ é a temperatura inicial e $T_max$ é a temperatura máxima efetiva.
+onde &lambda;i é o faotr de escalonamento da i-ésima replicata, n é o número de replicatas, Ti é a temperatura efetiva, T0 é a temperatura inicial e Tmax é a temperatura máxima efetiva.
 
-\(E = mc^2\)
 
 Temos, então, 4 simulações diferentes (uma simulação para cada réplica). Contudo, para as análises apenas a réplica de menor grau será utilizada (`&lambda; = 1`). No nosso método, a tentativa de trocas entre réplicas vizinhas ocorre a cada 400 passos da simulação (etapa de produção).
 
@@ -191,9 +190,7 @@ A flag -np indica o número de processos que serão iniciados. Neste caso, cada 
 
 #Colocar alguma coisa para as pessoas saberem se a simulação terminou
 
-
 A etapa de equilibração NPT usa, essencialmente, os mesmos comandos, apenas alterando os inputs:
-
 
 ```
 for i in 0 1 2 3; do
@@ -207,37 +204,17 @@ Após os arquivos `isobaric.tpr` serem criados (em cada pasta da réplica deve h
 
 ```
 mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
-
 ```
-
-
-
-
-
-
-
-#Comentários sobre a importância das equilibrações
-
-escrever...
-
-
-
-
 
 
 ### <a name="prod"></a>Produção - HREMD
 
-
 Agora, com a minimização e as equilibrações finalizadas, podemos então criar os arquivos tpr para as simulações de produção.
 
-
 ```
-
 for i in 0 1 2 3; do
   gmx_mpi grompp -f $i/prod$i.mdp -p $i/topol$i.top -c $i/isobaric.gro  -o $i/production.tpr -maxwarn 1
 done
-
-
 ```
 
 Assim, a simulação será feita usando o comando:
