@@ -109,8 +109,6 @@
   
   
   # Function to calculate number of components to put inside a box given a specific concentration
- 
- # PDB UBQ = 8560
 
   function box(MMP::Float64, PDB::String, c::Float64)
 
@@ -133,7 +131,6 @@
     num_wat(vs,vil) = round(Int128,((vs - vil) * 6.02e23) / (18*1e-3));
   
     # Box dimensions
-    #lx,ly,lz = measure_prot(PDB) 
     lx = 28  
     ly = 28
     lz = 28
@@ -183,8 +180,8 @@
 
    # topology  
    nls = length(readlines("topol.top"))
-   file1 = open("topol.top","r")  
-   file2 = open("topol_new.top","w")
+   file1 = open("topol_back.top","r")  
+   file2 = open("topol.top","w")
  
    for line in eachline(file1)   
      if occursin("NWAT",line) 

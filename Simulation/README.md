@@ -1,84 +1,103 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
-IDEIAS INICIAIS -PRECISA ORGANIZAR E CHECAR ALGUMAS INFORMAÇÕES
 
-## 1. Iniciando as simulações
+## 1. Realizando as simulações de uma única vez
 
-Existem inputs prontos para simulação do peptídeo `(AAQAA)3` com água e TFE: `0%v/v` e `60%v/v` de TFE. O diretório onde os arquivos de input estão no diretória que será definido pela variável `XEMMSB_dir_MD`. Por exemplo:
+Existem inputs prontos para simulação do peptídeo `(AAQAA)3` com água e TFE: `0%v/v` e `60%v/v` de TFE. O diretório onde os arquivos de input estão será definido na variável `XEMMSB_dir_MD`. Por exemplo:
 
 ```
 XEMMSB_dir_MD=/home/leandro/Drive/Disciplinas/XEMMSB2021/Simulation/INPUTS/AAQAA_60vv
 ```
-Redefina esta variável para instalar no diretório de sua preferência.
-
-A simulação pode ser iniciado fazendo apenas:
+Redefina esta variável para o diretório em que tenha salvo a pasta XEMMSB2021. A simulação pode ser iniciada fazendo apenas:
 ```
 ./run-md.sh $XEMMSB_dir_MD
 ```
-O script run-md.sh irá realizar todas as etapas da simulação para o sistema com `60%v/v` de TFE:
+O script run-md.sh irá organizar todos os arquivos nos diretórios corretos, assim como realizar todas as etapas da simulação. Se todos os programas estiverem instalados corretamente, a simulação deve funcionar sem problemas.
 
-* [Minimização do sistema](#min)
+
+## 2. Etapas da simulação
+
+Apesar do passo acima possibilitar a execução de todas as etapas da simulação que estamos nos propondo a fazer, é interessante analisar o que acontece em cada etapa para uma melhor compreensão do método.
+
+Resumidamente, a simulação é composta pelas seguintes etapas:
+
+* [Configuração inicial do sistema](#config)
+* [Minimização](#min)
 * [Equilibração da temperatura e da pressão](#equi)
 * [Produção - HREMD](#prod)
 
 
 
-## 2. Descrição dos arquivos de input
+## 3. Descrição das etapas de simulação e dos arquivos de input.
 
+### <a name="config"></a>Montagem da caixa inicial
 
+O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular um sistema composto pelo polipeptídeo `(AAQAA)3` e por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol\L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
 
+(ADICIONAR OBSERVAÇÃO PARA OSISTEMA APENAR COM ÁGUA)
+
+Para executar este script para fazer:
 ```
-# creating the box and the topology
-julia input-tfe-100%.jl
-cp topol_new.top topol.top
-rm topol_new.top
-packmol < box.inp
-
-# Generation of the unprocessed topology
-#echo 1 | gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topol.top -ff amber03w -ignh
-
-# Minimization tpr file and processed topology creation
-gmx_mpi grompp -f mim.mdp -c system.pdb -p topol.top -o minimization.tpr -pp processed.top -maxwarn 1
+julia input-tfe-60.jl
 ```
 
+Como resultado, dois novos arquivos serão gerados `box.inp` e `topol.top`. O arquivo `box.inp` será usado como input do [Packmol](http://leandro.iqm.unicamp.br/m3g/packmol/home.shtml), enquando `topol.top` conterá todos os parâmetros de topologia do nosso sistema, mais adiante voltaremos neste arquivos.
 
-O arquivo `input-tfe-60.jl` cria um arquivo de input para o [Packmol](http://leandro.iqm.unicamp.br/m3g/packmol/home.shtml) que irá criar um caixa cúbica com seus lados medindo `56 Angstrons`, além de moléculas de água e TFE para que haja um solução de 60 %v/v de TFE. As quantidades de cada molécula podem ser verificadas no arquivo `box.inp`.
+Assim, para finalmente criarmos nosso sistema inicial, usamos o seguinte comando:
 
-Para criar a caixa usando o packmol basta fazer:
 ```
-packmol < box.inp
+packmol < box.inp > box.log
+```
+O output do comando acima será o arquivo `system.pdb`. Este pdb contém todos os átomos que compõem o sistema e pode ser visualizado por meio de softwares como o `vmd` e o `PyMOL` fazendo:
+
+```
+vmd system.pdb
+
+ou
+
+pymol system.pdb
 ```
 
-O output do comando acima será o arquivo `system.pdb`. Este pdb contém o sistema montado e pode ser visualizado por meio de softwares como o `vmd` e o `PyMOL`
+Agora que possuímos um arquivo pdb para o nosso sistema inicial, devemos nos atentar para a topologia.  O arquivo topol.top possui toda a informação referente aos parâmetros do campo de força do sistema. 
+Aqui existem alguns pontos importantes
+* O arquivo topol.top, na forma com que é apresentado, não é montado automaticamente pelo gromacs. Isto deve-se ao fato que estamos usando parâmetros que não estão contidos no gromacs para o TFE.
+* O campo de força utilizado para o peptídeo é o amber03w e o modelo para para a água é o tip4p2005. Os parâmetros para o TFE também são do tipo amber e estão no arquivo `tfe.itp`.
+* O arquivo `topol_back.top` é usado pelo script  `input-tfe-60.jl` para criar a topologia (`topol.top`) como o número correto de moléculas do sistema. 
 
--------------- aqui eu tenho que descrever todos os arquivos até a topologia
+
+
+
+
+
+
+
+
+
+
+
 O arquivo system.pdb será, assim, um dos inputs para que as simulações sejam iniciadas. O próximo passo, portanto, será a construção do arquivo de topologia. No diretório `XEMMSB_dir_MD` há o arquivo `processed.top` que será o arquivo utilizado como topologia para as diferentes réplicas. Alguns pontos merecem atenção aqui.
 
 Primeiramente, o arquivo de topologia deve contar os parâmetros para a água, a proteína e o tfe. 
 
-[plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html)
 
-
-
-----------------------------------------
 
 [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
 
 ### <a name="min"></a>Minimização do sistema
-Agora que os arquivos iniciais estão organizadas,podemos partir para a etapa de minimização. Precisamos criar um aquivo tpr para o gromacs. O arquivo Tpr é um binário usado para iniciar a simulação. O Tpr contém informações sobre a estrutura inicial da simulação, a topologia molecular e todos os parâmetros da simulação (como raios de corte, temperatura, pressão, número de passos, etc.).
+Agora que os arquivos iniciais estão organizados, podemos partir para a etapa de minimização. Precisamos criar um arquivo `.tpr` para o gromacs. O arquivo tpr é um binário usado para iniciar a simulação que contém informações sobre a estrutura inicial da simulação, a topologia molecular e todos os parâmetros da simulação (como raios de corte, temperatura, pressão, número de passos, etc.).
 
-O arquivo tpr da nossa minimização utilizará o arquivo topol.top. Como a atual etapa compreende a minimização, o arquivo mim.mdp (que possui todos os parâmetros para realizar um minimização) também deverá ser utilizado. Assim, para criar o arquivo tpr, usamos o comando:
+Para a etapa de minimização, usaremos os arquivos `topol.top` e `mim.mdp` (que possui todos os parâmetros para realizar uma minimização). Assim, para criar o arquivo tpr, usamos o comando:
 
 ```
 gmx_mpi grompp -f mim.mdp -c system.pdb -p topol.top -o minimization.tpr -pp processed.top -maxwarn 1
 ```
-Agora temos o arquivo minimization.tpr, para realizar a minimização usamos o comando:
+O arquivo `processed.top` é importante para a utilização do software Plumed, sua utilização detalhada posteriormente. Agora temos o arquivo `minimization.tpr` e para realizar a minimização usamos o comando:
 
 ```
 gmx_mpi mdrun -s minimization.tpr -v -deffnm minimization
 
 ```
-A minimização terá finalizado quando for printado no prompt:
+A minimização terá finalizado quando for printado no prompt algo semelhante à:
 
 ![Alt Text](https://github.com/m3g/XEMMSB2021/blob/main/Simulation/figs/fim_minimizacao.png)
 
@@ -89,25 +108,30 @@ Agora, temos os seguintes arquivos:
 * [minimization.log]: Arquivo de texto ASCII do processo de minimização. 
 * [minimization.trr]: Arquivo binário da trajetória (alta precisão).
 
-Para a continuação da simulação, vamos utilizar o aquivo `minimization.gro`
+Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro` e a topologia `processed.top`.
 
 ### <a name="equi"></a>Equilibração da temperatura e da pressão
 
-Como você deve ter notado, apenas uma minimização foi feita. Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
+Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
 
-Vamos, agora, utilizar arquivo processed.top gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatuda de 300 K e 1 bar. Sendo assim, é necessário abrir os arquivos nvt.mpr, npt.mdp e prod.mdp e alterar a variável REFT por 300. Vamos, agora, copiar todos os arquivos mdp para cada 4 pastas diferentes. Cada pasta representa um replicata que será simulada usando um hamiltoniano diferente (obs: o arquivo prod.mdp será usado na etapa final).
+Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Sendo assim, o primeiro passo é alterar nos arquivos (nvt.mdp, npt.mdp e prod.mdp) a variável REFT para 300 (isso é feito pelo script run-md.sh. Como estamos fazendo por etapas, devemos realizar essa troca manualmente). Em seguida, copiamos todos os arquivos mdp para cada 4 pastas diferentes. Cada pasta representa uma réplica que será simulada usando um hamiltoniano diferente (obs: o arquivo prod.mdp será usado na etapa final).
 
 Assim, para copiar os arquivos fazemos:
 ```
 echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp prod.mdp plumed.dat
 ```
-O próximo passo, agora é escalonar a temperatura de acordo com os hamiltonianos.
-Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1.
+O comando acima copia os arquivos nvt.mdp, npt.mdp, prod.mdp e plumed.dat (discutido posteriormente) para as pastas 0/, 1/, 2/ e 3/.
 
-Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
+O próximo passo, agora, é escalonar a temperatura de acordo com os hamiltonianos.
+Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1. Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
 
+Nesta etapa, é importante selecionar os átomos que irão ser escalonados. Para isso, adicionamos um underline na frente dos átomos que queremos "aquecer" (*). Na simulação tratadas neste curso, os átomos que serão escalonados são aqueles que compõem o polipeptídeo.
 
-Nesta etapa, é importante selecionar os átomos que irão ser escalonados. Para isso, adicionamos um underline na frente dos átomos que queremos "aquecer". Na simulações tratadas neste curso, os átomos que serão escolonados são aqueles que compõem o poliptídeo.
+----------------------
+(*)
+O termo aquecer é usado pois a multiplicação dos parâmetros do campo de força pelo hamiltoniano diminui a interação entre as partículas, “afrouxando” o potencial. Esta ação é como se aumentássemos a temperatura. Porém, como a temperatura é um prop…. (decidir se vale a pena colocar isso)
+
+----------------------
 
 Se você digitar `vi processed.top` e procurar pela proteína, encontrará o seguinte:
 ```
@@ -125,7 +149,7 @@ Protein_chain_X     3
 
 ```
 
-O que precisa ser feito é adicionar _ na frente do nome de cada átomo, assim:
+O que precisa ser feito é adicionar _ na frente do nome de cada átomo da proteína, assim:
 
 
 ```
@@ -141,7 +165,9 @@ Protein_chain_X     3
      2          H_     1    ALA     H1      2     0.1997      1.008
      3          H_     1    ALA     H2      3     0.1997      1.008
      4          H_     1    ALA     H3      4     0.1997      1.008
-
+                                    .
+                                    .
+                                    .
 
 ```
 Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
@@ -157,20 +183,19 @@ cd $XEMMSB_dir_MD/3
 plumed partial_tempering 0.89 < processed.top > topol3.top
    
 ```
+Mais informações podem ser obtidas em [plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html).
 
-O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potências de interação intramolecular e proteína solvente são multiplicados por um fator chamado hamiltoniano, comumentemente representado pela letra grega &lambda; .Desta forma, a multiplicação dos potênciais pelo &lambda fará com que o sistema possua uma temperatura efetiva Ti. 
+O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potenciais de interação intramolecular e proteína-solvente são multiplicados por um fator chamado hamiltoniano, comumente representado pela letra grega &lambda; . Desta forma, a multiplicação dos potenciais pelo &lambda fará com que o sistema possua uma temperatura efetiva Ti. 
 O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
 
 <img src="https://render.githubusercontent.com/render/math?math=\lambda_{i} =\frac{ T_{0}}{T_{i}}=exp(\frac{-i}{n-i} \ln(\frac{T_{max}}{T_{0}}))">
 
-(ajustar latex)
-onde &lambda;i é o faotr de escalonamento da i-ésima replicata, n é o número de replicatas, Ti é a temperatura efetiva, T0 é a temperatura inicial e Tmax é a temperatura máxima efetiva.
+###(Não consegui colocar latex aqui, se o senhor souber peço que mude como achar melhor)
+onde &lambda;i é o fator de escalonamento da i-ésima replicata, n é o número de replicatas, Ti é a temperatura efetiva, T0 é a temperatura inicial e Tmax é a temperatura máxima efetiva.
 
+Temos, então, 4 simulações diferentes (uma simulação para cada réplica). Contudo, para as análises, apenas a réplica de menor grau será utilizada (`&lambda; = 1`). 
 
-Temos, então, 4 simulações diferentes (uma simulação para cada réplica). Contudo, para as análises apenas a réplica de menor grau será utilizada (`&lambda; = 1`). No nosso método, a tentativa de trocas entre réplicas vizinhas ocorre a cada 400 passos da simulação (etapa de produção).
-
-
-Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada replicata.
+Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada réplica.
 
 ```
 for i in 0 1 2 3; do
@@ -178,7 +203,7 @@ for i in 0 1 2 3; do
 done
 
 ```
-A flag -maxwarn serve para ignorar os avisos que o gromacs dá. Muitos desses avisos são coisas que não tem impacto nenhum na simulação. Entretanto, é recomendado rodar, na primeira vez, sem essa flag para observar o que o gromacs está reportando. ALguns dos avisos podem ser potencialmente danosos para sua simulação, como, por exemplo, um sistema que não está eletricamente neutro. Mais informações podem ser obtidas em [Errors](https://www.gromacs.org/Documentation_of_outdated_versions/Errors).
+A flag maxwarn serve para ignorar os avisos que o gromacs dá. Muitos desses avisos são coisas que não tem impacto nenhum na simulação. Entretanto, é recomendado rodar, na primeira vez, sem essa flag para observar o que o gromacs está reportando. Alguns dos avisos podem ser potencialmente danosos para sua simulação, como, por exemplo, um sistema que não está eletricamente neutro. Mais informações podem ser obtidas em [Errors](https://www.gromacs.org/Documentation_of_outdated_versions/Errors).
 
 Agora que todos os arquivos tpr foram gerados, podemos iniciar a simulação da equilibração NVT fazendo:
 
@@ -186,7 +211,7 @@ Agora que todos os arquivos tpr foram gerados, podemos iniciar a simulação da 
 mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
 
 ```
-A flag -np indica o número de processos que serão iniciados. Neste caso, cada processo terá uma réplica. O mpi fará a distribuição de processadores disponíveis para cada processo automaticamente.
+A flag -np indica o número de processos que serão iniciados. Neste caso, cada processo será uma réplica. O mpirun fará a distribuição de processadores disponíveis em seu computador para cada processo de forma automática.
 
 #Colocar alguma coisa para as pessoas saberem se a simulação terminou
 
@@ -209,6 +234,11 @@ mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2
 
 ### <a name="prod"></a>Produção - HREMD
 
+(melhorar)
+
+Resumidamente, estamos fazendo várias simulações simultâneas que diferenciam-se pelos potenciais de interação intramolecular da proteína e da proteína com o solvente. Esta diferença decorre do método de escalonamento que fizemos na etapa de equilibração com os valores de &lambda; . Assim, o método baseia-se no princípio que simulações que foram escalonadas com um &lambda; menor poderão amostrar conformações diferentes que não seriam visitadas na simulação normal (réplica 0). Por meio de uma troca de coordenadas que acontece periodicamente (no nosso caso as  tentativas dão-se a cada 400 passos da simulação, o que dão tentativas ocorrendo a cada 0.8 ps), as conformações amostradas nas réplicas de maior ordem podem ir sendo trocadas com as réplicas vizinhas até chegar na réplica 0, aumentando a capacidade de amostragem na simulação.
+
+
 Agora, com a minimização e as equilibrações finalizadas, podemos então criar os arquivos tpr para as simulações de produção.
 
 ```
@@ -217,23 +247,37 @@ for i in 0 1 2 3; do
 done
 ```
 
-Assim, a simulação será feita usando o comando:
+Assim, 2 ns de simulação de produção poderão feitos por meio do comando:
 
 
 ```
  mpirun -np $rep gmx_mpi mdrun -plumed plumed.dat -s production.tpr -v -deffnm production -multidir 0 1 2 3  -replex 400 -hrex -dlb no
 ```
 
-O comando acima possui alguns detalhes importantes que valhem a pena ser mencionados. Primeiramente
-
-
 
 
 
 ## 3. Verificação dos resultados
 
+### probabilidades de troca
+Com sorte, nenhum problema ocorreu e agora a simulação foi finalizada... 
 
 
+
+
+### visualização da trajetória
+Para visualizar sua trajetória no vmd é necessário processar os dados para uma visualização correta. Os arquivos importantes para a visualização são o frame com a configuração final, `production.gro`, e a trajetória, `production.xtc`. Assim, precisamos usar o comando:
+```
+    for a in "gro" "xtc"; do
+      echo 1 0 |gmx trjconv -s  production.tpr -f production."$a" -o processed."$a" -ur compact -pbc mol -center
+     done
+```
+Com os arquivos `processed.gro` e `processed.xtc` podemos usar o vmd para visualizar a trajetória:
+
+```
+vmd processed.gro processed.xtc
+
+```
 
 
 

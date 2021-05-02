@@ -1,21 +1,16 @@
-; title                   = Production
+title                   =  NPT equilibration 
+define                  = -DPOSRES  ; position restrain the protein
 ; Run parameters
-integrator              = md         ; leap-frog integrator
-nsteps                  = 1000000     ;  0.002 * 1000000 = 2000 ps = 2 ns       
-dt                      = 0.002      ;  2    fs   
+integrator              = md        ; leap-frog integrator
+nsteps                  = 500000    ; 2 * 500000 = 1000 ps    - 1 ns
+dt                      = 0.002     ; 2 fs
 ; Output control
-nstxout                 = 0           ; suppress bulky .trr file by specifying 
-nstvout                 = 0           ; 0 for output frequency of nstxout,
-nstfout                 = 0           ; nstvout, and nstfout
-nstenergy               = 25000       ; save energies every 500.0 ps
-nstlog                  = 25000       ; update log file every 500.0 ps
-nstxout-compressed      = 25000       ; save compressed coordinates every 500.0 ps
-compressed-x-grps       = System      ; save the whole system      
-
-; The final trajectory will have 100 frames!
-
+nstxout                 = 50000       ; save coordinates every 1.0 ps
+nstvout                 = 50000       ; save velocities every 1.0 ps
+nstenergy               = 50000       ; save energies every 1.0 ps
+nstlog                  = 50000       ; update log file every 1.0 ps
 ; Bond parameters
-continuation            = yes       ; Restarting after NPT 
+continuation            = yes       ; Restarting after NVT 
 constraint_algorithm    = lincs     ; holonomic constraints 
 constraints             = all-bonds   ; bonds involving H are constrained
 lincs_iter              = 1         ; accuracy of LINCS
@@ -34,8 +29,8 @@ fourierspacing          = 0.16      ; grid spacing for FFT
 ; Temperature coupling is on
 tcoupl                  = V-rescale             ; modified Berendsen thermostat
 tc-grps                 = Protein Non-Protein   ; two coupling groups - more accurate
-tau_t                   = 2     2               ; time constant, in ps
-ref_t                   = REFT    REFT           ; reference temperature, one for each group, in K
+tau_t                   = 2         2           ; time constant, in ps
+ref_t                   = REFT    REFT          ; reference temperature, one for each group, in K
 ; Pressure coupling is on
 pcoupl                  = Parrinello-Rahman     ; Pressure coupling on in NPT
 pcoupltype              = isotropic             ; uniform scaling of box vectors
