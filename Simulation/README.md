@@ -27,6 +27,9 @@ Resumidamente, a simulação é composta pelas seguintes etapas:
 * [Produção - HREMD](#prod)
 
 
+Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
+
+
 
 ## 3. Descrição das etapas de simulação e dos arquivos de input.
 
@@ -64,24 +67,6 @@ Aqui existem alguns pontos importantes
 * O campo de força utilizado para o peptídeo é o amber03w e o modelo para para a água é o tip4p2005. Os parâmetros para o TFE também são do tipo amber e estão no arquivo `tfe.itp`.
 * O arquivo `topol_back.top` é usado pelo script  `input-tfe-60.jl` para criar a topologia (`topol.top`) como o número correto de moléculas do sistema. 
 
-
-
-
-
-
-
-
-
-
-
-
-O arquivo system.pdb será, assim, um dos inputs para que as simulações sejam iniciadas. O próximo passo, portanto, será a construção do arquivo de topologia. No diretório `XEMMSB_dir_MD` há o arquivo `processed.top` que será o arquivo utilizado como topologia para as diferentes réplicas. Alguns pontos merecem atenção aqui.
-
-Primeiramente, o arquivo de topologia deve contar os parâmetros para a água, a proteína e o tfe. 
-
-
-
-[gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
 
 ### <a name="min"></a>Minimização do sistema
 Agora que os arquivos iniciais estão organizados, podemos partir para a etapa de minimização. Precisamos criar um arquivo `.tpr` para o gromacs. O arquivo tpr é um binário usado para iniciar a simulação que contém informações sobre a estrutura inicial da simulação, a topologia molecular e todos os parâmetros da simulação (como raios de corte, temperatura, pressão, número de passos, etc.).
