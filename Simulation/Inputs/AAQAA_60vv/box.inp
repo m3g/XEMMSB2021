@@ -3,19 +3,20 @@ output system.pdb
 add_box_sides 1.0
 filetype pdb
 seed -1
-                  
+
 structure AAQAA.pdb
- number 1
- center
- fixed 0. 0. 0. 0. 0. 0.
+  number 1
+  center
+  fixed 0. 0. 0. 0. 0. 0.
 end structure
-                  
+
 structure tip4p2005.pdb
- number 2307
- inside box -28. -28. -28. 28. 28. 28.
+  number 7324
+  inside box -40.965 -40.965 -40.965 40.965 40.965 40.965
 end structure
-                  
+
 structure tfe.pdb
- number 627
- inside box -28. -28. -28. 28. 28. 28.
+  number 1979
+  inside box -40.965 -40.965 -40.965 40.965 40.965 40.965
 end structure
+
