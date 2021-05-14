@@ -1,45 +1,15 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
-
-## 1. Realizando as simulações de uma única vez
-
-Existem inputs prontos para simulação do peptídeo `(AAQAA)3` com água e TFE: `0%v/v` e `60%v/v` de TFE. O diretório onde os arquivos de input estão será definido na variável `XEMMSB_dir_MD`. Por exemplo:
-
-```
-XEMMSB_dir_MD=/home/leandro/Drive/Disciplinas/XEMMSB2021/Simulation/INPUTS/AAQAA_60vv
-```
-Redefina esta variável para o diretório em que tenha salvo a pasta XEMMSB2021. A simulação pode ser iniciada fazendo apenas:
-```
-./run-md.sh $XEMMSB_dir_MD
-```
-O script run-md.sh irá organizar todos os arquivos nos diretórios corretos, assim como realizar todas as etapas da simulação. Se todos os programas estiverem instalados corretamente, a simulação deve funcionar sem problemas.
-
-
-## 2. Etapas da simulação
-
-### Minimização
-
-Faça o download do script `minimization.sh`, crie o diretório de saída desejado, e execute:
-
-Apesar do passo acima possibilitar a execução de todas as etapas da simulação que estamos nos propondo a fazer, é interessante analisar o que acontece em cada etapa para uma melhor compreensão do método.
-
-Resumidamente, a simulação é composta pelas seguintes etapas:
+## Etapas:
 
 * [Configuração inicial do sistema](#config)
 * [Minimização](#min)
 * [Equilibração da temperatura e da pressão](#equi)
 * [Produção - HREMD](#prod)
 
+## <a name="config"></a>Configuração inicial do sistema
 
-Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
-
-
-
-## 3. Descrição das etapas de simulação e dos arquivos de input.
-
-### <a name="config"></a>Montagem da caixa inicial
-
-O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular um sistema composto pelo polipeptídeo `(AAQAA)3` e por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol\L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
+O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular um sistema composto pelo polipeptídeo `(AAQAA)3` e por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol/L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
 
 (ADICIONAR OBSERVAÇÃO PARA OSISTEMA APENAR COM ÁGUA)
 
@@ -48,7 +18,7 @@ Para executar este script para fazer:
 julia input-tfe-60.jl
 ```
 
-Como resultado, dois novos arquivos serão gerados `box.inp` e `topol.top`. O arquivo `box.inp` será usado como input do [Packmol](http://leandro.iqm.unicamp.br/m3g/packmol/home.shtml), enquando `topol.top` conterá todos os parâmetros de topologia do nosso sistema, mais adiante voltaremos neste arquivos.
+Como resultado, dois novos arquivos serão gerados `box.inp` e `topol.top`. O arquivo `box.inp` será usado como input do [Packmol](http://m3g.iqm.unicamp.br/packmol), enquando `topol.top` conterá todos os parâmetros de topologia do nosso sistema, mais adiante voltaremos neste arquivos.
 
 Assim, para finalmente criarmos nosso sistema inicial, usamos o seguinte comando:
 
@@ -71,6 +41,39 @@ Aqui existem alguns pontos importantes
 * O campo de força utilizado para o peptídeo é o amber03w e o modelo para para a água é o tip4p2005. Os parâmetros para o TFE também são do tipo amber e estão no arquivo `tfe.itp`.
 * O arquivo `topol_back.top` é usado pelo script  `input-tfe-60.jl` para criar a topologia (`topol.top`) como o número correto de moléculas do sistema. 
 
+
+### Minimização
+
+Faça o download do script `minimization.sh`, crie o diretório de saída desejado, e execute:
+
+```
+chmod +x ./minimization.sh
+./minimization.sh /home/user/path/output_dir
+```
+
+### Gerando arquivos de entrada para as simulações
+
+
+
+
+
+
+
+Apesar do passo acima possibilitar a execução de todas as etapas da simulação que estamos nos propondo a fazer, é interessante analisar o que acontece em cada etapa para uma melhor compreensão do método.
+
+Resumidamente, a simulação é composta pelas seguintes etapas:
+
+* [Configuração inicial do sistema](#config)
+* [Minimização](#min)
+* [Equilibração da temperatura e da pressão](#equi)
+* [Produção - HREMD](#prod)
+
+
+Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
+
+
+
+## 3. Descrição das etapas de simulação e dos arquivos de input.
 
 ### <a name="min"></a>Minimização do sistema
 Agora que os arquivos iniciais estão organizados, podemos partir para a etapa de minimização. Precisamos criar um arquivo `.tpr` para o gromacs. O arquivo tpr é um binário usado para iniciar a simulação que contém informações sobre a estrutura inicial da simulação, a topologia molecular e todos os parâmetros da simulação (como raios de corte, temperatura, pressão, número de passos, etc.).
