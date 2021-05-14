@@ -17,6 +17,10 @@ O script run-md.sh irá organizar todos os arquivos nos diretórios corretos, as
 
 ## 2. Etapas da simulação
 
+### Minimização
+
+Faça o download do script `minimization.sh`, crie o diretório de saída desejado, e execute:
+
 Apesar do passo acima possibilitar a execução de todas as etapas da simulação que estamos nos propondo a fazer, é interessante analisar o que acontece em cada etapa para uma melhor compreensão do método.
 
 Resumidamente, a simulação é composta pelas seguintes etapas:
