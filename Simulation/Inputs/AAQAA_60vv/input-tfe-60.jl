@@ -77,7 +77,7 @@ module CreateInput
 
                 structure $solvent_file
                   number $ncos
-                  inside box -$(lx). -$(ly). -$(lz). $(lx). $(ly). $(lz)
+                  inside box -$lx -$ly -$lz $lx $ly $lz
                 end structure
                 """)
     close(io)
