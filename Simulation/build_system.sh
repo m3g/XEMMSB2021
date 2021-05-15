@@ -1,6 +1,7 @@
 #!/bin/bash
 
-this_script="minimization.sh"
+this_script="build_system"
+
 #
 # Output dir is the first argument
 #
@@ -8,7 +9,7 @@ this_script="minimization.sh"
 output_dir=$1
 
 if [ -z "$output_dir" ]; then
-  echo "Run with: ./$thisscript /home/user/installation_dir [optional repo dir]"
+  echo "Run with: ./$thisscript.sh /home/user/installation_dir [optional repo dir]"
   exit
 fi
 
@@ -35,14 +36,20 @@ current_dir=`pwd`
 
 cd $output_dir
 
+mkdir -p JuliaScripts
+$fetch $repo/JuliaScripts/CreateInputs.jl $target
+mv -f CreateInputs.jl ./JuliaScripts
+
 for system in "AAQAA_60vv" "AAQAA_0vv"; do
 
-  out=$output_dir/$system/minimization
+  out=$output_dir/$system/$thisscript
   mkdir -p $output_dir
   mkdir -p $output_dir/$system
   mkdir -p $out
 
-  $fetch $repo/Inputs/$system/minimization.tpr $target
+  julia ../JuliaScripts/
+
+  $fetch $repo/InputFiles/$system/
   mv -f minimization.tpr $out
 
   cd $out
@@ -51,3 +58,6 @@ for system in "AAQAA_60vv" "AAQAA_0vv"; do
 done
 
 cd $current_dir
+
+
+
