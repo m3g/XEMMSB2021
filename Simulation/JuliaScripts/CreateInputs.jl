@@ -71,28 +71,31 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_siz
   
   open(box_file,"w") do io
     println(io,"""
-                tolerance 2.0
-                output system.pdb
-                add_box_sides 1.0
-                filetype pdb
-                seed -1
+               tolerance 2.0
+               output system.pdb
+               add_box_sides 1.0
+               filetype pdb
+               seed -1
 
-                structure $pdbfile
-                  number 1
-                  center
-                  fixed 0. 0. 0. 0. 0. 0.
-                end structure
+               structure $pdbfile
+                 number 1
+                 center
+                 fixed 0. 0. 0. 0. 0. 0.
+               end structure
 
-                structure $water_file
-                  number $nwat
-                  inside box -$l -$l -$l $l $l $l
-                end structure
-
+               structure $water_file
+                 number $nwat
+                 inside box -$l -$l -$l $l $l $l
+               end structure
+               """)
+      if ncos > 0 
+        println(io,"""
                 structure $solvent_file
                   number $ncos
                   inside box -$l -$l -$l $l $l $l
                 end structure
                 """)
+      end
  end
  println("Wrote file: $box_file")
 

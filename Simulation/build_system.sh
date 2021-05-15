@@ -1,12 +1,12 @@
 #!/bin/bash
 
-this_script="build_system"
+thisscript="build_system"
 
 #
 # Repository dir is the first argument, output dir the second argument
 #
 repo_dir=$1
-output_dir=$2
+output_dir=$(readlink -f $2)
 current_dir=`pwd`
 
 if [ -z "$output_dir" ]; then
@@ -19,23 +19,25 @@ if [ -z "$repo_dir" ]; then
 fi
 
 if [[ ! -d "$output_dir" ]]; then
-    echo "$output_dir_dir does not exist. Create it first. "
+    echo "$output_dir does not exist. Create it first. "
     exit
 fi
 
 
-cd $output_dir
-
 for system in "AAQAA_60vv" "AAQAA_0vv"; do
 
+  cd $output_dir
+
   mkdir -p $system
-  mkdir -p $out/$thisscript
+  mkdir -p $system/$thisscript
+  cd $system/$thisscript
+pwd
 
   julia $repo_dir/Simulation/JuliaScripts/$system.jl
+
 
 done
 
 cd $current_dir
-
 
 
