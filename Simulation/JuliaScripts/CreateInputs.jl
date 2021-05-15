@@ -122,7 +122,7 @@ function input_gen(nrep=4, Tₘ=425.0, T₀=300.0;
                    topology="$filesdir/topology.top",
                    minimization_out="$filesdir/minimization.gro")
    
-  λ = [exp((-i/($nrep-1))*log($Tm/$T0)) for i in 0:($nrep-1)]
+  λ = [exp((-i/(nrep-1))*log(Tm/T0)) for i in 0:(nrep-1)]
   T = T₀ ./ λ
   
   for i in 0:(nrep-1)
@@ -132,7 +132,7 @@ function input_gen(nrep=4, Tₘ=425.0, T₀=300.0;
       open("$filesdir/$file.mdp","r") do input
         open("$i/$file.tmp","w") do output
           for line in eachline(input)
-            line = replace(line,"REFT" => $(T[i+1]))
+            line = replace(line,"REFT" => "$(T[i+1])")
             println(output,line)
           end
         end
@@ -141,7 +141,7 @@ function input_gen(nrep=4, Tₘ=425.0, T₀=300.0;
          
     # plumed partial-tempering calculation
     # This is equivalent to bash: cat $processed > plumed partial_tempering $(λ[i+1]) > $out/$topology 
-    run(pipeline($processed, `plumed partial_tempering $(λ[i+1])`, "$i/$topology"))
+    run(pipeline("$processed", `plumed partial_tempering $(λ[i+1])`, "$i/$topology"))
 
     # run Gromacs
     run(`gmx_mpi grompp -f $i/nvt.mdp -c $minimization_out -p $i/$topology $i/canonical.tpr -maxwarn 3`)
