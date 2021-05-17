@@ -44,11 +44,14 @@ $repo/Simulations/build_system.sh $repo $work
 
 A criação da caixa de simulação envolve criar coordenadas iniciais para todos os átomos envolvidos (peptideo, água, cossolvente), nas concentrações desejadas.   
 
-Nosso peptídeo, de sequência `(AAQAA)₃` tem aproximadamete 26Å de comprimento. Vamos criar uma caixa que contenha esse peptídeo e mais 15Å de solvente no mínimo em cada direção. Portanto, vamos criar uma caixa com `26+30=56Å`.   
+Nosso peptídeo, de sequência `(AAQAA)₃` tem aproximadamete 26Å de comprimento. Vamos criar uma caixa que contenha esse peptídeo e mais 15Å de solvente no mínimo em cada direção. Portanto, vamos criar uma caixa com `26+30=56Å`. É razoável, como primeira aproximação, assumir que o volume ocupado por cada tipo de molécula na caixa é proporcional à sua massa molar. 
+
+Com essa aproximação, podemos estimar o volume ocupado pelo peptídeo se a densidade do sistema é a densidade da água (1.00 g/mL) ou a densidade da solução de água com TFE (1.33 g/mL). Em seguida, podemos calcular qual a fração do volume que a solução ocupa, a o número de moléculas de cossolvente e, por fim, o número de moléculas de água que cabem no volume restante da solução. 
+
+Um [pequeno programa](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/CreateInputs.jl) que faz essas contas está disponível aqui, caso queria ver os detalhes. 
 
 
 
-O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol/L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
 
 
 (ADICIONAR OBSERVAÇÃO PARA OSISTEMA APENAR COM ÁGUA)
