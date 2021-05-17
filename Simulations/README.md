@@ -20,8 +20,7 @@ repo=/home/leandro/Documents/curso/XEMMSB2021
 
 Define novamente estas variáveis em cada seção, para facilitar (ou coloque estas definições no seu `$work/setenv.sh`).
 
-Vamos criar um diretório onde as simulações vão ser realizadas, e vamos definir a variável `simulation_dir` para fazer referência
-a este diretório de agora em adiante.
+Vamos criar um diretório onde as simulações vão ser realizadas, e vamos definir a variável `simulations` para fazer referência a este diretório de agora em adiante.
 
 ```
 cd $work
@@ -31,16 +30,19 @@ mkdir -p $simulations
 
 ## <a name="config"></a>Configuração inicial do sistema
 
-O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular um sistema composto pelo polipeptídeo `(AAQAA)3` e por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol/L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
+O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56 &angstrom; de lado em ambos casos.
 
 ### Atalho
 
-Faça o download do arquivo [](createbox.sh). Em seguida, faça dele um executavel e rode com:
+A criação dos arquivos de configuração das duas simulações pode ser feita executando o script `build_system.sh`:
 
 ```
-chmod +x createbox.sh
-createbox.sh $simulations
+$repo/Simulations/build_system.sh $repo $work
 ```
+
+
+
+O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol/L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
 
 
 (ADICIONAR OBSERVAÇÃO PARA OSISTEMA APENAR COM ÁGUA)

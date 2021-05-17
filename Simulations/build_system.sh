@@ -10,11 +10,11 @@ work=$2
 current_dir=`pwd`
 
 if [ -z "$output_dir" ]; then
-  echo "Run with: ./$thisscript.sh \$repo \$work/Simulations"
+  echo "Run with: ./$thisscript.sh \$repo \$work"
   exit
 fi
 if [ -z "$repo" ]; then
-  echo "Run with: ./$thisscript.sh \$repo \$work/Simulations"
+  echo "Run with: ./$thisscript.sh \$repo \$work"
   exit
 fi
 
@@ -24,11 +24,11 @@ if [[ ! -d "$work" ]]; then
 fi
 
 work=$(readlink -f $work) # expand path if necessary
+mkdir -p $work/Simulations
 
+for system in "AAQAA_0vv" "AAQAA_60vv"; do
 
-for system in "AAQAA_60vv" "AAQAA_0vv"; do
-
-  cd $work
+  cd $work/Simulations
 
   mkdir -p $system
   mkdir -p $system/$thisscript
