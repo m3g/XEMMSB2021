@@ -6,23 +6,26 @@ module CreateInputs
 
 using PDBTools
 
-# Volume of the box (L)
-vol_box(a,b,c) = a*b*c*1e-27;
+# conversion factor from mL/mol to Å/molecule
+const convert_molar_volume = 1e27 / 6.02e23
 
-# Volume of the protein 
-vol_prot(m) = (m/(6.02e23))*1e-3;
+# Volume of the box (Å³)
+vol_box(a,b,c) = a*b*c
+
+# Volume of the protein (converted to A 
+vol_prot(m,density) = convert_molar_volume*mass/density
 
 # Volume of the solution
-vol_sol(vc,vp) = vc - vp;
+vol_sol(vc,vp) = vc - vp
 
 # number of ionic liquids (or any other additional compound) molecules 
-num(vs,c) = round(Int,(vs*c*6.02e23));
+num(vs,c) = round(Int,vs*c)
 
 # Volume of ionic liquids (or any other compound)  molecules
-v_cos(n,m) = (n*m*1e-3)/(6.02e23);
+v_cos(n,m,density) = convert_molar_volume*n*m*density
 
 # Number of water molecules - The number of water molecules is calculated occording to its molar mass and the volume avaiable (Box - Prot)
-num_wat(vs,vil) = round(Int,((vs - vil) * 6.02e23) / (18*1e-3));
+num_wat(vs,vil,density) = round(Int,(vs - vil)/(convert_molar_volume*18/density);
 
 """
 
@@ -30,6 +33,7 @@ Function that generates an input file for Packmol and the topology file, from a 
 
 """
 function box(pdbfile::String, solvent_file::String, concentration::Real, box_size::Real; 
+             density=1.0,
              box_file="box.inp",
              topology_base="topology_base.top",
              topology_out="topology.top",
@@ -45,14 +49,14 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_siz
   l = maximum(maxmin(protein).xlength)/2 + box_size 
 
   # Solution volume (vbox - vprotein)
-  vs   = vol_box(2*l,2*l,2*l) - vol_prot(protein_mass)
+  vs = vol_box(2*l,2*l,2*l) - vol_prot(protein_mass,density)
 
   # number of solvent molecules
   ncos = num(vs,concentration) 
-  vcos = v_cos(ncos,solvent_mass)
+  vcos = v_cos(ncos,solvent_mass,density)
 
   #number of water molecules
-  nwat = num_wat(vs,vcos)
+  nwat = num_wat(vs,vcos,density)
 
   println("""
 

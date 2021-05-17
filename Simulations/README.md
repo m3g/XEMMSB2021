@@ -40,6 +40,12 @@ A criação dos arquivos de configuração das duas simulações pode ser feita 
 $repo/Simulations/build_system.sh $repo $work
 ```
 
+### Passo a passo
+
+A criação da caixa de simulação envolve criar coordenadas iniciais para todos os átomos envolvidos (peptideo, água, cossolvente), nas concentrações desejadas.   
+
+Nosso peptídeo, de sequência `(AAQAA)₃` tem aproximadamete 26Å de comprimento. Vamos criar uma caixa que contenha esse peptídeo e mais 15Å de solvente no mínimo em cada direção. Portanto, vamos criar uma caixa com `26+30=56Å`.   
+
 
 
 O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol/L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.
