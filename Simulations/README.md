@@ -40,6 +40,8 @@ A criação dos arquivos de configuração das duas simulações pode ser feita 
 $repo/Simulations/build_system.sh $repo $work
 ```
 
+Isto criará o diretório `Simulations` e, dentro dele, duas pastas `AAQAA_0vv` e `AAQAA_60vv`. Dentro de cada pasta serão encontrados diretórios de nome `build_system` com dois arquivos: `box.inp` e `topology.top`. O primeiro contém o arquivo de input para o `packmol`. O segundo contém a topologia do sistema, usada na simulação.
+
 ### 2.2. Passo a passo
 
 A criação da caixa de simulação envolve criar coordenadas iniciais para todos os átomos envolvidos (peptideo, água, cossolvente), nas concentrações desejadas.   

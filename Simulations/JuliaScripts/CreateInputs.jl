@@ -32,7 +32,7 @@ num_wat(vs,vil,density) = round(Int,(vs - vil)/(convert_molar_volume*18/density)
 Function that generates an input file for Packmol and the topology file, from a base topology for the system.
 
 """
-function box(pdbfile::String, solvent_file::String, concentration::Real, l::Real; 
+function box(pdbfile::String, solvent_file::String, concentration::Real, box_side::Real; 
              density=1.0,
              box_file="box.inp",
              topology_base="topology_base.top",
@@ -46,7 +46,7 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, l::Real
   solvent_mass = mass(solvent)
 
   # Box volue
-  vbox = l^3
+  vbox = box_side^3
 
   # Solution volume (vbox - vprotein)
   vs = vbox - vol_prot(protein_mass,density)
@@ -73,6 +73,7 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, l::Real
           """)
 
   
+  l = box_side/2
   open(box_file,"w") do io
     println(io,"""
                tolerance 2.0
