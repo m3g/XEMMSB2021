@@ -7,23 +7,25 @@
 * [Equilibração da temperatura e da pressão](#equi)
 * [Produção - HREMD](#prod)
 
-## Defina um diretório onde tudo acontecerá, e crie esse diretório:
+## Diretório de trabalho
+
+Lembre-se que estamos considerando que as variáves `repo` e `XEMMSB_dir` estão definidas, de acordo com a instalação. No exemplo, estamos
+usando:
 
 ```
-simulation_dir=/home/user/path/Simulations
+XEMMSB_dir=/home/leandro/Documents/curso
+repo=/home/leandro/Documents/curso/XEMMSB2021
+```
+
+Define novamente estas variáveis em cada seção, para facilitar (ou coloque estas definições no seu `.bashrc`).
+
+Vamos criar um diretório onde as simulações vão ser realizadas, e vamos definir a variável `simulation_dir` para fazer referência
+a este diretório de agora em adiante.
+
+```
+cd $XEMMSB_dir
+simulation_dir=Simulations
 mkdir -p $simulation_dir
-```
-
-usaremos a variável `simulation_dir` daqui em diante como referência ao diretório escolhido.
-
-## Faça o dowload dos arquivos do curso
-
-Você pode fazer o download clicando na forma de um arquivo compactado no formato `zip`, clicando em `Code` e `Download Zip`.  
-
-Alternativamente, pode fazer um clone do repositório usando   
-
-```
-git clone https://github.com/m3g/XEMMSB2021
 ```
 
 ## <a name="config"></a>Configuração inicial do sistema
@@ -282,8 +284,6 @@ Assim, 2 ns de simulação de produção poderão feitos por meio do comando:
 
 ### probabilidades de troca
 Com sorte, nenhum problema ocorreu e agora a simulação foi finalizada... 
-
-
 
 
 ### visualização da trajetória
