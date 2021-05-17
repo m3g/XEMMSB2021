@@ -2,7 +2,7 @@
 
 ## Faça o dowload dos arquivos do curso
 
-Você pode fazer o download clicando na forma de um arquivo compactado no formato `zip`, clicando em `Code` e `Download Zip`.
+Você pode fazer o download clicando na forma de um arquivo compactado no formato `zip`, clicando em `Code` e `Download Zip`, a partir da [página principal](https://github.com/m3g/XEMMSB2021) do repositório. 
 
 Alternativamente, pode fazer um clone do repositório usando
 
