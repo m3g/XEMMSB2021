@@ -32,7 +32,7 @@ mkdir -p $simulations
 
 O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56 &angstrom; de lado em ambos casos.
 
-### 2.1. Atalho
+### 2.1. Criando a posição inicial das partículas do sistema
 
 A criação dos arquivos de configuração das duas simulações pode ser feita executando o script `build_system.sh`:
 
@@ -40,9 +40,7 @@ A criação dos arquivos de configuração das duas simulações pode ser feita 
 $repo/Simulations/build_system.sh $repo $work
 ```
 
-Isto criará o diretório `Simulations` e, dentro dele, duas pastas `AAQAA_0vv` e `AAQAA_60vv`. Dentro de cada pasta serão encontrados diretórios de nome `build_system` com dois arquivos: `box.inp` e `topology.top`. O primeiro contém o arquivo de input para o `packmol`. O segundo contém a topologia do sistema, usada na simulação.
-
-### 2.2. Passo a passo
+Isto criará o diretório `Simulations` e, dentro dele, duas pastas `AAQAA_0vv` e `AAQAA_60vv`. Dentro de cada pasta serão encontrados diretórios de nome `build_system` com o arquivo `box.inp`. Este arquivo contém o de input para o `packmol`.
 
 A criação da caixa de simulação envolve criar coordenadas iniciais para todos os átomos envolvidos (peptideo, água, cossolvente), nas concentrações desejadas.   
 
@@ -52,42 +50,29 @@ Com essa aproximação, podemos estimar o volume ocupado pelo peptídeo se a den
 
 Um [pequeno programa](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/CreateInputs.jl) que faz essas contas está disponível aqui, caso queria ver os detalhes. 
 
-### Criando a caixa com Packmol
-
 Nos dois diretórios criados pelo script acima você vai encontrar um arquivo chamado `box.inp`, que é o input do programa `packmol`. Abra e veja seu conteúdo (é fácil de entender, e define que moléculas haverá na caixa, e suas dimensões). Execute o comando: 
 
 ```
 packmol < box.inp
 ```
 
-Que vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. 
+Que vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. Você pode abrir este arquivo em qualquer programa de visualizacão, como VMD ou PyMOL. 
 
+### Criando a topologia do sistema
 
-
-
-(ADICIONAR OBSERVAÇÃO PARA OSISTEMA APENAR COM ÁGUA)
-
-Para executar este script para fazer:
-```
-julia input-tfe-60.jl
-```
-
-Como resultado, dois novos arquivos serão gerados `box.inp` e `topol.top`. O arquivo `box.inp` será usado como input do [Packmol](http://m3g.iqm.unicamp.br/packmol), enquando `topol.top` conterá todos os parâmetros de topologia do nosso sistema, mais adiante voltaremos neste arquivos.
-
-Assim, para finalmente criarmos nosso sistema inicial, usamos o seguinte comando:
+Para criar a topologia do sistema você mesmo (o mesmo arquivo `topology.top` que está disponível no diretório), use, por exemplo:
 
 ```
-packmol < box.inp > box.log
+cd $work/Simulations/AAQAA_0vv/build_system
+cp -r $repo/Simulations/InputData/amber03w.ff ./
+gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topology.top -ff amber03w -ignh
 ```
-O output do comando acima será o arquivo `system.pdb`. Este pdb contém todos os átomos que compõem o sistema e pode ser visualizado por meio de softwares como o `vmd` e o `PyMOL` fazendo:
 
-```
-vmd system.pdb
+o diretório `amber03w.ff` contém os arquivos do campo de força que usaremos. O segundo comando é o comando do gromacs que gera a topologia a partir da estrutura (`system.pdb`) e do campo de força. 
 
-ou
 
-pymol system.pdb
-```
+###  
+
 
 Agora que possuímos um arquivo pdb para o nosso sistema inicial, devemos nos atentar para a topologia.  O arquivo topol.top possui toda a informação referente aos parâmetros do campo de força do sistema. 
 Aqui existem alguns pontos importantes

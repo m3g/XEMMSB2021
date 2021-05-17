@@ -104,18 +104,6 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_sid
  end
  println("Wrote file: $box_file")
 
- # Read base topology and write new topolgy with actual numbers
- open(topology_out,"w") do output
-   open(topology_base,"r") do input
-     for line in eachline(input)
-       line = replace(line,"NWAT" => "$nwat") 
-       line = replace(line,"NCOS" => "$ncos")
-       println(output,line)
-     end
-   end
- end
- println("Wrote file: $topology_out\n")
-
 end # function box
 
 """
