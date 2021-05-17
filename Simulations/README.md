@@ -52,6 +52,15 @@ Com essa aproximação, podemos estimar o volume ocupado pelo peptídeo se a den
 
 Um [pequeno programa](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/CreateInputs.jl) que faz essas contas está disponível aqui, caso queria ver os detalhes. 
 
+### Criando a caixa com Packmol
+
+Nos dois diretórios criados pelo script acima você vai encontrar um arquivo chamado `box.inp`, que é o input do programa `packmol`. Abra e veja seu conteúdo (é fácil de entender, e define que moléculas haverá na caixa, e suas dimensões). Execute o comando: 
+
+```
+packmol < box.inp
+```
+
+Que vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. 
 
 
 
