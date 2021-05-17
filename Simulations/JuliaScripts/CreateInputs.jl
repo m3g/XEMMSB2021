@@ -6,11 +6,11 @@ module CreateInputs
 
 using PDBTools
 
-# conversion factor from mL/mol to Å/molecule
-const convert_molar_volume = 1e27 / 6.02e23
+# conversion factor from mL/mol to Å^3/molecule
+const convert_molar_volume = 1e24 / 6.02e23
 
-# Volume of the box (Å³)
-vol_box(a,b,c) = a*b*c
+# conversion factor from mol/L to molecules/Å^3
+const convert_molar_concentration = 6.02e23 / 1e27  
 
 # Volume of the protein (converted to A 
 vol_prot(mass,density) = convert_molar_volume*mass/density
@@ -19,7 +19,7 @@ vol_prot(mass,density) = convert_molar_volume*mass/density
 vol_sol(vc,vp) = vc - vp
 
 # number of ionic liquids (or any other additional compound) molecules 
-num(vs,c) = round(Int,vs*c)
+num(vs,c) = round(Int,convert_molar_concentration*vs*c)
 
 # Volume of ionic liquids (or any other compound)  molecules
 v_cos(n,mass,density) = convert_molar_volume*n*mass*density
@@ -32,7 +32,7 @@ num_wat(vs,vil,density) = round(Int,(vs - vil)/(convert_molar_volume*18/density)
 Function that generates an input file for Packmol and the topology file, from a base topology for the system.
 
 """
-function box(pdbfile::String, solvent_file::String, concentration::Real, box_size::Real; 
+function box(pdbfile::String, solvent_file::String, concentration::Real, l::Real; 
              density=1.0,
              box_file="box.inp",
              topology_base="topology_base.top",
@@ -45,14 +45,14 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_siz
   protein_mass = mass(protein)
   solvent_mass = mass(solvent)
 
-  # Box dimensions
-  l = maximum(maxmin(protein).xlength)/2 + box_size 
+  # Box volue
+  vbox = l^3
 
   # Solution volume (vbox - vprotein)
-  vs = vol_box(2*l,2*l,2*l) - vol_prot(protein_mass,density)
+  vs = vbox - vol_prot(protein_mass,density)
 
   # number of solvent molecules
-  ncos = num(vs,concentration) 
+  ncos = num(vs,concentration)
   vcos = v_cos(ncos,solvent_mass,density)
 
   #number of water molecules
@@ -62,14 +62,14 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_siz
 
           Summary:
           ========
-          Box volume = $(vol_box(2*l,2*l,2*l))
-          Solution volume = $vs   
-          Protein molar mass = $protein_mass
-          Cossolvent molar mass = $solvent_mass
-          Cossolvent volume = $vcos 
-          Number of cossolvent molecules = $ncos 
-          Volume of water molecules = $(vs-vcos)
-          Number of water molecules = $nwat
+          Box volume = $vbox Å³
+          Solution volume = $vs Å³   
+          Protein molar mass = $protein_mass g/mol
+          Cossolvent molar mass = $solvent_mass g/mol
+          Volume for cossolvent = $vcos Å³ 
+          Number of cossolvent molecules = $ncos molecules
+          Volume for water molecules = $(vs-vcos) Å³
+          Number of water molecules = $nwat molecules
           """)
 
   
@@ -147,7 +147,8 @@ function input_gen(nrep=4, Tₘ=425.0, T₀=300.0;
     end
          
     # plumed partial-tempering calculation
-    # This is equivalent to bash: cat $processed > plumed partial_tempering $(λ[i+1]) > $out/$topology 
+    # This is equivalent to bash: 
+    # % cat $processed > plumed partial_tempering $(λ[i+1]) > $out/$topology 
     run(pipeline("$processed", `plumed partial_tempering $(λ[i+1])`, "$i/$topology"))
 
     # run Gromacs
