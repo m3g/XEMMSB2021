@@ -1,6 +1,7 @@
 #!/bin/bash
 
-XEMMSB_dir=$1
+repo=$1
+XEMMSB_dir=$2
 
 if [ -z "$XEMMSB_dir" ]; then
   echo "Run with: ./install.sh /home/user/installation_dir"
@@ -65,7 +66,7 @@ tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 # Adicionando as variáveis de ambiente ao .bashrc
 
 cd $XEMMSB_dir
-wget  https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/setenv.sh
+cp -f $repo/setenv.sh ./
 chmod +x setenv.sh
 ./setenv.sh $XEMMSB_dir
 echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
