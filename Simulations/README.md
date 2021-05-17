@@ -2,13 +2,13 @@
 
 ## Etapas:
 
-* [Diretório de trabalho](#workdir)
-* [Configuração inicial do sistema](#config)
-* [Minimização](#min)
-* [Equilibração da temperatura e da pressão](#equi)
-* [Produção - HREMD](#prod)
+* [1. Diretório de trabalho](#workdir)
+* [2. Configuração inicial do sistema](#config)
+* [3. Minimização](#min)
+* [4. Equilibração da temperatura e da pressão](#equi)
+* [5. Produção - HREMD](#prod)
 
-## <a name="workdir"></a>Diretório de trabalho
+## <a name="workdir"></a>1. Diretório de trabalho
 
 Lembre-se que estamos considerando que as variáves `repo` e `work` estão definidas, de acordo com a instalação. No exemplo, estamos
 usando:
@@ -28,11 +28,11 @@ simulations=Simulations
 mkdir -p $simulations
 ```
 
-## <a name="config"></a>Configuração inicial do sistema
+## <a name="config"></a>2. Configuração inicial do sistema
 
 O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56 &angstrom; de lado em ambos casos.
 
-### Atalho
+### 2.1. Atalho
 
 A criação dos arquivos de configuração das duas simulações pode ser feita executando o script `build_system.sh`:
 
@@ -40,7 +40,7 @@ A criação dos arquivos de configuração das duas simulações pode ser feita 
 $repo/Simulations/build_system.sh $repo $work
 ```
 
-### Passo a passo
+### 2.2. Passo a passo
 
 A criação da caixa de simulação envolve criar coordenadas iniciais para todos os átomos envolvidos (peptideo, água, cossolvente), nas concentrações desejadas.   
 
