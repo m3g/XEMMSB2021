@@ -4,7 +4,7 @@ repo=$1
 work=$2
 
 if [ -z "$work" ]; then
-  echo "Run with: ./install.sh /home/user/installation_dir"
+  echo "Run with: ./install.sh \$repo \$work"
   exit
 fi
 
