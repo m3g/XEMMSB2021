@@ -9,7 +9,7 @@ if [ -z "$work" ]; then
 fi
 
 if [[ ! -d "$work" ]]; then
-    echo "$work" does not exist. Create it first. "
+    echo "$work does not exist. Create it first. "
     exit
 fi
 
@@ -17,6 +17,7 @@ fi
 ## 1. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
 
 cd $work
+mkdir -p Downloads
 sudo apt-get update -y
 sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
 
@@ -24,7 +25,8 @@ sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
 
 cd $work
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
-tar -xzf v2.5.5.tar.gz
+mv -f v2.5.5.tar.tz ./Downloads
+tar -xzf ./Downloads/v2.5.5.tar.gz
 cd plumed2-2.5.5
 ./configure --prefix=$work/plumed2
 make -j 4
@@ -38,7 +40,8 @@ export PLUMED_KERNEL=$PLUMED_KERNEL:$work/plumed2
 
 cd $work
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
-tar -xzf gromacs-2019.4.tar.gz
+mv -f gromacs-2019.4.tar.gz ./Downloads
+tar -xzf ./Downloads/gromacs-2019.4.tar.gz
 cd gromacs-2019.4
 plumed-patch -p -e gromacs-2019.4
 mkdir build
@@ -52,7 +55,8 @@ source $work/gromacs-2019.4/bin/GMXRC
 
 cd $work
 wget http://leandro.iqm.unicamp.br/m3g/packmol/packmol.tar.gz
-tar -xzf packmol.tar.gz
+mv -f packmol.tar.gz ./Downloads
+tar -xzf ./Downloads/packmol.tar.gz
 cd packmol
 make
 make clean
@@ -61,6 +65,7 @@ make clean
 
 cd $work
 wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz
+mv -f julia-1.6.0-linux-x86_64.tar.gz ./Downloads 
 tar -xzf julia-1.6.0-linux-x86_64.tar.gz 
 
 # Adicionando as variáveis de ambiente ao .bashrc
