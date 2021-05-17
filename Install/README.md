@@ -4,16 +4,16 @@
 
 ### 1.1. Diretório de instalação
 
-O diretório trabalharemos será definido pela variável `XEMMSB_dir`. Por exemplo:
+O diretório trabalharemos será definido pela variável `work`. Por exemplo:
 
 ```
-XEMMSB_dir=/home/leandro/Documents/curso
+work=/home/leandro/Documents/curso
 ```
 Redefina esta variável para instalar no diretório de sua preferência.
 
 Crie o diretório, caso não tenha feito isso antes.
 ```
-mkdir -p $XEMMSB_dir
+mkdir -p $work
 ```
 
 ### 1.2. Faça o dowload dos arquivos do curso
@@ -23,6 +23,7 @@ Você pode fazer o download clicando na forma de um arquivo compactado no format
 Alternativamente, pode fazer um clone do repositório usando
 
 ```
+cd $work
 git clone https://github.com/m3g/XEMMSB2021
 ```
 
@@ -43,8 +44,8 @@ Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir u
 Se você usa `bash`, uma distribuição Linux de 64bits derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
 ```
-$repo/Install/install.sh $repo $XEMMSB_dir
-source $XEMMSB_dir/Install/setenv.sh
+$repo/Install/install.sh $repo $work
+source $work/Install/setenv.sh
 ```
 
 Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias cada vez que você reiniciar um terminal.
@@ -61,11 +62,11 @@ sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
 Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `3.10.2` que estava instalada no Ubuntu 18), é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:
 
 ```
-cd $XEMMSB_dir
+cd $work
 wget https://cmake.org/files/v3.20/cmake-3.20.1.tar.gz
 tar -xzf cmake-3.20.1.tar.gz
 cd cmake-3.20.1
-./configure  --prefix=$XEMMSB_dir/cmake
+./configure  --prefix=$work/cmake
 mkdir build
 cd build
 make
@@ -79,11 +80,11 @@ Atenção nos passos seguintes, que será necessário, neste caso, ajustar o cam
 [Plumed](https://www.plumed.org/) é um pacote que implementa uma série de algoritmos de simulação e análise, interagindo com outros pacotes de simulação. Usaremos sua implementação do Hamiltonian-Exchange Molecular Dynamics (método de amostragem ampliada):
 
 ```
-cd $XEMMSB_dir
+cd $work
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
 tar -xzf v2.5.5.tar.gz
 cd plumed2-2.5.5
-./configure --prefix=$XEMMSB_dir/plumed2
+./configure --prefix=$work/plumed2
 make -j 4
 make install
 ```
@@ -93,9 +94,9 @@ make install
 Execute estes comandos antes de iniciar a instalação do Gromacs:
 
 ```
-export PATH=$PATH:/$XEMMSB_dir/plumed2/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$XEMMSB_dir/plumed2/lib
-export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
+export PATH=$PATH:/$work/plumed2/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$work/plumed2/lib
+export PLUMED_KERNEL=$PLUMED_KERNEL:$work/plumed2
 ```
 
 ## 4. Instalação do Gromacs
@@ -103,17 +104,17 @@ export PLUMED_KERNEL=$PLUMED_KERNEL:$XEMMSB_dir/plumed2
 [Gromacs](https://www.gromacs.org/) é o programa que usaremos para fazer as simulações.
 
 ```
-cd $XEMMSB_dir
+cd $work
 wget ftp://ftp.gromacs.org/pub/gromacs/gromacs-2019.4.tar.gz
 tar -xzf gromacs-2019.4.tar.gz
 cd gromacs-2019.4
 plumed-patch -p -e gromacs-2019.4
 mkdir build
 cd build
-cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DGMX_MPI=ON -DGMX_GPU=OFF -DCMAKE_C_COMPILER=gcc -DGMX_FFT_LIBRARY=fftpack -DCMAKE_INSTALL_PREFIX=$XEMMSB_dir/gromacs-2019.4
+cmake .. -DGMX_BUILD_OWN_FFTW=ON -DREGRESSIONTEST_DOWNLOAD=OFF -DGMX_MPI=ON -DGMX_GPU=OFF -DCMAKE_C_COMPILER=gcc -DGMX_FFT_LIBRARY=fftpack -DCMAKE_INSTALL_PREFIX=$work/gromacs-2019.4
 make -j 4
 make install
-source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
+source $work/gromacs-2019.4/bin/GMXRC
 ```
 
 ## 5. Instalação do Packmol
@@ -121,7 +122,7 @@ source $XEMMSB_dir/gromacs-2019.4/bin/GMXRC
 [Packmol](http://m3g.iqm.unicamp.br/packmol) será usado para construção das caixas de simulação, em particular com misturas de solventes.
 
 ```
-cd $XEMMSB_dir
+cd $work
 wget http://leandro.iqm.unicamp.br/m3g/packmol/packmol.tar.gz
 tar -xzf packmol.tar.gz
 cd packmol
@@ -133,7 +134,7 @@ make
 [Julia](https://julialang.org) é uma linguagem de programação dinâmica e de alto desempenho na qual foram escritos alguns scripts e o principal programa de análise que usaremos. Pode ser instalada com:
 
 ```
-cd $XEMMSB_dir
+cd $work
 wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz
 tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 ```
@@ -143,13 +144,13 @@ tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
 ```
-cd $XEMMSB_dir
-wget https://raw.githubusercontent.com/m3g/XEMMSB2021/main/Install/setenv.sh
+cd $work
+wget https://raw.githubusercontent.com/m3g/work/main/Install/setenv.sh
 chmod +x setenv.sh
-./setenv.sh $XEMMSB_dir
+./setenv.sh $work
 ```
 
-Agora, quando abrir uma nova `shell`, vá ao diretório `$XEMMSB_dir` e execute:
+Agora, quando abrir uma nova `shell`, vá ao diretório `$work` e execute:
 
 ```
 source setenv.sh
@@ -157,7 +158,7 @@ source setenv.sh
 
 Alterntativamente, acrecente a linha acima ao seu `~/.bashrc`:
 ```
-echo "source $XEMMSB_dir/setenv.sh" >> ~/.bashrc
+echo "source $work/setenv.sh" >> ~/.bashrc
 ```
 
 Além das variáveis de ambiente, este script colocará no `PATH` os diretórios onde foram instalados o `Packmol` e o `Julia`. 

@@ -9,11 +9,11 @@
 
 ## Diretório de trabalho
 
-Lembre-se que estamos considerando que as variáves `repo` e `XEMMSB_dir` estão definidas, de acordo com a instalação. No exemplo, estamos
+Lembre-se que estamos considerando que as variáves `repo` e `work` estão definidas, de acordo com a instalação. No exemplo, estamos
 usando:
 
 ```
-XEMMSB_dir=/home/leandro/Documents/curso
+work=/home/leandro/Documents/curso
 repo=/home/leandro/Documents/curso/XEMMSB2021
 ```
 
@@ -23,7 +23,7 @@ Vamos criar um diretório onde as simulações vão ser realizadas, e vamos defi
 a este diretório de agora em adiante.
 
 ```
-cd $XEMMSB_dir
+cd $work
 simulation_dir=Simulations
 mkdir -p $simulation_dir
 ```
