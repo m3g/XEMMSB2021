@@ -2,12 +2,13 @@
 
 ## Etapas:
 
+* [Diretório de trabalho](#workdir)
 * [Configuração inicial do sistema](#config)
 * [Minimização](#min)
 * [Equilibração da temperatura e da pressão](#equi)
 * [Produção - HREMD](#prod)
 
-## Diretório de trabalho
+## <a name="workdir"></a>Diretório de trabalho
 
 Lembre-se que estamos considerando que as variáves `repo` e `work` estão definidas, de acordo com a instalação. No exemplo, estamos
 usando:
