@@ -5,36 +5,36 @@ thisscript="build_system"
 #
 # Repository dir is the first argument, output dir the second argument
 #
-repo_dir=$1
-output_dir=$(readlink -f $2)
+repo=$1
+work=$2
 current_dir=`pwd`
 
 if [ -z "$output_dir" ]; then
-  echo "Run with: ./$thisscript.sh /home/user/path/repo_dir /home/user/installation_dir"
+  echo "Run with: ./$thisscript.sh \$repo \$work/Simulations"
   exit
 fi
-if [ -z "$repo_dir" ]; then
-  echo "Run with: ./$thisscript.sh /home/user/path/repo_dir /home/user/installation_dir"
+if [ -z "$repo" ]; then
+  echo "Run with: ./$thisscript.sh \$repo \$work/Simulations"
   exit
 fi
 
-if [[ ! -d "$output_dir" ]]; then
-    echo "$output_dir does not exist. Create it first. "
+if [[ ! -d "$work" ]]; then
+    echo "$work does not exist. Create it first. "
     exit
 fi
+
+work=$(readlink -f $work) # expand path if necessary
 
 
 for system in "AAQAA_60vv" "AAQAA_0vv"; do
 
-  cd $output_dir
+  cd $work
 
   mkdir -p $system
   mkdir -p $system/$thisscript
   cd $system/$thisscript
-pwd
 
-  julia $repo_dir/Simulation/JuliaScripts/$system.jl
-
+  julia $repo/Simulation/JuliaScripts/$system.jl
 
 done
 

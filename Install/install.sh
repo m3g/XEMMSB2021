@@ -25,7 +25,7 @@ sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
 
 cd $work
 wget https://github.com/plumed/plumed2/archive/refs/tags/v2.5.5.tar.gz
-mv -f v2.5.5.tar.tz ./Downloads
+mv -f v2.5.5.tar.gz ./Downloads
 tar -xzf ./Downloads/v2.5.5.tar.gz
 cd plumed2-2.5.5
 ./configure --prefix=$work/plumed2
@@ -66,7 +66,7 @@ make clean
 cd $work
 wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_64.tar.gz
 mv -f julia-1.6.0-linux-x86_64.tar.gz ./Downloads 
-tar -xzf julia-1.6.0-linux-x86_64.tar.gz 
+tar -xzf ./Downloads/julia-1.6.0-linux-x86_64.tar.gz 
 
 # Adicionando as variáveis de ambiente ao .bashrc
 
