@@ -9,7 +9,7 @@ repo=$1
 work=$2
 current_dir=`pwd`
 
-if [ -z "$output_dir" ]; then
+if [ -z "$work" ]; then
   echo "Run with: ./$thisscript.sh \$repo \$work"
   exit
 fi
