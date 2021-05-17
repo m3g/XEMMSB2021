@@ -43,8 +43,8 @@ Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir u
 Se você usa `bash`, uma distribuição Linux de 64bits derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
 ```
-$repo/install.sh $repo $XEMMSB_dir
-source $XEMMSB_dir/setenv.sh
+$repo/Install/install.sh $repo $XEMMSB_dir
+source $XEMMSB_dir/Install/setenv.sh
 ```
 
 Vai ser requisitada a sua senha, mas é só para instalar, se necessário, alguns pacotes da distribuição, usando `apt`. Após a instalação de tudo, este script acrescentará uma linha ao seu `.bashrc` que define as variáveis de ambiente necessárias cada vez que você reiniciar um terminal.
