@@ -72,6 +72,9 @@ o diretório `amber03w.ff` contém os arquivos do campo de força que usaremos. 
 
 Você vai selecionar o modelo de água `TIP4P2005` para estas simulações. 
 
+
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX não modificar daqui para cima XXXXXXXXXXXXXXXXXXXXX
+
 ### Criando a topologia do sistema: proteina, água e TFE
 
 Para o sistema com TFE, é necessário modificar manualmente o arquivo de topologia.... 
