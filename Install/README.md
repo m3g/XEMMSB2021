@@ -1,6 +1,20 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
-## Faça o dowload dos arquivos do curso
+## 1. Diretório de instalação
+
+O diretório trabalharemos será definido pela variável `XEMMSB_dir`. Por exemplo:
+
+```
+XEMMSB_dir=/home/leandro/Documents/curso
+```
+Redefina esta variável para instalar no diretório de sua preferência.
+
+Crie o diretório, caso não tenha feito isso antes.
+```
+mkdir -p $XEMMSB_dir
+```
+
+### 1.1. Faça o dowload dos arquivos do curso
 
 Você pode fazer o download clicando na forma de um arquivo compactado no formato `zip`, clicando em `Code` e `Download Zip`, a partir da [página principal](https://github.com/m3g/XEMMSB2021) do repositório. 
 
@@ -10,21 +24,19 @@ Alternativamente, pode fazer um clone do repositório usando
 git clone https://github.com/m3g/XEMMSB2021
 ```
 
-## 1. Diretório de instalação
-
-O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
+Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir uma variável `$repo` que neste tutorial vai sempre se referir a esse diretório. Por exemplo:
 
 ```
-XEMMSB_dir=/home/leandro/Drive/Disciplinas/XEMMSB2021
-```
-Redefina esta variável para instalar no diretório de sua preferência.
+% pwd
+/home/leandro/Documents/curso
 
-Crie o diretório:
-```
-mkdir -p $XEMMSB_dir
+% git clone https://github.com/m3g/XEMMSB2021
+
+% repo=/home/leandro/Documents/curso/XEMMSB2021
+
 ```
 
-### 1.1 Estou com sorte
+### 1.2 Estou com sorte
 
 Se você usa `bash`, uma distribuição Linux de 64bits derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
