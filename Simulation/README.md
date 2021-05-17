@@ -16,6 +16,16 @@ mkdir -p $simulation_dir
 
 usaremos a variável `simulation_dir` daqui em diante como referência ao diretório escolhido.
 
+## Faça o dowload dos arquivos do curso
+
+Você pode fazer o download clicando na forma de um arquivo compactado no formato `zip`, clicando em `Code` e `Download Zip`.  
+
+Alternativamente, pode fazer um clone do repositório usando   
+
+```
+git clone https://github.com/m3g/XEMMSB2021
+```
+
 ## <a name="config"></a>Configuração inicial do sistema
 
 O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular um sistema composto pelo polipeptídeo `(AAQAA)3` e por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). O Script que calcula as dimensões da caixa, assim como as quantidades de cada componente do solvente é o `input-tfe-60.jl`. Basicamente, este script irá calcular a quantidade de TFE e água necessários para atingir 6 mol/L (o que equivale a 60%v/v) em uma caixa de 56 &angstrom; de aresta.

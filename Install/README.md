@@ -1,5 +1,15 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
+## Faça o dowload dos arquivos do curso
+
+Você pode fazer o download clicando na forma de um arquivo compactado no formato `zip`, clicando em `Code` e `Download Zip`.
+
+Alternativamente, pode fazer um clone do repositório usando
+
+```
+git clone https://github.com/m3g/XEMMSB2021
+```
+
 ## 1. Diretório de instalação
 
 O diretório onde tudo será instalado será definido pela variável `XEMMSB_dir`. Por exemplo:
