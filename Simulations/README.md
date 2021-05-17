@@ -63,12 +63,14 @@ Que vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão s
 Para criar a topologia do sistema você mesmo (o mesmo arquivo `topology.top` que está disponível no diretório), use, por exemplo:
 
 ```
-cd $work/Simulations/AAQAA_0vv/build_system
+cd $work/Simulations/AAQAA_0vv
 cp -r $repo/Simulations/InputData/amber03w.ff ./
 gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topology.top -ff amber03w -ignh
 ```
 
 o diretório `amber03w.ff` contém os arquivos do campo de força que usaremos. O segundo comando é o comando do gromacs que gera a topologia a partir da estrutura (`system.pdb`) e do campo de força. 
+
+Você vai selecionar o modelo de água `TIP4P2005` para estas simulações.
 
 
 ###  
