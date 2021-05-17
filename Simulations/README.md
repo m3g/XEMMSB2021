@@ -70,15 +70,14 @@ gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topology.top -ff amber03w -ignh
 
 o diretório `amber03w.ff` contém os arquivos do campo de força que usaremos. O segundo comando é o comando do gromacs que gera a topologia a partir da estrutura (`system.pdb`) e do campo de força. 
 
-Você vai selecionar o modelo de água `TIP4P2005` para estas simulações.
+Você vai selecionar o modelo de água `TIP4P2005` para estas simulações. 
 
+Repita o procedimento para os dois sistemas (`AAQAA_0vv` e `AAQAA_60vv`).
 
-###  
+Agora que possuímos um arquivo pdb para o nosso sistema inicial, devemos nos atentar para a topologia.  O arquivo `topology.top` possui toda a informação referente aos parâmetros do campo de força do sistema. 
 
-
-Agora que possuímos um arquivo pdb para o nosso sistema inicial, devemos nos atentar para a topologia.  O arquivo topol.top possui toda a informação referente aos parâmetros do campo de força do sistema. 
 Aqui existem alguns pontos importantes
-* O arquivo topol.top, na forma com que é apresentado, não é montado automaticamente pelo gromacs. Isto deve-se ao fato que estamos usando parâmetros que não estão contidos no gromacs para o TFE.
+* O arquivo `topology.top`, na forma com que é apresentado, não é montado automaticamente pelo gromacs. Isto deve-se ao fato que estamos usando parâmetros que não estão contidos no gromacs para o TFE.
 * O campo de força utilizado para o peptídeo é o amber03w e o modelo para para a água é o tip4p2005. Os parâmetros para o TFE também são do tipo amber e estão no arquivo `tfe.itp`.
 * O arquivo `topol_back.top` é usado pelo script  `input-tfe-60.jl` para criar a topologia (`topol.top`) como o número correto de moléculas do sistema. 
 
