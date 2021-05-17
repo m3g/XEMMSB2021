@@ -13,7 +13,7 @@ const convert_molar_volume = 1e27 / 6.02e23
 vol_box(a,b,c) = a*b*c
 
 # Volume of the protein (converted to A 
-vol_prot(m,density) = convert_molar_volume*mass/density
+vol_prot(mass,density) = convert_molar_volume*mass/density
 
 # Volume of the solution
 vol_sol(vc,vp) = vc - vp
@@ -22,7 +22,7 @@ vol_sol(vc,vp) = vc - vp
 num(vs,c) = round(Int,vs*c)
 
 # Volume of ionic liquids (or any other compound)  molecules
-v_cos(n,m,density) = convert_molar_volume*n*m*density
+v_cos(n,mass,density) = convert_molar_volume*n*mass*density
 
 # Number of water molecules - The number of water molecules is calculated occording to its molar mass and the volume avaiable (Box - Prot)
 num_wat(vs,vil,density) = round(Int,(vs - vil)/(convert_molar_volume*18/density))
