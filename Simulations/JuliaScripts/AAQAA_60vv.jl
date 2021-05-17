@@ -15,7 +15,7 @@ solvent_file = "$data_dir/PDB/tfe.pdb"
 water_file = "$data_dir/PDB/tip4p2005.pdb"
 concentration = 6.0
 box_size = 28.
-topology_base = "$data_dir/Topology/topology_base.top"
+topology_base = "$data_dir/Topology/topology_base_TFE.top"
 
 CreateInputs.box(pdbfile, solvent_file, concentration, box_size,
                  box_file="box.inp",
