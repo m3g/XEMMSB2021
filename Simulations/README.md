@@ -58,7 +58,7 @@ packmol < box.inp
 
 Que vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. Você pode abrir este arquivo em qualquer programa de visualizacão, como VMD ou PyMOL. 
 
-### Criando a topologia do sistema
+### Criando a topologia do sistema: proteina e água
 
 Para criar a topologia do sistema você mesmo (o mesmo arquivo `topology.top` que está disponível no diretório), use, por exemplo:
 
@@ -72,12 +72,15 @@ o diretório `amber03w.ff` contém os arquivos do campo de força que usaremos. 
 
 Você vai selecionar o modelo de água `TIP4P2005` para estas simulações. 
 
-Repita o procedimento para os dois sistemas (`AAQAA_0vv` e `AAQAA_60vv`).
+### Criando a topologia do sistema: proteina, água e TFE
+
+Para o sistema com TFE, é necessário modificar manualmente o arquivo de topologia.... 
 
 Agora que possuímos um arquivo pdb para o nosso sistema inicial, devemos nos atentar para a topologia.  O arquivo `topology.top` possui toda a informação referente aos parâmetros do campo de força do sistema. 
 
 Aqui existem alguns pontos importantes
 * O arquivo `topology.top`, na forma com que é apresentado, não é montado automaticamente pelo gromacs. Isto deve-se ao fato que estamos usando parâmetros que não estão contidos no gromacs para o TFE.
+
 * O campo de força utilizado para o peptídeo é o amber03w e o modelo para para a água é o tip4p2005. Os parâmetros para o TFE também são do tipo amber e estão no arquivo `tfe.itp`.
 * O arquivo `topol_back.top` é usado pelo script  `input-tfe-60.jl` para criar a topologia (`topol.top`) como o número correto de moléculas do sistema. 
 
