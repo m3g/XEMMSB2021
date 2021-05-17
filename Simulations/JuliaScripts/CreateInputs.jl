@@ -25,7 +25,7 @@ num(vs,c) = round(Int,vs*c)
 v_cos(n,m,density) = convert_molar_volume*n*m*density
 
 # Number of water molecules - The number of water molecules is calculated occording to its molar mass and the volume avaiable (Box - Prot)
-num_wat(vs,vil,density) = round(Int,(vs - vil)/(convert_molar_volume*18/density);
+num_wat(vs,vil,density) = round(Int,(vs - vil)/(convert_molar_volume*18/density))
 
 """
 
