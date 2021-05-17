@@ -17,15 +17,15 @@ work=/home/leandro/Documents/curso
 repo=/home/leandro/Documents/curso/XEMMSB2021
 ```
 
-Define novamente estas variáveis em cada seção, para facilitar (ou coloque estas definições no seu `.bashrc`).
+Define novamente estas variáveis em cada seção, para facilitar (ou coloque estas definições no seu `$work/setenv.sh`).
 
 Vamos criar um diretório onde as simulações vão ser realizadas, e vamos definir a variável `simulation_dir` para fazer referência
 a este diretório de agora em adiante.
 
 ```
 cd $work
-simulation_dir=Simulations
-mkdir -p $simulation_dir
+simulations=Simulations
+mkdir -p $simulations
 ```
 
 ## <a name="config"></a>Configuração inicial do sistema
@@ -38,7 +38,7 @@ Faça o download do arquivo [](createbox.sh). Em seguida, faça dele um executav
 
 ```
 chmod +x createbox.sh
-createbox.sh $simulation_dir
+createbox.sh $simulations
 ```
 
 
