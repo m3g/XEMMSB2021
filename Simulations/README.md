@@ -142,10 +142,25 @@ O arquivo `processed.top` é importante para a utilização do software Plumed, 
 ```
 gmx_mpi mdrun -s minimization.tpr -v -deffnm minimization
 ```
-A minimização terá finalizado quando for printado no prompt algo semelhante à:
+A minimização terá finalizado quando for escrito na tela algo similar a:
+```
+Step=  997, Dmax= 1.4e-02 nm, Epot= -2.84568e+05 Fmax= 1.19056e+04, atom= 172
+Step=  999, Dmax= 8.7e-03 nm, Epot= -2.84649e+05 Fmax= 1.37924e+03, atom= 172
+Step= 1000, Dmax= 1.0e-02 nm, Epot= -2.84659e+05 Fmax= 1.45829e+04, atom= 172
 
-![Alt Text](https://github.com/m3g/XEMMSB2021/blob/main/Simulation/figs/fim_minimizacao.png)
+Energy minimization reached the maximum number of steps before the forces
+reached the requested precision Fmax < 10.
 
+writing lowest energy coordinates.
+
+Steepest Descents did not converge to Fmax < 10 in 1001 steps.
+Potential Energy  = -2.8465941e+05
+Maximum force     =  1.4582858e+04 on atom 172
+Norm of force     =  1.2090649e+02
+
+GROMACS reminds you: "There's Nothing We Can't Fix, 'coz We Can Do It in the Mix" (Indeep)
+
+```
 Agora, temos os seguintes arquivos:
 
 * [minimization.gro]: Coordenadas do sistema minimizado. 
