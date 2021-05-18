@@ -113,11 +113,11 @@ pbc             = xyz       ; Periodic Boundary Conditions in all 3 dimensions
 
 A primeira parte do arquivo descreve o método de minimização da energia e seus parâmetros. A segunda parte do arquivo descreve alguns parâmetros do cálculo de interações.
 
-Copie este arquivo para o diretório de cada simulação usando:
+Copie este arquivo (e outros arquivos de configuração que usaremos) para o diretório de cada simulação usando:
 
 ```
-cp $repo/Simulations/InputData/mdp_files/minimization.mdp $work/Simulations/AAQAA_0vv
-cp $repo/Simulations/InputData/mdp_files/minimization.mdp $work/Simulations/AAQAA_60vv
+cp $repo/Simulations/InputData/mdp_files/*.mdp $work/Simulations/AAQAA_0vv
+cp $repo/Simulations/InputData/mdp_files/*.mdp $work/Simulations/AAQAA_60vv
 ```
 
 Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html).
@@ -174,13 +174,16 @@ Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro`
 
 Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
 
-Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Sendo assim, o primeiro passo é alterar nos arquivos (nvt.mdp, npt.mdp e prod.mdp) a variável REFT para 300 (isso é feito pelo script run-md.sh. Como estamos fazendo por etapas, devemos realizar essa troca manualmente). Em seguida, copiamos todos os arquivos mdp para cada 4 pastas diferentes. Cada pasta representa uma réplica que será simulada usando um hamiltoniano diferente (obs: o arquivo prod.mdp será usado na etapa final).
+Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Os arquivos de configuração das simulações são chamados `nvt.mdp` e `npt.mdp`. 
 
-Assim, para copiar os arquivos fazemos:
+O primeiro passo é alterar nestes arquivos (nvt.mdp, npt.mdp e prod.mdp) a variável REFT para 300 (K). Como estamos fazendo por etapas, *devemos realizar essa troca manualmente*). Em seguida, copiamos todos os arquivos mdp para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente (obs: o arquivo production.mdp será usado na etapa final).
+
+Assim, faremos:
 ```
-echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp prod.mdp plumed.dat
+mkdir -p 0 1 2 3
+echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp production.mdp plumed.dat
 ```
-O comando acima copia os arquivos nvt.mdp, npt.mdp, prod.mdp e plumed.dat (discutido posteriormente) para as pastas 0/, 1/, 2/ e 3/.
+O comando acima copia os arquivos nvt.mdp, npt.mdp, production.mdp e plumed.dat (discutido posteriormente) para as pastas 0/, 1/, 2/ e 3/.
 
 O próximo passo, agora, é escalonar a temperatura de acordo com os hamiltonianos.
 Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1. Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
