@@ -19,6 +19,7 @@ write_input(
   pdbfile, solvent_file, concentration, box_side,
   packmol_input="box.inp",
   packmol_output="system.pdb",
+  density_pure_solvent=1.00,
   water_file=water_file
 )
     
