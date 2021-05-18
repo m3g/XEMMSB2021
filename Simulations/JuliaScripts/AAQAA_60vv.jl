@@ -50,9 +50,9 @@ data_dir="$script_dir/../InputData"
 pdbfile = "$data_dir/PDB/AAQAA.pdb"
 solvent_file = "$data_dir/PDB/tfe.pdb"
 water_file = "$data_dir/PDB/tip4p2005.pdb"
-box_size = 56.
+box_side = 56.
 
-write_input(pdbfile, solvent_file, concentration, box_size,
+write_input(pdbfile, solvent_file, concentration, box_side,
             water_file=water_file,
             density=density,
             density_pure_solvent=1.38217,

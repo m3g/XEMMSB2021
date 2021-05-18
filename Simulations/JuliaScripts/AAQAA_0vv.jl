@@ -14,10 +14,10 @@ pdbfile = "$data_dir/PDB/AAQAA.pdb"
 solvent_file = "$data_dir/PDB/tfe.pdb"
 water_file = "$data_dir/PDB/tip4p2005.pdb"
 concentration = 0
-box_size = 56.
+box_side = 56.
 topology_base = "$data_dir/Topology/topology_base_water.top"
 
-CreateInputs.box(pdbfile, solvent_file, concentration, box_size,
+CreateInputs.box(pdbfile, solvent_file, concentration, box_side,
                  box_file="box.inp",
                  topology_base=topology_base,
                  topology_out="topology.top",
