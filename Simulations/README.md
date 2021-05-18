@@ -59,20 +59,33 @@ Isto vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão 
 
 ### Criando a topologia do sistema: proteina e água
 
-Para criar a topologia do sistema você mesmo (o mesmo arquivo `topology.top` que está disponível no diretório), use, por exemplo:
+As simulações dependem de um arquivo de topologia, que define a conectividade do sistema e todos os parâmetros necessários para calcular as forças entre átomos do sistema. A criação destes arquivos é diferente para o sistema com água pura (mais simples) e com TFE. 
+
+### Peptídeo em água
+
+Entre no diretório correspondente (`$repo/Simulations/AAAQAA_0vv`), copie o diretório do campo de força para esse diretório:
 
 ```
 cd $work/Simulations/AAQAA_0vv
 cp -r $repo/Simulations/InputData/amber03w.ff ./
-gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topology.top -ff amber03w -ignh
 ```
 
-o diretório `amber03w.ff` contém os arquivos do campo de força que usaremos. O segundo comando é o comando do gromacs que gera a topologia a partir da estrutura (`system.pdb`) e do campo de força. 
-
+Em seguida, execute o comando do Gromacs que gera os arquivos necessários para a simulação:
+```
+gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topology.top -ff amber03w -ignh
+```
 Você vai selecionar o modelo de água `TIP4P2005` para estas simulações. 
 
+Isto deve gerar os seguintes arquivos: 
+```
+model1.gro
+posre.itp
+topology.top
+```
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX não modificar daqui para cima XXXXXXXXXXXXXXXXXXXXX
+### Peptídeo em solução de água e TFE
+
+Vinícius: explicar como fazer isto aqui.
 
 ### Criando a topologia do sistema: proteina, água e TFE
 
