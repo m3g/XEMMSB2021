@@ -40,7 +40,7 @@ A criação dos arquivos de configuração das duas simulações pode ser feita 
 $repo/Simulations/build_system.sh $repo $work
 ```
 
-Isto criará o diretório `Simulations` e, dentro dele, duas pastas `AAQAA_0vv` e `AAQAA_60vv`. Dentro de cada pasta serão encontrados diretórios de nome `build_system` com o arquivo `box.inp`. Este arquivo contém o de input para o `packmol`.
+Isto criará o diretório `Simulations` e, dentro dele, duas pastas `AAQAA_0vv` e `AAQAA_60vv`. Dentro de cada pasta será encontrado o arquivoi `box.inp`. Este arquivo contém o de input para o `packmol`.
 
 A criação da caixa de simulação envolve criar coordenadas iniciais para todos os átomos envolvidos (peptideo, água, cossolvente), nas concentrações desejadas.   
 
@@ -48,15 +48,14 @@ Nosso peptídeo, de sequência `(AAQAA)₃` tem aproximadamete 26Å de comprimen
 
 Com essa aproximação, podemos estimar o volume ocupado pelo peptídeo se a densidade do sistema é a densidade da água (1.00 g/mL) ou a densidade da solução de água com TFE (1.33 g/mL). Em seguida, podemos calcular qual a fração do volume que a solução ocupa, a o número de moléculas de cossolvente e, por fim, o número de moléculas de água que cabem no volume restante da solução. 
 
-Um [pequeno programa](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/CreateInputs.jl) que faz essas contas está disponível aqui, caso queria ver os detalhes. 
+Um [pequeno programa](https://github.com/m3g/PackmolInputCreator.jl) que faz essas contas está disponível, caso queria ver os detalhes (é simples, mas muito fácil de errar nas contas). Este programa está sendo usado nos scripts [AAQAA_0vv.jl](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/AAQAA_0vv.jl) e [AAQAA_60v.jl](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/AAQAA_60vv.jl) que são executados quando você executou o comando `build_system.sh`. 
 
-Nos dois diretórios criados pelo script acima você vai encontrar um arquivo chamado `box.inp`, que é o input do programa `packmol`. Abra e veja seu conteúdo (é fácil de entender, e define que moléculas haverá na caixa, e suas dimensões). Execute o comando: 
-
+Para criar as caixas, entre cada um dos diretórios e execute:
 ```
 packmol < box.inp
 ```
 
-Que vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. Você pode abrir este arquivo em qualquer programa de visualizacão, como VMD ou PyMOL. 
+Isto vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. Você pode abrir este arquivo em qualquer programa de visualizacão, como VMD ou PyMOL. 
 
 ### Criando a topologia do sistema: proteina e água
 
