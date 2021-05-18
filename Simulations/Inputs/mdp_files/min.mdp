@@ -1,3 +1,4 @@
+
 ;mim.mdp- used as input into grompp to generate em.tpr
 ;Parameters describing what to do, when to stop and what to save
 integrator  = steep         ; Algorithm (steep = steepest descent minimization)

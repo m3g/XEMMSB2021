@@ -57,7 +57,7 @@ packmol < box.inp
 
 Isto vai gerar um arquivo `system.pdb`, contendo todas as moléculas que serão simuladas. Você pode abrir este arquivo em qualquer programa de visualizacão, como VMD ou PyMOL. 
 
-### Criando a topologia do sistema: proteina e água
+### 2.2. Criando a topologia do sistema: proteina e água
 
 As simulações dependem de um arquivo de topologia, que define a conectividade do sistema e todos os parâmetros necessários para calcular as forças entre átomos do sistema. A criação destes arquivos é diferente para o sistema com água pura (mais simples) e com TFE. 
 
@@ -72,13 +72,13 @@ cp -r $repo/Simulations/InputData/amber03w.ff ./
 
 Em seguida, execute o comando do Gromacs que gera os arquivos necessários para a simulação:
 ```
-gmx_mpi pdb2gmx -f system.pdb -o model1.gro -p topology.top -ff amber03w -ignh
+gmx_mpi pdb2gmx -f system.pdb -o sytem.gro -p topology.top -ff amber03w -ignh
 ```
 Você vai selecionar o modelo de água `TIP4P2005` para estas simulações. 
 
 Isto deve gerar os seguintes arquivos: 
 ```
-model1.gro
+system.gro
 posre.itp
 topology.top
 ```
@@ -87,65 +87,60 @@ topology.top
 
 Vinícius: explicar como fazer isto aqui.
 
-### Criando a topologia do sistema: proteina, água e TFE
+### <a name="min"></a> 3. Minimização da energia
 
-Para o sistema com TFE, é necessário modificar manualmente o arquivo de topologia.... 
+### 3.1. Gerando arquivos de entrada para as simulações
 
-Agora que possuímos um arquivo pdb para o nosso sistema inicial, devemos nos atentar para a topologia.  O arquivo `topology.top` possui toda a informação referente aos parâmetros do campo de força do sistema. 
-
-Aqui existem alguns pontos importantes
-* O arquivo `topology.top`, na forma com que é apresentado, não é montado automaticamente pelo gromacs. Isto deve-se ao fato que estamos usando parâmetros que não estão contidos no gromacs para o TFE.
-
-* O campo de força utilizado para o peptídeo é o amber03w e o modelo para para a água é o tip4p2005. Os parâmetros para o TFE também são do tipo amber e estão no arquivo `tfe.itp`.
-* O arquivo `topol_back.top` é usado pelo script  `input-tfe-60.jl` para criar a topologia (`topol.top`) como o número correto de moléculas do sistema. 
-
-
-### Minimização
-
-Faça o download do script `minimization.sh`, crie o diretório de saída desejado, e execute:
+Os arquivos de configuração das simulações do Gromacs têm extensão `.mdp`. A minimização será feita com este arquivo de configuração:
 
 ```
-chmod +x ./minimization.sh
-./minimization.sh /home/user/path/output_dir
+;mim.mdp- used as input into grompp to generate em.tpr
+;Parameters describing what to do, when to stop and what to save
+integrator  = steep         ; Algorithm (steep = steepest descent minimization)
+emtol       = 10.0          ; Stop minimization when the maximum force < 100.0 kJ/mol/nm
+emstep      = 0.01          ; Minimization step size
+nsteps      = 1000          ; Maximum number of (minimization) steps to perform
+
+; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
+nstlist         = 1         ; Frequency to update the neighbor list and long range forces
+cutoff-scheme   = Verlet    ; Buffered neighbor searching
+ns_type         = grid      ; Method to determine neighbor list (simple, grid)
+coulombtype     = PME       ; Treatment of long range electrostatic interactions
+rcoulomb        = 1.2       ; Short-range electrostatic cut-off
+rvdw            = 1.2       ; Short-range Van der Waals cut-off
+pbc             = xyz       ; Periodic Boundary Conditions in all 3 dimensions
 ```
 
-### Gerando arquivos de entrada para as simulações
+A primeira parte do arquivo descreve o método de minimização da energia e seus parâmetros. A segunda parte do arquivo descreve alguns parâmetros do cálculo de interações.
 
+Copie este arquivo para o diretório de cada simulação usando:
 
+```
+cp $repo/Simulations/InputData/mdp_files/minimization.mdp $work/Simulations/AAQAA_0vv
+cp $repo/Simulations/InputData/mdp_files/minimization.mdp $work/Simulations/AAQAA_60vv
+```
 
+Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html).
 
+### 3.2. Executando a minimização
 
-
-
-Apesar do passo acima possibilitar a execução de todas as etapas da simulação que estamos nos propondo a fazer, é interessante analisar o que acontece em cada etapa para uma melhor compreensão do método.
-
-Resumidamente, a simulação é composta pelas seguintes etapas:
-
-* [Configuração inicial do sistema](#config)
-* [Minimização](#min)
-* [Equilibração da temperatura e da pressão](#equi)
-* [Produção - HREMD](#prod)
-
-
-Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html)
-
-
-
-## 3. Descrição das etapas de simulação e dos arquivos de input.
-
-### <a name="min"></a>Minimização do sistema
 Agora que os arquivos iniciais estão organizados, podemos partir para a etapa de minimização. Precisamos criar um arquivo `.tpr` para o gromacs. O arquivo tpr é um binário usado para iniciar a simulação que contém informações sobre a estrutura inicial da simulação, a topologia molecular e todos os parâmetros da simulação (como raios de corte, temperatura, pressão, número de passos, etc.).
 
-Para a etapa de minimização, usaremos os arquivos `topol.top` e `mim.mdp` (que possui todos os parâmetros para realizar uma minimização). Assim, para criar o arquivo tpr, usamos o comando:
+Para a etapa de minimização, usaremos os arquivos `topology.top` e `minimization.mdp`. Assim, para criar o arquivo tpr, usamos o comando: 
+```
+gmx_mpi grompp -f minimization.mdp -c system.pdb -p topology.top -o minimization.tpr -pp processed.top -maxwarn 1
+```
 
+Este comando vai gerar os arquivos
 ```
-gmx_mpi grompp -f mim.mdp -c system.pdb -p topol.top -o minimization.tpr -pp processed.top -maxwarn 1
+minimization.tpr
+processed.top
 ```
+que são os arquivos nos formatos finais que são usados pelo Gromacs.
 O arquivo `processed.top` é importante para a utilização do software Plumed, sua utilização detalhada posteriormente. Agora temos o arquivo `minimization.tpr` e para realizar a minimização usamos o comando:
 
 ```
 gmx_mpi mdrun -s minimization.tpr -v -deffnm minimization
-
 ```
 A minimização terá finalizado quando for printado no prompt algo semelhante à:
 
@@ -160,7 +155,7 @@ Agora, temos os seguintes arquivos:
 
 Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro` e a topologia `processed.top`.
 
-### <a name="equi"></a>Equilibração da temperatura e da pressão
+### <a name="equi"></a>4. Equilibração da temperatura e da pressão
 
 Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
 
