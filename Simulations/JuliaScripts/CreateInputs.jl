@@ -58,6 +58,9 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_sid
   #number of water molecules
   nwat = num_wat(vs,vcos,density)
 
+  # Final density of the solution
+  ρ = convert_molar_volume*(solvent_mass*ncos + 18*nwat)/vs
+
   println("""
 
           Summary:
@@ -70,6 +73,8 @@ function box(pdbfile::String, solvent_file::String, concentration::Real, box_sid
           Number of cossolvent molecules = $ncos molecules
           Volume for water molecules = $(vs-vcos) Å³
           Number of water molecules = $nwat molecules
+
+          Final solvent density = $ρ g/mL
           """)
 
   
