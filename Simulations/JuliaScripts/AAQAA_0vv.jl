@@ -5,8 +5,7 @@
 # Directory where this script is hosted
 script_dir = @__DIR__
 
-include("$script_dir/CreateInputs.jl")
-using .CreateInputs 
+using PackmolInputCreator
 
 data_dir="$script_dir/../InputData"
 
@@ -15,13 +14,13 @@ solvent_file = "$data_dir/PDB/tfe.pdb"
 water_file = "$data_dir/PDB/tip4p2005.pdb"
 concentration = 0
 box_side = 56.
-topology_base = "$data_dir/Topology/topology_base_water.top"
 
-CreateInputs.box(pdbfile, solvent_file, concentration, box_side,
-                 box_file="box.inp",
-                 topology_base=topology_base,
-                 topology_out="topology.top",
-                 water_file=water_file)
+write_input(
+  pdbfile, solvent_file, concentration, box_side,
+  packmol_input="box.inp",
+  packmol_output="system.pdb",
+  water_file=water_file
+)
     
 
 

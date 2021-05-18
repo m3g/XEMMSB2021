@@ -43,7 +43,7 @@ x = find_x(concentration, 100.4, 1.38217, ρ)
 println("Molar fraction = $x")
 
 # Iterpolate to get density given molar fraction
-density = PackmolInputCreator.interpolate(x,ρ)
+density = interpolate(x,ρ)
 println("Density = $density")
 
 data_dir="$script_dir/../InputData"
@@ -52,11 +52,15 @@ solvent_file = "$data_dir/PDB/tfe.pdb"
 water_file = "$data_dir/PDB/tip4p2005.pdb"
 box_side = 56.
 
-write_input(pdbfile, solvent_file, concentration, box_side,
-            water_file=water_file,
-            density=density,
-            density_pure_solvent=1.38217,
-            box_file="box.inp",cunit="%vv")
+write_input(
+  pdbfile, solvent_file, concentration, box_side,
+  water_file=water_file,
+  density=density,
+  density_pure_solvent=1.38217,
+  packmol_input="box.inp",
+  packmol_output="system.pdb",
+  cunit="%vv"
+)
 
 
 
