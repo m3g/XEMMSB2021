@@ -2,11 +2,10 @@
 # run with julia AAQAA_60vv.jl 
 #
 
+using PackmolInputCreator
+
 # Directory where this script is hosted
 script_dir = @__DIR__
-
-include("$script_dir/CreateInputs.jl")
-using .CreateInputs 
 
 # Density as a function of molar fraction of TFE
 #   FE mol frac  Density (g/mL) ref: https://doi.org/10.1023/A:1005147318013
@@ -37,14 +36,14 @@ using .CreateInputs
       1.0000     1.38217  ]
 
 # What we want
-concentration = 50.0 #%vv
+concentration = 95.77 #%vv
 
 # Find to what molar fraction this volume fraction corresponts
-x = CreateInputs.find_x(concentration, 100.4, 1.38217, ρ)
+x = find_x(concentration, 100.4, 1.38217, ρ)
 println("Molar fraction = $x")
 
 # Iterpolate to get density given molar fraction
-density = interpolate(x,ρ)
+density = PackmolInputCreator.interpolate(x,ρ)
 println("Density = $density")
 
 data_dir="$script_dir/../InputData"
@@ -53,11 +52,11 @@ solvent_file = "$data_dir/PDB/tfe.pdb"
 water_file = "$data_dir/PDB/tip4p2005.pdb"
 box_size = 56.
 
-CreateInputs.box(pdbfile, solvent_file, concentration, box_size,
-                 water_file=water_file,
-                 density=density,
-                 density_pure_solvent=1.38217,
-                 box_file="box.inp",cunit="%vv")
+write_input(pdbfile, solvent_file, concentration, box_size,
+            water_file=water_file,
+            density=density,
+            density_pure_solvent=1.38217,
+            box_file="box.inp",cunit="%vv")
 
 
 
