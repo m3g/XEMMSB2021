@@ -163,10 +163,10 @@ GROMACS reminds you: "There's Nothing We Can't Fix, 'coz We Can Do It in the Mix
 ```
 Agora, temos os seguintes arquivos:
 
-* [minimization.gro]: Coordenadas do sistema minimizado. 
-* [minimization.edr]: Arquivo binário da energia do sistema.
-* [minimization.log]: Arquivo de texto ASCII do processo de minimização. 
-* [minimization.trr]: Arquivo binário da trajetória (alta precisão).
+* `minimization.gro`: Coordenadas do sistema minimizado. 
+* `minimization.edr`: Arquivo binário da energia do sistema.
+* `minimization.log`: Arquivo de texto ASCII do processo de minimização. 
+* `minimization.trr`: Arquivo binário da trajetória (alta precisão).
 
 Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro` e a topologia `processed.top`.
 
