@@ -7,6 +7,8 @@ script_dir = @__DIR__
 
 using PackmolInputCreator
 
+println("\n AAQAA + water \n")
+
 data_dir="$script_dir/../InputData"
 
 pdbfile = "$data_dir/PDB/AAQAA.pdb"

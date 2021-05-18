@@ -4,6 +4,8 @@
 
 using PackmolInputCreator
 
+println("\n AAQAA 60vv \n")
+
 # Directory where this script is hosted
 script_dir = @__DIR__
 
@@ -36,7 +38,7 @@ script_dir = @__DIR__
       1.0000     1.38217  ]
 
 # What we want
-concentration = 95.77 #%vv
+concentration = 20. #%vv
 
 # Find to what molar fraction this volume fraction corresponts
 x = find_x(concentration, 100.4, 1.38217, ρ)
