@@ -246,14 +246,10 @@ Nele vemos que os parâmetros variam mais nas temperaturas menores e menos nas t
 Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
 
 ```
-cd $XEMMSB_dir_MD/0
-plumed partial_tempering 1.0 < processed.top > topol0.top
-cd $XEMMSB_dir_MD/1
-plumed partial_tempering 0.96 < processed.top > topol1.top
-cd $XEMMSB_dir_MD/2
-plumed partial_tempering 0.93 < processed.top > topol2.top
-cd $XEMMSB_dir_MD/3
-plumed partial_tempering 0.89 < processed.top > topol3.top
+plumed partial_tempering 1.00 < processed.top > ./0/topology.top
+plumed partial_tempering 0.89 < processed.top > ./1/topology.top
+plumed partial_tempering 0.79 < processed.top > ./2/topology.top
+plumed partial_tempering 0.71 < processed.top > ./3/topology.top
    
 ```
 Mais informações podem ser obtidas em [plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html).
