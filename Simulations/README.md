@@ -224,11 +224,11 @@ O arquivo resultante deve ficar assim:
 
 ### 4.2. Usando plumed para definir o parâmetro de escalonamento 
 
-Cada réplica terá seu próprio parâmetro de escalonamento do potencial. Geralmente, varia-se este escalonamento entre 0.7 e 1.0, da réplica onde o potencial é mais permissivo (0.7) até o potencial original (1.0). Uma sequência de parâmetros de escalonamento razoável, mais densa nos parâmetros maiores, pode ser obtida usando a fórmula: 
+Cada réplica terá seu próprio parâmetro de escalonamento do potencial. Geralmente, varia-se este escalonamento entre 0.7 e 1.0, da réplica onde o potencial é mais permissivo (0.7) até o potencial original (1.0). Uma sequência de parâmetros de escalonamento razoável, mais densa nos parâmetros de maior perturbação, pode ser obtida usando a fórmula: 
 
 <img width=300px src=https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png>
 
-onde `T0` e `Tm` são as "temperaturas" de referência e temperatura máxima usadas. Usaremos `T0=300` e `Tm=425`. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
+onde `T₀` e `Tₘ` são as "temperaturas" de referência e temperatura máxima usadas. Usaremos `T0=300` e `Tm=425`. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
 ```julia
 %julia -e "println.([exp((-i/3)*log(425/300)) for i in 0:3])"
 1.0
