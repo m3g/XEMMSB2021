@@ -251,7 +251,7 @@ Mais informações podem ser obtidas em [plumed](https://www.plumed.org/doc-v2.6
 O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potenciais de interação intramolecular e proteína-solvente são multiplicados por um fator chamado hamiltoniano, comumente representado pela letra grega &lambda; . Desta forma, a multiplicação dos potenciais pelo &lambda fará com que o sistema possua uma temperatura efetiva Ti. 
 O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
 
-![image](https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png)
+<img width=150px src=https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png>
 
 
 ###(Não consegui colocar latex aqui, se o senhor souber peço que mude como achar melhor)
