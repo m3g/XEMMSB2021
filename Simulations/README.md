@@ -30,7 +30,7 @@ mkdir -p $simulations
 
 ## <a name="config"></a>2. Configuração inicial do sistema
 
-O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56 &angstrom; de lado em ambos casos.
+O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56 &Angstrom; de lado em ambos casos.
 
 ### 2.1. Criando a posição inicial das partículas do sistema
 
@@ -254,16 +254,10 @@ plumed partial_tempering 0.71 < processed.top > ./3/topology.top
 ```
 Mais informações podem ser obtidas em [plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html).
 
-O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potenciais de interação intramolecular e proteína-solvente são multiplicados por um fator chamado hamiltoniano, comumente representado pela letra grega &lambda; . Desta forma, a multiplicação dos potenciais pelo &lambda fará com que o sistema possua uma temperatura efetiva Ti. 
-O fator de escalonamento &lambada; e as temperaturas efetivas Ti da i-ésima réplica são dados por: 
+ λ Å
 
-<img width=300px src=https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png>
 
-```julia
-julia -e "println([exp((-i/3)*log(425/300)) for i in 0:3])"
-```
-
-Temos, então, 4 simulações diferentes (uma simulação para cada réplica). Contudo, para as análises, apenas a réplica de menor grau será utilizada (`&lambda; = 1`). 
+O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potenciais de interação intramolecular da proteína e as interações inter-moleculares proteína-solvente são multiplicados por um fator, comumente representado pela letra grega λ. Desta forma, a multiplicação dos potenciais pelo λ fará com que o sistema seja mais móvel, aproximadamente como se estivesse sendo simulado a uma temperatura mais alta (se a temperatura for o parâmetro efetivamente alterado, o método é o clássico método de trocas de réplicas).
 
 Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada réplica.
 
@@ -271,7 +265,6 @@ Feito o escalonamento das topologias e com todos os arquivos em seus respectivos
 for i in 0 1 2 3; do
   gmx_mpi grompp -f $i/nvt$i.mdp -c minimization.gro  -p $i/topol$i.top -o $i/canonical.tpr -maxwarn 1
 done
-
 ```
 A flag maxwarn serve para ignorar os avisos que o gromacs dá. Muitos desses avisos são coisas que não tem impacto nenhum na simulação. Entretanto, é recomendado rodar, na primeira vez, sem essa flag para observar o que o gromacs está reportando. Alguns dos avisos podem ser potencialmente danosos para sua simulação, como, por exemplo, um sistema que não está eletricamente neutro. Mais informações podem ser obtidas em [Errors](https://www.gromacs.org/Documentation_of_outdated_versions/Errors).
 
