@@ -30,7 +30,7 @@ mkdir -p $simulations
 
 ## <a name="config"></a>2. Configuração inicial do sistema
 
-O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56 &Angstrom; de lado em ambos casos.
+O primeiro passo para a realização da simulação é definir qual o sistema que será simulado. Para o nosso caso, iremos simular dois sistemas. Um composto pelo peptídeo `(AAQAA)3` e água. Outro pelo mesmo peptídeo solvatado por uma solução aquosa de 60%v/v do 2,2,2-Trifluoretanol (TFE). Criaremos uma caixa cúbica com 56Å de lado em ambos casos.
 
 ### 2.1. Criando a posição inicial das partículas do sistema
 
@@ -253,9 +253,6 @@ plumed partial_tempering 0.71 < processed.top > ./3/topology.top
    
 ```
 Mais informações podem ser obtidas em [plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html).
-
- λ Å
-
 
 O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potenciais de interação intramolecular da proteína e as interações inter-moleculares proteína-solvente são multiplicados por um fator, comumente representado pela letra grega λ. Desta forma, a multiplicação dos potenciais pelo λ fará com que o sistema seja mais móvel, aproximadamente como se estivesse sendo simulado a uma temperatura mais alta (se a temperatura for o parâmetro efetivamente alterado, o método é o clássico método de trocas de réplicas).
 
