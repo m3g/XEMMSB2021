@@ -3,6 +3,7 @@ using LaTeXStrings
 
 default(fontfamily="Computer Modern", size=(400,300),
         linewidth=2, framestyle=:box, label=nothing, grid=false)
+scalefontsizes(1.3)
 
 T₀ = 300.
 Tₘ = 600.
