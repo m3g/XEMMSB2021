@@ -14,12 +14,12 @@ if [[ ! -d "$work" ]]; then
 fi
 
 
-## 1. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`
+## 1. Instalação das dependências: `open-mpi`, `gfortran`, `gcc`, `cmake`, `dssp`
 
 cd $work
 mkdir -p Downloads
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
+sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake dssp
 
 ## 2. Instalação do Plumed
 

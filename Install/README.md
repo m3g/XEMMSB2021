@@ -52,12 +52,15 @@ Vai ser requisitada a sua senha, mas é só para instalar, se necessário, algun
 
 Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
 
-## 2. Instalação das dependências: `openmpi`, `gfortran`, `gcc`, `cmake`
+## 2. Instalação das dependências: `openmpi`, `gfortran`, `gcc`, `cmake`, `dssp`
 
 ```
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake
+sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake dssp
 ```
+
+Os cinco primeiros pacotes são para compilação e desenvolvimento de dependências, e [`dssp`](https://swift.cmbi.umcn.nl/gv/dssp/) é um pacote
+que calcula a estrutura secundária de proteínas e será usado nas análises. 
 
 Caso no seu sistema esteja instalado um `cmake` antigo (testamos com a versão `3.10.2` que estava instalada no Ubuntu 18), é possível que você tenha problemas. Nesse caso, instale a versão mais recente, seguindo as instruções abaixo:
 
