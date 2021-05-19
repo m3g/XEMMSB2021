@@ -303,7 +303,7 @@ Terminadas as etapas de equilibração, faremos a simulação de produção, que
 
 ### <a name="prod"></a>Produção - HREMD
 
-A simulação de produção do exemmplo terá o dobro do tempo (20 ps) das anteriores. Você pode aumentar o tempo de simulação modificando o parâmetro `nsteps` dos arquivos `production.mdp`. De todos modos, as análises que faremos serão sobre uma simulação preparada anteriormente e executada em um cluster de computadores do [CCES/Unicamp](http://cces.unicamp.br).
+A simulação de produção do exemplo terá o dobro do tempo (20 ps) das anteriores. Você pode aumentar o tempo de simulação modificando o parâmetro `nsteps` dos arquivos `production.mdp`. De todos modos, as análises que faremos serão sobre uma simulação preparada anteriormente e executada em um cluster de computadores do [CCES/Unicamp](http://cces.unicamp.br).
 
 
 Estamos fazendo várias simulações simultâneas que diferenciam-se pelos potenciais de interação intramolecular da proteína e intermolecular da proteína com o solvente. Esta diferença decorre do método de escalonamento que fizemos na etapa de equilibração com os valores de &lambda;. As simulações com potenciais modificaods por &lambda; menor poderão amostrar conformações diferentes que não seriam visitadas na simulação convencional (réplica 0). Por meio de uma troca de coordenadas que acontece periodicamente (no nosso caso as  tentativas dão-se a cada 400 passos da simulação, (0.8 ps), as conformações amostradas nas réplicas de maior ordem podem ser trocadas com as réplicas vizinhas até chegar na réplica 0, aumentando a capacidade de amostragem na simulação sem modificações no potencial.
