@@ -237,6 +237,9 @@ onde `T0` e `Tm` são as "temperaturas" de referência e temperatura máxima usa
 0.7058823529411764
 ```
 
+Neste caso ilustrativo são só 4 réplicas. Mas se tivéssemos mais réplicas, 20 por exemplo, [obteríamos](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/lambda.jl) o seguinte perfil de parâmetros de escalonamento: 
+
+<img src=https://github.com/m3g/XEMMSB2021/raw/main/Simulations/JuliaScripts/lambda.png>
 
 Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
 
