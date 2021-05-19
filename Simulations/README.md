@@ -228,7 +228,7 @@ Cada réplica terá seu próprio parâmetro de escalonamento do potencial. Geral
 
 <img width=300px src=https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png>
 
-onde `T0` e `Tm` são as "temperaturas" de referência e temperatura máxima usadas. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
+onde `T0` e `Tm` são as "temperaturas" de referência e temperatura máxima usadas. Usaremos `T0=300` e `Tm=425`. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
 ```julia
 %julia -e "println.([exp((-i/3)*log(425/300)) for i in 0:3])"
 1.0
@@ -237,9 +237,11 @@ onde `T0` e `Tm` são as "temperaturas" de referência e temperatura máxima usa
 0.7058823529411764
 ```
 
-Neste caso ilustrativo são só 4 réplicas. Mas se tivéssemos mais réplicas, 20 por exemplo, [obteríamos](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/lambda.jl) o seguinte perfil de parâmetros de escalonamento: 
+Neste caso ilustrativo são só 4 réplicas. Mas se tivéssemos mais e uma faixa mais ampla de "temperaturas" e mais réplicas, [obteríamos](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/lambda.jl) o seguinte perfil de parâmetros de escalonamento: 
 
 <img src=https://github.com/m3g/XEMMSB2021/raw/main/Simulations/JuliaScripts/lambda.png>
+
+Nele vemos que os parâmetros variam mais nas temperaturas menores e menos nas temperaturas maiores, onde as flutuações estruturais são maiores. Esta formula procura garantir uma taxa de troca de réplicas uniforme ao longo de toda a faixa de parâmetros estudada.
 
 Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
 
