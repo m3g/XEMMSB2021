@@ -39,6 +39,8 @@ Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir u
 
 ```
 
+Assumimos aqui que você tem instalado algum programa de visualização de trajetórias de simulação, como o [VMD](https://www.ks.uiuc.edu/Research/vmd/).  
+
 ### 1.3 Estou com sorte
 
 Se você usa `bash`, uma distribuição Linux de 64bits derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
