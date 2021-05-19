@@ -172,11 +172,9 @@ Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro`
 
 ### <a name="equi"></a>4. Equilibração da temperatura e da pressão
 
-Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
+### 4.1 Preparando os arquivos de configuração
 
-Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo `minimization.tpr`. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Os arquivos de configuração das simulações são chamados `nvt.mdp` e `npt.mdp`. O arquivo de produção, que será usado posteriormente, se chama `production.mdp`. 
-
-Vamos copiar todos os arquivos de configuração para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente (obs: o arquivo production.mdp será usado na etapa final).
+Vamos copiar todos os arquivos de configuração para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente.
 
 Assim, faremos:
 ```
@@ -185,23 +183,14 @@ echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp production.mdp plumed.dat
 ```
 O comando acima copia os arquivos `nvt.mdp`, `npt.mdp`, `production.mdp` e `plumed.dat` (discutido posteriormente) para as pastas `0/`, `1/`, `2/` e `3/`.
 
-O próximo passo, agora, é escalonar a temperatura de acordo com os hamiltonianos.
-Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1. Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
-
-Nesta etapa, é importante selecionar os átomos que irão ser escalonados. Para isso, adicionamos um underline na frente dos átomos que queremos "aquecer" (*). Na simulação tratadas neste curso, os átomos que serão escalonados são aqueles que compõem o polipeptídeo.
-
-----------------------
-(*)
-O termo aquecer é usado pois a multiplicação dos parâmetros do campo de força pelo hamiltoniano diminui a interação entre as partículas, “afrouxando” o potencial. Esta ação é como se aumentássemos a temperatura. Porém, como a temperatura é um prop…. (decidir se vale a pena colocar isso)
-
-----------------------
-
-Se você digitar `vi processed.top` e procurar pela proteína, encontrará o seguinte:
+O programa que vai fazer as modificações no campo de força para simular as réplicas com diferentes Hamiltonianos é o `plumed`. Para indicar a quais átomos aplicaremos o método de aceleração de amostragem, temos que modificar o arquivo `processsed.top`, que contém todos os parâmetros da simulação. Vamos copiar este arquivo em um novo arquivo chamado `processed_.top`, porque precisamos acrescentar `_` em frente ao nome de todos os átomos que serão incluídos na aceleração de amostragem.
 ```
-[ moleculetype ]
-; Name            nrexcl
-Protein_chain_X     3
+cd $work/Simulations/AAQAA_0vv
+cp processed.top processed_.top
+```
 
+Se você digitar `vim processed.top` e procurar por `atoms`, encontrará os átomos da proteína, em uma seção assim:
+```
 [ atoms ]
 ;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
 ; residue   1 ALA rtp NALA q +1.0
@@ -209,30 +198,30 @@ Protein_chain_X     3
      2          H     1    ALA     H1      2     0.1997      1.008
      3          H     1    ALA     H2      3     0.1997      1.008
      4          H     1    ALA     H3      4     0.1997      1.008
-
+                                  ...
+   172          C     15    ALA      C    172     0.7731      12.01
+   173         O2     15    ALA    OC1    173    -0.8055         16
+   174         O2     15    ALA    OC2    174    -0.8055         16   ; qtot 0
 ```
 
-O que precisa ser feito é adicionar _ na frente do nome de cada átomo da proteína, assim:
+É necessário adicionar `_` na frente do nome de cada átomo da proteína (no `vim`, use Control-V, selecione todas as colunas referentes a átomos da proteína na posição seguinte ao nome do átomo, e use `shift-i _`). 
 
+O arquivo resultante deve ficar assim:
 
 ```
-
-[ moleculetype ]
-; Name            nrexcl
-Protein_chain_X     3
-
 [ atoms ]
 ;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
-; residue   1 ALA rtp NALA q +1.0
+; residue   1 ALA_ rtp NALA q +1.0
      1         N3_     1    ALA      N      1     0.1414      14.01
      2          H_     1    ALA     H1      2     0.1997      1.008
      3          H_     1    ALA     H2      3     0.1997      1.008
      4          H_     1    ALA     H3      4     0.1997      1.008
-                                    .
-                                    .
-                                    .
-
+                                  ...
+   172          C_    15    ALA      C    172     0.7731      12.01
+   173         O2_    15    ALA    OC1    173    -0.8055         16
+   174         O2_    15    ALA    OC2    174    -0.8055         16   ; qtot 0
 ```
+
 Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
 
 ```
