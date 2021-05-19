@@ -1,15 +1,15 @@
 ; title                   = Production
 ; Run parameters
 integrator              = md         ; leap-frog integrator
-nsteps                  = 1000000     ;  0.002 * 1000000 = 2000 ps = 2 ns       
+nsteps                  = 10000     ;  0.002 * 10000 = 20 ps
 dt                      = 0.002      ;  2    fs   
 ; Output control
 nstxout                 = 0           ; suppress bulky .trr file by specifying 
 nstvout                 = 0           ; 0 for output frequency of nstxout,
 nstfout                 = 0           ; nstvout, and nstfout
-nstenergy               = 25000       ; save energies every 500.0 ps
-nstlog                  = 25000       ; update log file every 500.0 ps
-nstxout-compressed      = 25000       ; save compressed coordinates every 500.0 ps
+nstenergy               = 500       ; save energies every 1.0 ps
+nstlog                  = 500       ; update log file every 1.0 ps
+nstxout-compressed      = 500       ; save compressed coordinates every 1.0 ps
 compressed-x-grps       = System      ; save the whole system      
 
 ; The final trajectory will have 100 frames!
