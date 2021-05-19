@@ -172,7 +172,7 @@ Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro`
 
 ### <a name="equi"></a>4. Equilibração da temperatura e da pressão
 
-### 4.1 Preparando os arquivos de configuração
+### 4.1. Preparando os arquivos de configuração para o plumed
 
 Vamos copiar todos os arquivos de configuração para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente.
 
@@ -221,6 +221,22 @@ O arquivo resultante deve ficar assim:
    173         O2_    15    ALA    OC1    173    -0.8055         16
    174         O2_    15    ALA    OC2    174    -0.8055         16   ; qtot 0
 ```
+
+### 4.2. Usando plumed para definir o parâmetro de escalonamento 
+
+Cada réplica terá seu próprio parâmetro de escalonamento do potencial. Geralmente, varia-se este escalonamento entre 0.7 e 1.0, da réplica onde o potencial é mais permissivo (0.7) até o potencial original (1.0). Uma sequência de parâmetros de escalonamento razoável, mais densa nos parâmetros maiores, pode ser obtida usando a fórmula: 
+
+<img width=300px src=https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png>
+
+onde `T0` e `Tm` são as "temperaturas" de referência e temperatura máxima usadas. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
+```julia
+%julia -e "println.([exp((-i/3)*log(425/300)) for i in 0:3])"
+1.0
+0.8903841934016186
+0.7927840118594509
+0.7058823529411764
+```
+
 
 Feito isso, devemos escalonar as topologias que serão usadas para as diferentes réplicas.
 
