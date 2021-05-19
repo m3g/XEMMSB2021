@@ -282,24 +282,24 @@ mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2
 ```
 A flag -np indica o número de processos que serão iniciados. Neste caso, cada processo será uma réplica. O mpirun fará a distribuição de processadores disponíveis em seu computador para cada processo de forma automática.
 
-#Colocar alguma coisa para as pessoas saberem se a simulação terminou
+A simulação que estamos realizando será curta (5000 passos), apenas para ilustrar o procedimento, e deve demorar alguns minutos em um computador normal. 
 
-A etapa de equilibração NPT usa, essencialmente, os mesmos comandos, apenas alterando os inputs:
+A etapa de equilibração NPT usa, essencialmente, os mesmos comandos, apenas alterando os inputs. As simulações NPT usarão a saída das simulações anteriores como input, definidas nos arquivos `canonical.gro`:
 
 ```
-for i in 0 1 2 3; do
-  gmx_mpi grompp -f $i/npt$i.mdp -c canonical.gro  -p $i/topol$i.top -o $i/isobaric.tpr -maxwarn 1
+for dir in 0 1 2 3; do
+  cd $dir
+  gmx_mpi grompp -f npt.mdp -c canonical.gro  -p topology.top -o isobaric.tpr -maxwarn 1
+  cd ..
 done
-
-
 ```
 Após os arquivos `isobaric.tpr` serem criados (em cada pasta da réplica deve haver um arquivo `isobaric.tpr`), vamos usar o comando abaixo para realizar a equilibração da temperatura:
-
 
 ```
 mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
 ```
 
+Terminadas as etapas de equilibração, faremos a simulação de produção, que efetivamente seria analisada.
 
 ### <a name="prod"></a>Produção - HREMD
 
