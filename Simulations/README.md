@@ -258,14 +258,23 @@ O método que está sendo utilizado consiste em uma simulação de dinâmica mol
 
 Feito o escalonamento das topologias e com todos os arquivos em seus respectivos diretórios, vamos criar o arquivo tpr que irá iniciar uma equilibração de 1 ns no ensemble NVT para cada réplica.
 
+### 4.3. Executando as simulações de equilibração  
+
+Vamos gerar os arquivos de configuração do Gromacs em cada diretório com o comando abaixo:
+
 ```
-for i in 0 1 2 3; do
-  gmx_mpi grompp -f $i/nvt$i.mdp -c minimization.gro  -p $i/topol$i.top -o $i/canonical.tpr -maxwarn 1
+for dir in 0 1 2 3; do
+  cd $dir
+  gmx_mpi grompp -f nvt.mdp -c ../minimization.gro  -p topology.top -o canonical.tpr -maxwarn 1
+  cd ..
 done
 ```
-A flag maxwarn serve para ignorar os avisos que o gromacs dá. Muitos desses avisos são coisas que não tem impacto nenhum na simulação. Entretanto, é recomendado rodar, na primeira vez, sem essa flag para observar o que o gromacs está reportando. Alguns dos avisos podem ser potencialmente danosos para sua simulação, como, por exemplo, um sistema que não está eletricamente neutro. Mais informações podem ser obtidas em [Errors](https://www.gromacs.org/Documentation_of_outdated_versions/Errors).
 
-Agora que todos os arquivos tpr foram gerados, podemos iniciar a simulação da equilibração NVT fazendo:
+A flag `maxwarn` serve para ignorar os avisos mensagens de aviso excessivas. Muitos desses avisos são coisas que não tem impacto nenhum na simulação. Entretanto, é recomendado rodar, na primeira vez, sem essa flag para observar o que o gromacs está reportando. Alguns dos avisos podem ser potencialmente danosos para sua simulação, como, por exemplo, aquele de que o sistema que não está eletricamente neutro. Mais informações podem ser obtidas em [Errors](https://www.gromacs.org/Documentation_of_outdated_versions/Errors).
+
+Um arquivo `cannonical.tpr` será gerado em cada diretório, e será usado pelo Gromacs para efetivamente iniciar a simulação.
+
+Podemos iniciar a simulação da equilibração NVT fazendo:
 
 ```
 mpirun -np 4 gmx_mpi mdrun -s canonical.tpr -v -deffnm canonical -multidir 0 1 2 3
