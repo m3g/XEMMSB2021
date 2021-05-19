@@ -12,7 +12,15 @@ ComplexMixtures.jl.
 
 Este é o material do curso ministrado na XEMMSB de 2021.  
 
-O diretório [Install](https://github.com/m3g/XEMMSB2021/tree/main/Install) contém as instruções de como instalar os programas necessários para desenvolver as atividades do curso.
+- A pasta [Install](https://github.com/m3g/XEMMSB2021/tree/main/Install) contém as instruções de como instalar os programas necessários para desenvolver as atividades do curso.
+
+- A pasta [Simulations](https://github.com/m3g/XEMMSB2021/tree/main/Simulations) contém as instruções de como preparar e executar as simulações. 
+
+- A pasta [Analyses](https://github.com/m3g/XEMMSB2021/tree/main/Analyses) contém a descrição das análises que são realizadas sobre os resultados.
+
+
+
+
 
 
 
