@@ -3,15 +3,15 @@ define                  = -DPOSRES  ; position restrain the protein
 
 ; Run parameters
 integrator              = md        ; leap-frog integrator
-nsteps                  = 500000      ; 2 * 50000 = 1000 ps
+nsteps                  = 5000      ; 2 * 500 = 10 ps
 dt                      = 0.002     ; 2 fs
 
 ; Output control
-nstxout                 = 5000       ; save coordinates every 1.0 ps
-nstvout                 = 5000       ; save velocities every 1.0 ps
-nstenergy               = 5000       ; save energies every 1.0 ps
-nstlog                  = 5000       ; update log file every 1.0 ps
-nstxout-compressed      = 5000      ; save compressed coordinates every 10.0 ps
+nstxout                 = 500       ; save coordinates every 1.0 ps
+nstvout                 = 500       ; save velocities every 1.0 ps
+nstenergy               = 500       ; save energies every 1.0 ps
+nstlog                  = 500       ; update log file every 1.0 ps
+nstxout-compressed      = 500      ; save compressed coordinates every 1.0 ps
 compressed-x-grps       = System    ; save the whole system
 
 ; Bond parameters

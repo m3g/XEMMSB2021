@@ -1,4 +1,4 @@
-;mim.mdp- used as input into grompp to generate em.tpr
+;minimization.mdp- used as input into grompp to generate em.tpr
 ;Parameters describing what to do, when to stop and what to save
 integrator  = steep         ; Algorithm (steep = steepest descent minimization)
 emtol       = 10.0          ; Stop minimization when the maximum force < 100.0 kJ/mol/nm
