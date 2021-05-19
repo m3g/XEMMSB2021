@@ -228,7 +228,7 @@ Cada réplica terá seu próprio parâmetro de escalonamento do potencial. Geral
 
 <img width=300px src=https://user-images.githubusercontent.com/31046348/118821585-c500de00-b88d-11eb-8b80-e907d92a30e1.png>
 
-onde `T₀` e `Tₘ` são as "temperaturas" de referência e temperatura máxima usadas. Usaremos `T0=300` e `Tm=425`. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
+onde `T₀` e `Tₘ` são as "temperaturas" de referência e temperatura máxima usadas. Usaremos `T₀=300` e `Tₘ=425`. Neste caso, como estamos fazendo réplicas por modificação do potencial, não se trata de variar exatamente a temperatura, mas o conceito é similar. Podemos aplicar esta fórmula e obter o conjunto de parâmetros que vamos usar, com:  
 ```julia
 %julia -e "println.([exp((-i/3)*log(425/300)) for i in 0:3])"
 1.0
