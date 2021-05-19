@@ -20,7 +20,7 @@ function input_gen(nrep=4, Tₘ=425.0, T₀=300.0;
       open("$file.mdp","r") do input
         open("$i/$file.tmp","w") do output
           for line in eachline(input)
-            line = replace(line,"REFT" => "$(T[i+1])")
+            line = replace(line,"300" => "$(T[i+1])")
             println(output,line)
           end
         end

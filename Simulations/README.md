@@ -116,8 +116,8 @@ A primeira parte do arquivo descreve o método de minimização da energia e seu
 Copie este arquivo (e outros arquivos de configuração que usaremos) para o diretório de cada simulação usando:
 
 ```
-cp $repo/Simulations/InputData/mdp_files/*.mdp $work/Simulations/AAQAA_0vv
-cp $repo/Simulations/InputData/mdp_files/*.mdp $work/Simulations/AAQAA_60vv
+cp $repo/Simulations/InputData/mdp_files/* $work/Simulations/AAQAA_0vv
+cp $repo/Simulations/InputData/mdp_files/* $work/Simulations/AAQAA_60vv
 ```
 
 Detalhes para um simulação básica usando o gromacs podem ser encontrados no tutorial [gromacs_simulations](http://www.mdtutorials.com/gmx/lysozyme/01_pdb2gmx.html).
@@ -174,9 +174,9 @@ Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro`
 
 Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
 
-Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Os arquivos de configuração das simulações são chamados `nvt.mdp` e `npt.mdp`. 
+Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Os arquivos de configuração das simulações são chamados `nvt.mdp` e `npt.mdp`. O arquivo de produção, que será usado posteriormente, se chama `production.mdp`. 
 
-O primeiro passo é alterar nestes arquivos (nvt.mdp, npt.mdp e prod.mdp) a variável REFT para 300 (K). Como estamos fazendo por etapas, *devemos realizar essa troca manualmente*). Em seguida, copiamos todos os arquivos mdp para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente (obs: o arquivo production.mdp será usado na etapa final).
+Vamos copiar todos os arquivos de configuração para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente (obs: o arquivo production.mdp será usado na etapa final).
 
 Assim, faremos:
 ```
