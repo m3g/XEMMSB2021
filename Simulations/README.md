@@ -174,7 +174,7 @@ Para a continuação da simulação, vamos utilizar o arquivo `minimization.gro`
 
 Agora, faremos alterações no arquivo de topologia para realizar simulações de equilibração nos ensembles NVT e NPT.
 
-Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo minimization.tpr. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Os arquivos de configuração das simulações são chamados `nvt.mdp` e `npt.mdp`. O arquivo de produção, que será usado posteriormente, se chama `production.mdp`. 
+Vamos, agora, utilizar o arquivo `processed.top` gerado na criação do arquivo `minimization.tpr`. As simulações serão realizadas na temperatura de 300K e pressão de 1 bar. Os arquivos de configuração das simulações são chamados `nvt.mdp` e `npt.mdp`. O arquivo de produção, que será usado posteriormente, se chama `production.mdp`. 
 
 Vamos copiar todos os arquivos de configuração para 4 pastas diferentes. Cada pasta conterá as simulações de uma réplica que usando um hamiltoniano diferente (obs: o arquivo production.mdp será usado na etapa final).
 
@@ -183,7 +183,7 @@ Assim, faremos:
 mkdir -p 0 1 2 3
 echo {0..3} | xargs -n 1 cp nvt.mdp npt.mdp production.mdp plumed.dat
 ```
-O comando acima copia os arquivos nvt.mdp, npt.mdp, production.mdp e plumed.dat (discutido posteriormente) para as pastas 0/, 1/, 2/ e 3/.
+O comando acima copia os arquivos `nvt.mdp`, `npt.mdp`, `production.mdp` e `plumed.dat` (discutido posteriormente) para as pastas `0/`, `1/`, `2/` e `3/`.
 
 O próximo passo, agora, é escalonar a temperatura de acordo com os hamiltonianos.
 Esse "escalonamento" consiste em multiplicar os parâmetros do campo força por um fator entre 0 e 1. Aqui vamos usar 4 hamiltonianos: 1.0, 0.96, 0.93, 0.89 .
