@@ -301,7 +301,9 @@ mpirun -np 4 gmx_mpi mdrun -s isobaric.tpr -v -deffnm isobaric -multidir 0 1 2 3
 
 Terminadas as etapas de equilibração, faremos a simulação de produção, que efetivamente seria analisada.
 
-### <a name="prod"></a>Produção - HREMD
+### <a name="prod"></a> 5. Produção - HREMD
+
+### 5.1. Executando a simulação de produção
 
 A simulação de produção do exemplo terá o dobro do tempo (20 ps) das anteriores. Você pode aumentar o tempo de simulação modificando o parâmetro `nsteps` dos arquivos `production.mdp`. De todos modos, as análises que faremos serão sobre uma simulação preparada anteriormente e executada em um cluster de computadores do [CCES/Unicamp](http://cces.unicamp.br).
 
@@ -318,21 +320,14 @@ for dir in 0 1 2 3; do
 done
 ```
 
-Assim, 2 ns de simulação de produção poderão feitos por meio do comando:
-
-
+As simulações são executadas com:
 ```
- mpirun -np $rep gmx_mpi mdrun -plumed plumed.dat -s production.tpr -v -deffnm production -multidir 0 1 2 3  -replex 400 -hrex -dlb no
+mpirun -np 4 gmx_mpi mdrun -plumed plumed.dat -s production.tpr -v -deffnm production -multidir 0 1 2 3  -replex 400 -hrex -dlb no
 ```
 
+### 5.2. Verificação dos resultados
 
-
-
-## 3. Verificação dos resultados
-
-### probabilidades de troca
 Com sorte, nenhum problema ocorreu e agora a simulação foi finalizada... 
-
 
 ### visualização da trajetória
 Para visualizar sua trajetória no vmd é necessário processar os dados para uma visualização correta. Os arquivos importantes para a visualização são o frame com a configuração final, `production.gro`, e a trajetória, `production.xtc`. Assim, precisamos usar o comando:
@@ -347,194 +342,3 @@ Com os arquivos `processed.gro` e `processed.xtc` podemos usar o vmd para visual
 vmd processed.gro processed.xtc
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
