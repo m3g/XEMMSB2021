@@ -1,7 +1,7 @@
 using Plots, Statistics
 
 function get_helicity(dir,nresidues)
-  files = filter(f -> f[end-4:end] == ".dssp", readdir(dir))
+  files = readlines(`bash -c 'ls $dir/*.dssp'`)
   nfiles = length(files)  
   helix = zeros(Int,nfiles,nresidues)
   for i in 0:nfiles-1
