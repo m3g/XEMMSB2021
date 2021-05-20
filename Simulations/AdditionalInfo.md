@@ -13,7 +13,7 @@ Normalmente, o arquivo de coordenadas está são usados no formato PDB. Desta fo
 
 ### Proteína
 
-O maior banco de dados de estruturas proteicas é o Protein Data Bank (https://www.rcsb.org/). Portanto, a estrutura da proteína pode ser obtida por meio desse banco de dados. Não é o caso neste curso, em que estamos estudando um peptídeo simples que pode ser construído com uma das ferramentas mencionadas abaixo.  
+O maior banco de dados de estruturas proteicas é o [Protein Data Bank](https://www.rcsb.org/). Portanto, a estrutura da proteína pode ser obtida por meio desse banco de dados. Não é o caso neste curso, em que estamos estudando um peptídeo simples que pode ser construído com uma das ferramentas mencionadas abaixo.  
 
 ### Cossolvente
  
