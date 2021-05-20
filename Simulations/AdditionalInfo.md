@@ -19,13 +19,13 @@ O maior banco de dados de estruturas proteicas é o Protein Data Bank (https://w
  
 Existem algumas alternativas para obter a estrutura de uma molécula do cossolvente utilizado nas simulações
 
-i) construir e otimizar o cossolvente em um algum editor molecular, como o [Avogadro](https://avogadro.cc/) ou [https://www3.cmbi.umcn.nl/molden/](Molden).
+i) construir e otimizar o cossolvente em um algum editor molecular, como o [Avogadro](https://avogadro.cc/) ou [Molden](https://www3.cmbi.umcn.nl/molden/).
 
 ii) obter a estrutura do cossolvente no repositório Automated Topology Builder (ATB). O ATB é um repositório que fornece tanto a topologia para simulações por Dinâmica Molecular clássica, quanto as coordenadas das moléculas. Para obter mais detalhes sobre o repositório, o nível de teoria em que as moléculas são otimizadas, arquivos de parâmetros, entre outras informações, acesse o link [https://atb.uq.edu.au/](https://atb.uq.edu.au/). 
 
 ### Água
  
-As coordenadas de uma molécula de água pode ser obtida diretamente de repositórios contendo os arquivos de topologia compatíveis com o GROMACS [http://www.gromacs.org/Downloads/User_contributions/Force_fields](http://www.gromacs.org/Downloads/User_contributions/Force_fields).  
+As coordenadas de uma molécula de água pode ser obtida diretamente de repositórios contendo os arquivos de topologia compatíveis com o GROMACS ([http://www.gromacs.org/Downloads/User_contributions/Force_fields](http://www.gromacs.org/Downloads/User_contributions/Force_fields)).  
 
 ### Íons monoatômicos (Na+ e Cl-)
  
@@ -39,20 +39,20 @@ Dispondo dos arquivos mencionados é possível gerar o arquivo final de topologi
  
 ### Parâmetros para a proteína, proteína, água, cossolvente e contra-íons:
  
-Diferentes campos de força para a proteína, moléculas de água e contra-íons, que são compatíveis com o pacote de simulação GROMACS, podem ser obtidos em [http://www.gromacs.org/Downloads/User_contributions/Force_fields](Force_Fields). 
+Diferentes campos de força para a proteína, moléculas de água e contra-íons, que são compatíveis com o pacote de simulação GROMACS, podem ser obtidos em [Force_Fields](http://www.gromacs.org/Downloads ). 
 
 Quando o cossolvente não é muito comum, a escolha geralmente depende do campo de força utilizado para descrever a proteína nas simulações. Por exemplo, os parâmetros para diferentes moléculas que são derivados pelo ATB têm a função potencial do campo de força GROMOS. Então, para utilizar os parâmetros do ATB para o cossolvente, é recomendado utilizar também um campo de força GROMOS para descrever a proteína na simulação.
  
-No nosso caso, estamos utilizando um campo de força AMBER para descrever a proteína ([https://pubs.acs.org/doi/abs/10.1021/jp108618d](amber03w)) e o [https://pubs.acs.org/doi/10.1021/jp505861b](cossolvente). Além dos campos de força AMBER, em formatos compatíveis com o GROMACS, outros parâmetros AMBER para o cossolvente podem ser obtidos de forma automática com o servidor [https://github.com/llazzaro/acpype](ACPYPE). Entretanto, parâmetros CHARMM e OPLS para o cossolvente, e que são compatíveis com o GROMACS, também podem ser obtidos de forma automática em outros servidores.
+No nosso caso, estamos utilizando um campo de força AMBER para descrever a proteína ([amber03w](https://pubs.acs.org/doi/abs/10.1021/jp108618d)) e o [cossolvente](https://pubs.acs.org/doi/10.1021/jp505861b). Além dos campos de força AMBER, em formatos compatíveis com o GROMACS, outros parâmetros AMBER para o cossolvente podem ser obtidos de forma automática com o servidor [ACPYPE](https://github.com/llazzaro/acpype). Entretanto, parâmetros CHARMM e OPLS para o cossolvente, e que são compatíveis com o GROMACS, também podem ser obtidos de forma automática em outros servidores.
  
 ### Arquivos de parâmetros da dinâmica molecular
  
 Para a realização da dinâmica molecular são necessários arquivos que contenham os parâmetros para a simulação (temperatura, tipo de termostato, pressão, etc.). Os arquivos variam dependendo do caso. Contudo, para qualquer simulação que utilize o gromacs, vale à pena analisar os arquivos modelos do ótimo tutorial montado pelo professor Justin Lemkul.
  
-Minimização ([http://www.mdtutorials.com/gmx/lysozyme/Files/minim.mdp]())
-Equilibração NVT ([http://www.mdtutorials.com/gmx/lysozyme/Files/nvt.mdp]())
-Equilibração NPT ([http://www.mdtutorials.com/gmx/lysozyme/Files/npt.mdp]())
-Produção ([http://www.mdtutorials.com/gmx/lysozyme/Files/md.mdp]())
+Minimização ([](http://www.mdtutorials.com/gmx/lysozyme/Files/minim.mdp))
+Equilibração NVT ([](http://www.mdtutorials.com/gmx/lysozyme/Files/nvt.mdp))
+Equilibração NPT ([](http://www.mdtutorials.com/gmx/lysozyme/Files/npt.mdp))
+Produção ([](http://www.mdtutorials.com/gmx/lysozyme/Files/md.mdp))
 
 
 
