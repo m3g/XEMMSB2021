@@ -49,10 +49,13 @@ No nosso caso, estamos utilizando um campo de força AMBER para descrever a prot
  
 Para a realização da dinâmica molecular são necessários arquivos que contenham os parâmetros para a simulação (temperatura, tipo de termostato, pressão, etc.). Os arquivos variam dependendo do caso. Contudo, para qualquer simulação que utilize o gromacs, vale à pena analisar os arquivos modelos do ótimo tutorial montado pelo professor Justin Lemkul.
  
-Minimização (http://www.mdtutorials.com/gmx/lysozyme/Files/minim.mdp)
-Equilibração NVT ([](http://www.mdtutorials.com/gmx/lysozyme/Files/nvt.mdp))
-Equilibração NPT ([](http://www.mdtutorials.com/gmx/lysozyme/Files/npt.mdp))
-Produção ([](http://www.mdtutorials.com/gmx/lysozyme/Files/md.mdp))
+- Minimização: http://www.mdtutorials.com/gmx/lysozyme/Files/minim.mdp
+- Equilibração NVT: http://www.mdtutorials.com/gmx/lysozyme/Files/nvt.mdp
+- Equilibração NPT:http://www.mdtutorials.com/gmx/lysozyme/Files/npt.mdp
+- Produção: http://www.mdtutorials.com/gmx/lysozyme/Files/md.mdp
+
+
+
 
 
 
