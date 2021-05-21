@@ -38,8 +38,7 @@ cd ..
 
 - Repita os passos acima para a simulação `AAQAA_60vv/0` 
 
-Os arquivos `dsspX.pdb.dssp` gerados contém, para cada passo da simulação, a atribuição da estrutura s
-ecundária para cada resíduo. Podemos fazer gráficos de como evolui no tempo a estrutura secundária dos
+Os arquivos `dsspX.pdb.dssp` gerados contém, para cada passo da simulação, a atribuição da estrutura secundária para cada resíduo. Podemos fazer gráficos de como evolui no tempo a estrutura secundária dos
  resíduos, e do conteúdo médio de &alpha;-hélices que cada resíduo possui.
 
 Isto pode ser feito usando o script `dssp.jl`:  
