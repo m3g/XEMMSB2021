@@ -53,6 +53,7 @@ Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, q
 
 <img width=800px src=https://user-images.githubusercontent.com/31046348/119068971-95e88a80-b9bb-11eb-89bf-515e16001a2b.png>
 
+## <a name="config"></a>2. Raio de giração
 
 
 
