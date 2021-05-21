@@ -6,20 +6,27 @@ function get_helicity(dir,nresidues)
   helix = zeros(Int,nfiles,nresidues)
   for i in 0:nfiles-1
     file = open("$dir/dssp$i.pdb.dssp","r")
-    residue = -1
+    residue_start = false
     for line in eachline(file)
       # skip header
       if occursin("RESIDUE",line)
-        residue = 0
+        residue_start = true
         continue
       end
-      if residue == -1
+      if ! residue_start 
         continue
       end
-      # read data
-      residue += 1
-      if line[17:17] == "H"
-        helix[i+1,residue] = 1
+      # read data: columns 6:10 contain the residue number,
+      # it data for the residue is available
+      try
+        residue = parse(Int,line[6:10])
+        # If 17th character is an 'H', an helix was attributed
+        # to this residue
+        if line[17] == 'H'
+          helix[i+1,residue] = 1
+        end
+      catch
+        continue
       end
     end
     close(file)
@@ -34,23 +41,30 @@ work = ARGS[1]
 if ! isdir(work)
   error("Run with: dssp.jl \$work")
 end
+println("\nParse DSSP files \n")
 
 # Number or residues of peptide
 peptide = readPDB("$work/Simulations/AAQAA_0vv/system.pdb","protein")
 sequence = getseq(peptide)
 nresidues = length(sequence)
+println("Number of peptide residues: $nresidues")
+println("Sequence: $sequence")
 
 # pure water
+dir="$work/Simulations/AAQAA_0vv/0/DSSP"
 nfiles_pure, pure_per_frame, pure_per_residue = 
-  get_helicity("$work/Simulations/AAQAA_0vv/0/DSSP",nresidues)
+  get_helicity(dir,nresidues)
+println("Number of frames in $dir: $nfiles_pure")
 
 # with TFE
 nfiles_tfe, tfe_per_frame, tfe_per_residue = 
-  get_helicity("$work/Simulations/AAQAA_0vv/0/DSSP",nresidues)
+  get_helicity("$work/Simulations/AAQAA_60vv/0/DSSP",nresidues)
+println("Number of frames in $dir: $nfiles_tfe")
 
 
 # plot
-default(fontfamily="Computer Modern",linewidth=2,framestyle=:box)
+println("Plotting...")
+default(fontfamily="Computer Modern",linewidth=1,framestyle=:box)
 plot(layout=(2,1))
 
 # helicity as a function of time
@@ -59,7 +73,6 @@ plot!(1:nfiles_pure,pure_per_frame,label="Water",subplot=sp)
 plot!(1:nfiles_tfe,tfe_per_frame,label="Water/TFE",subplot=sp)
 plot!(xlabel="frame",
       ylabel="α-helical content (%)",
-      xticks=1:nfiles_pure,
       subplot=sp)
 
 # helicity per residue 
@@ -73,3 +86,5 @@ plot!(xlabel="residue",
       subplot=sp)
 
 savefig("$work/Simulations/helicity.pdf")
+println("Wrote file: $work/Simulations/helicity.pdf \n")
+
