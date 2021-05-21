@@ -45,8 +45,7 @@ $repo/Analyses/helicity/dssp.jl $work
 
 Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, que será parecida com:  
 
-![image](https://user-images.githubusercontent.com/31046348/119068899-6fc2ea80-b9bb-11eb-9cc5-f1d01bf810d5.png)
-
+<img width=500px src=https://user-images.githubusercontent.com/31046348/119068971-95e88a80-b9bb-11eb-89bf-515e16001a2b.png>
 
 
 
