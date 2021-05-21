@@ -66,7 +66,7 @@ Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, q
 
 ## <a name="config"></a>2. Raio de giração
 
-Seguindo as análises do conteúdo de alfa-hélices do peptídeo por TFE, vamos também calcular o raio de giração do peptídeo nos dois sistemas. O raio de giração é um parâmetro estrutural que permite avaliar o grau de compactação do peptídeo durante a simulação. Para isso, usaremos a ferramenta ```gyrate``` disponível no software GROMACS:
+Seguindo as análises do conteúdo de alfa-hélices do peptídeo por TFE, vamos também calcular o seu raio de giração nos dois sistemas. O raio de giração é um parâmetro estrutural que permite avaliar o grau de compactação do peptídeo durante a simulação. Para isso, usaremos a ferramenta ```gyrate``` disponível no software GROMACS:
 ```
 gmx_mpi gyrate -f production-center.xtc -s production.tpr -o radius-of-gyration.xvg
 ```
