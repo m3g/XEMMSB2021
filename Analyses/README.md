@@ -72,6 +72,8 @@ gmx_mpi gyrate -f production-center.xtc -s production.tpr -o radius-of-gyration.
 ```
 Em seguida, precisamos selecionar como output o grupo 1, que corresponde à proteína: 
 
+<img width=800px src=https://user-images.githubusercontent.com/70027760/119172622-907f5480-ba3c-11eb-8f7d-189854008bf1.png>
+
 O arquivo de saída será o radius-of-gyration.xvg. Você poderá abrir esse arquivo no seu terminal, e irá perceber que o ```gyrate``` calcula o raio de giração para o peptídeo, e também o raio de giração sobre os eixos X, Y e Z, em função do tempo. Aqui, iremos adotar a segunda coluna do arquivo radius-of-gyration.xvg (que corresponde ao raio de giração do peptídeo) para calcular a distribuição do raio de giração do peptídeo com o pacote StatsPlots, do Julia. Para instalar o pacote StatsPlots, basta digitar o comando ```]add StatsPlots``` no terminal do Julia.
 
 A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória da proteína em água e em solução de TFE. Após obter arquivo radius-of-gyration.xvg para os dois sistemas, a distribuição do raio de giração pode ser obtida com o script ```rg.jl```, disponível no diretório ```Analyses```. 
