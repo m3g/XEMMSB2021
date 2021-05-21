@@ -66,17 +66,17 @@ Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, q
 
 ## <a name="config"></a>2. Raio de giração
 
-Seguindo as análises do conteúdo de alfa-hélices do peptídeo por TFE, vamos também calcular o seu raio de giração nos dois sistemas. O raio de giração é um parâmetro estrutural que permite avaliar o grau de compactação do peptídeo durante a simulação. Para isso, usaremos a ferramenta ```gyrate``` disponível no software GROMACS:
+Seguindo as análises do conteúdo de alfa-hélices do peptídeo por água e solução de TFE, vamos também calcular o seu raio de giração nos dois sistemas. O raio de giração é um parâmetro estrutural que permite avaliar o grau de compactação do peptídeo durante a simulação. Para isso, usaremos a ferramenta ```gyrate``` disponível no software GROMACS:
 ```
 gmx_mpi gyrate -f production-center.xtc -s production.tpr -o radius-of-gyration.xvg
 ```
-Em seguida, precisamos selecionar como output o grupo 1, que corresponde à proteína: 
+Em seguida, precisamos selecionar como output o grupo 1, que corresponde ao peptídeo: 
 
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119173029-0b486f80-ba3d-11eb-9743-38f6a2fb25e2.png>
 
 O arquivo de saída será o ```radius-of-gyration.xvg```. Você poderá abrir esse arquivo no seu terminal, e irá perceber que o ```gyrate``` calcula o raio de giração para o peptídeo, e também o raio de giração sobre os eixos X, Y e Z, em função do tempo. Aqui, iremos adotar a segunda coluna do arquivo ```radius-of-gyration.xvg``` (que corresponde ao raio de giração do peptídeo) para calcular a distribuição do raio de giração do peptídeo com o pacote StatsPlots, do Julia. Para instalar o pacote StatsPlots, basta digitar o comando ```]add StatsPlots``` no terminal do Julia.
 
-A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória da proteína em água e em solução de TFE. Após obter o arquivo ```radius-of-gyration.xvg``` para os dois sistemas, a distribuição do raio de giração poderá ser obtida com o script ```rg.jl```, disponível no diretório ```Analyses```. 
+A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória do peptídeo em água e em solução de TFE. Após obter o arquivo ```radius-of-gyration.xvg``` para os dois sistemas, a distribuição do raio de giração poderá ser obtida com o script ```rg.jl```, disponível no diretório ```Analyses```. 
 
 ## <a name="min"></a>3. Estrutura de solvatação
 
@@ -84,8 +84,12 @@ Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos 
 
 Para entendermos como o TFE contribuiu para a formação de hélices, precisamos, primeiramente, avaliar como as moléculas do solvente se distribuem na solução. A forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas funções de distribuição de mínima distância (MDDFs). As MDDFs adotam a distância mínima entre átomos do solvente e os átomos do soluto, resultando em funções de distribuição facilmente interpretáveis do ponto de vista das interações físico-químicas específicas. Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível formular hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
 
+O cálculo das MDDFs pode ser feito com o software ```ComplexMixtures```. Você poderá instalar o ```ComplexMixtures``` no terminal do Julia com o comando ```] add ComplexMixtures```. Também será necessário instalar o software PDBTools (```] add PDBTools```), que manipula os arquivos no formato .pdb. Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, respectivamente, disponíveis no diretório ```Analyses/mddf-kb/gmd-tfe.jl```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
+
+Vale lembrar que o cálculo das MDDFs poderá ser realizado em paralelo, utilizando vários processadores do computador. Por exemplo, os scripts ```gmd-tfe.jl``` e ```gmd-water.jl``` poderão ser executados em paralelo com o comando ```julia -t 4 gmd-tfe.jl```. 
+
+A partir do cálculo das MDDFs, os resultados obtidos estarão salvos nos arquivos com o formato ```.json``` (```results-water-20.json```e ```results-water-20.json```, por exemplo). Portanto, os arquivos ```.json``` podem ser utilizados para plotar o perfil total das MDDFs, e também a constribuição de cada átomo (ou grupos de átomos). Os gráficos poderão ser plotados com o script ```mddf-kb-water.jl``` e ```mddf-kb-tfe.jl```. 
 
 ## <a name="equi"></a>4. Acúmulo e depleção do TFE
-
 
 
