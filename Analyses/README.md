@@ -66,8 +66,21 @@ Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, q
 
 ## <a name="config"></a>2. Raio de giração
 
+Seguindo as análises do conteúdo de alfa-hélices do peptídeo por TFE, vamos também calcular o raio de giração do peptídeo nos dois sistemas. O raio de giração é um parâmetro estrutural que permite avaliar o grau de compactação do peptídeo durante a simulação. Para isso, usaremos a ferramenta ```gyrate``` disponível no software GROMACS. 
+```
+gmx_mpi gyrate -f production-center.xtc -s production.tpr -o radius-of-gyration.xvg
+```
+Em seguida, precisamos selecionar como output o grupo 1, que corresponde à proteína: 
+
+O arquivo de saída será o radius-of-gyration.xvg. Você poderá abrir esse arquivo no seu terminal, e irá perceber que o ```gyrate``` calcula o raio de giração para o peptídeo, e também o raio de giração sobre os eixos X, Y e Z, em função do tempo. Aqui, iremos adotar a segunda coluna do arquivo radius-of-gyration.xvg (que corresponde ao raio de giração do peptídeo) para calcular a distribuição do raio de giração do peptídeo com o pacote StatsPlots, do Julia. Para instalar o pacote StatsPlots, basta digitar o comando ```]add StatsPlots``` no terminal do Julia.
+
+A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória da proteína em água e em solução de TFE. Após obter arquivo radius-of-gyration.xvg para os dois sistemas, a distribuição do raio de giração pode ser obtida com o script ```rg.jl```, disponível no diretório ```Analyses```. 
 
 ## <a name="min"></a>3. Estrutura de solvatação
+
+Embora seja conhecido que o potencial do TFE na indução de hélices em peptídeos e proteínas, o seu mecanismo de ação ainda é bastante discutido na literatura. Diferentes mecanismos têm sido propostos para explicar a indução de hélices pelo TFE, dentre eles os mecanismos direto e indireto. De forma resumida, o mecanismo direto consiste na interação direta entre os átomos de hidrogênio ácido do TFE e o oxigênio carbonílico da backbone da proteína por meio de ligações de hidrogênio intermolecular. Nesse caso, a ligação de hidrogênio intermolecular também contribui para fortalecer as ligações de hidrogênio intramoleculares entre os átomos de oxigênio carbonílico e o hidrogênio ligado ao nitrogênio da amida. Por outro lado, no mecanismo indireto, a adição de TFE ao sistema é responsável 1) por perturbar as moléculas de água em torno do soluto,  e então desestabilizá-lo; e, posteriormente, 2) induzir a formação de hélices por meio de interações específicas e inespecíficas com a superfície da proteína. 
+
+Para entendermos como o TFE contribuiu para a formação de hélices, precisamos, primeiramente, avaliar como as moléculas do solvente se distribuem na solução. A forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas funções de distribuição de mínima distância (MDDFs). As MDDFs adotam a distância mínima entre átomos do solvente e os átomos do soluto, resultando em funções de distribuição facilmente interpretáveis do ponto de vista das interações físico-químicas específicas. Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível formular hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
 
 
 ## <a name="equi"></a>4. Acúmulo e depleção do TFE
