@@ -10,7 +10,18 @@
 
 ## <a name="helix"></a>1. Cálculo da helipticidade do peptídeo
 
-O trifluoretanol (TFE) é um cossolvente conhecido por induzir a formação de hélices em peptídeos e proteínas. Portanto, vamos iniciar nossas análises avaliando o conteúdo de alfa hélices nas simulações contendo água pura, e também em soluções contendo o TFE. A atribuição de estrutura secundária para os resíduos do peptídeo pode ser feita com o Dicionário de Estrutura Secundária de Proteínas (do inglês, Dictionary of Secondary Structure of Proteins, DSSP). Existe uma plataforma online para o DSSP (http://bioinformatica.isa.cnr.it/SUSAN/DSSP-web/), mas o software também pode ser facilmente instalado com o ```sudo apt install dssp```. Tendo o software instalado em seu computador, a atribuição de estrutura secundária para o peptídeo pode ser feita de acordo com as instruções a seguir. 
+O trifluoretanol (TFE) é um cossolvente conhecido por induzir a formação de hélices em peptídeos e proteínas. Portanto, vamos iniciar nossas análises avaliando o conteúdo de alfa hélices nas simulações contendo água pura, e também em soluções contendo o TFE. A atribuição de estrutura secundária para os resíduos do peptídeo pode ser feita com o Dicionário de Estrutura Secundária de Proteínas (do inglês, Dictionary of Secondary Structure of Proteins, DSSP). Existe uma plataforma online para o DSSP (http://bioinformatica.isa.cnr.it/SUSAN/DSSP-web/), mas o software também pode ser facilmente instalado com o ```sudo apt install dssp```. O DDSP atribui elementos de estrutura secundária para os resíduos da proteína por meio de alguns caracteres, por exemplo:
+
+G = hélice 310
+H = α-hélice
+I = hélice π
+T = turn
+E = folhas-β paralelas e antiparalelas
+B = resíduo isolado em uma ponte-β
+S = bend
+C = coil
+
+Como nosso interesse é avaliar a indução de hélices pelo TFE, vamos quantificar apenas o elemento de estrutura secundária "H" de acordo com as instruções a seguir. 
 
 Entre no diretório `AAQAA_0vv/0`, que contém a simulação sem aproximação no potencial
 para o peptídeo em água pura, e crie um diretório que conterá uma série de arquivos
