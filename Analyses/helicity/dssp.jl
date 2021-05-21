@@ -77,8 +77,8 @@ plot!(xlabel="frame",
 
 # helicity per residue 
 sp=2
-plot!(1:nresidues,100*pure_per_residue,label="Water",subplot=sp)
-plot!(1:nresidues,100*tfe_per_residue,label="Water/TFE",subplot=sp)
+plot!(1:nresidues,100*pure_per_residue,label="Water",linewidth=2,subplot=sp)
+plot!(1:nresidues,100*tfe_per_residue,label="Water/TFE",linewidth=2,subplot=sp)
 plot!(xlabel="residue",
       ylabel="α-helical content (%)",
       xticks=(1:nresidues,["$(sequence[i])$i" for i in 1:nresidues]),

@@ -339,3 +339,15 @@ Com os arquivos `processed.gro` e `processed.xtc` podemos usar o vmd para visual
 vmd processed.gro processed.xtc
 ```
 
+## Referências do método HREMD
+
+- Y. Sugita, Y. Okamoto, *Replica-exchange multicanonical algorithm and multicanonical replica-exchange method for simulating systems with rough energy landscape.* Chem. Phys. Lett. 329, 3-4, 2000. 
+
+https://arxiv.org/pdf/cond-mat/0009119.pdf
+
+- G. Bussi, *Hamiltonian replica exchange in GROMACS: a flexibile implementation.* 
+Molecular Physics, 112, 379-384, 2014.  [ref](https://www.tandfonline.com/doi/pdf/10.1080/00268976.2013.824126)
+
+
+
+
