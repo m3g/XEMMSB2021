@@ -62,7 +62,7 @@ julia $repo/Analyses/helicity/dssp.jl $work
 
 Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, que será parecida com:  
 
-<img width=800px src=https://user-images.githubusercontent.com/31046348/119068971-95e88a80-b9bb-11eb-89bf-515e16001a2b.png>
+<img width=700px src=https://user-images.githubusercontent.com/31046348/119176986-18b42880-ba42-11eb-852a-51a782784c02.png>
 
 ## <a name="config"></a>2. Raio de giração
 
