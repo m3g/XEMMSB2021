@@ -3,7 +3,7 @@ using Plots, Statistics, PDBTools
 function get_helicity(dir,nresidues)
   files = filter(f -> f[end-4:end] == ".dssp", readdir(dir))
   nfiles = length(files)  
-  helix = zeros(Int,nfiles,nresidues)
+  matrix = zeros(Int,nfiles,nresidues)
   for i in 0:nfiles-1
     file = open("$dir/dssp$i.pdb.dssp","r")
     residue_start = false
@@ -23,7 +23,7 @@ function get_helicity(dir,nresidues)
         # If 17th character is an 'H', an helix was attributed
         # to this residue
         if line[17] == 'H'
-          helix[i+1,residue] = 1
+          matrix[i+1,residue] = 1
         end
       catch
         continue
@@ -31,9 +31,9 @@ function get_helicity(dir,nresidues)
     end
     close(file)
   end
-  avg_helicity_per_frame = [ mean(helix[i,:]) for i in 1:nfiles ]
-  avg_helicity_per_residue = [ mean(helix[:,i]) for i in 1:nresidues ]
-  return nfiles, avg_helicity_per_frame, avg_helicity_per_residue
+  avg_helicity_per_frame = [ mean(matrix[i,:]) for i in 1:nfiles ]
+  avg_helicity_per_residue = [ mean(matrix[:,i]) for i in 1:nresidues ]
+  return nfiles, avg_helicity_per_frame, avg_helicity_per_residue, matrix
 end
 
 # working directory
@@ -52,12 +52,12 @@ println("Sequence: $sequence")
 
 # pure water
 dir="$work/Simulations/AAQAA_0vv/0/DSSP"
-nfiles_pure, pure_per_frame, pure_per_residue = 
+nfiles_pure, pure_per_frame, pure_per_residue, pure_matrix = 
   get_helicity(dir,nresidues)
 println("Number of frames in $dir: $nfiles_pure")
 
 # with TFE
-nfiles_tfe, tfe_per_frame, tfe_per_residue = 
+nfiles_tfe, tfe_per_frame, tfe_per_residue, tfe_matrix = 
   get_helicity("$work/Simulations/AAQAA_60vv/0/DSSP",nresidues)
 println("Number of frames in $dir: $nfiles_tfe")
 
@@ -87,4 +87,5 @@ plot!(xlabel="residue",
 
 savefig("$work/Simulations/helicity.pdf")
 println("Wrote file: $work/Simulations/helicity.pdf \n")
+
 
