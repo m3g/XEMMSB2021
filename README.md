@@ -7,6 +7,13 @@
 
 ## Simulação do enovelamento de proteínas e efeitos de solvente
 
+<p align=center>
+  Leandro Martínez, Vinicius Piccoli e Ander F. Pereira<br>
+  <i>Instituto de Química e Centro de Computação em Engenharia e Ciências</i><br>
+  <b>UNICAMP</b>
+</p>
+
+
 Neste curso serão abordadas de forma prática técnicas de amostragem ampliada para a simulação
 do enovelamento e equilíbrio conformacional de proteínas em solventes diversos. Serão abordadas
 metodologias de amostragem por troca de cópias, em particular usando aproximações das funções de
