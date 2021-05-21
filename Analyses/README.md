@@ -1,5 +1,6 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
+
 ## Analise das simulações
 
 * [1. Cálculo da helipticidade](#helix)
@@ -14,7 +15,7 @@ para o peptídeo em água pura, e crie um diretório que conterá uma série de 
 temporários necessários para o cálculo da estrutura secundária:
 
 ```
-cd $work/AAQAA_0vv/Simulations/0
+cd $work/Simulations/AAQAA_0vv/0
 mkdir -p ./DSSP
 ```
 
@@ -35,15 +36,21 @@ done
 cd ..
 ```
 
-Os arquivos `dsspX.pdb.dssp` gerados contém, para cada passo da simulação, a atribuição da estrutura secundária para cada resíduo. Podemos fazer gráficos de como evolui no tempo a estrutura secundária dos resíduos, e do conteúdo médio de &alpha;-hélices que cada resíduo possui.
+- Repita os passos acima para a simulação `AAQAA_60vv/0` 
+
+Os arquivos `dsspX.pdb.dssp` gerados contém, para cada passo da simulação, a atribuição da estrutura s
+ecundária para cada resíduo. Podemos fazer gráficos de como evolui no tempo a estrutura secundária dos
+ resíduos, e do conteúdo médio de &alpha;-hélices que cada resíduo possui.
 
 Isto pode ser feito usando o script `dssp.jl`:  
 ```
-cd $work
-$repo/Analyses/helicity/dssp.jl $work
+cd $work/Simulations
+julia $repo/Analyses/helicity/dssp.jl $work
 ```
 
 Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, que será parecida com:  
+
+
 
 <img width=800px src=https://user-images.githubusercontent.com/31046348/119068971-95e88a80-b9bb-11eb-89bf-515e16001a2b.png>
 
