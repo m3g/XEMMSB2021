@@ -50,8 +50,6 @@ julia $repo/Analyses/helicity/dssp.jl $work
 
 Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, que será parecida com:  
 
-
-
 <img width=800px src=https://user-images.githubusercontent.com/31046348/119068971-95e88a80-b9bb-11eb-89bf-515e16001a2b.png>
 
 
