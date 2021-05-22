@@ -76,7 +76,7 @@ Em seguida, selecione como output o grupo 1, que corresponde ao peptídeo:
 
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119173029-0b486f80-ba3d-11eb-9743-38f6a2fb25e2.png>
 
-O arquivo de saída será o ```radius-of-gyration.xvg```. Você poderá abrir esse arquivo no seu terminal, e irá perceber que o ```gyrate``` calcula o raio de giração para o peptídeo, e também o raio de giração sobre os eixos X, Y e Z, em função do tempo. Aqui, iremos adotar a segunda coluna do arquivo ```rg0vv.xvg``` (que corresponde ao raio de giração do peptídeo) para calcular a distribuição do raio de giração do peptídeo com o pacote StatsPlots, do Julia. Para instalar o pacote StatsPlots, basta digitar o comando ```]add StatsPlots``` no terminal do Julia.
+O arquivo de saída será o ```rg0vv.xvg```. Você poderá abrir esse arquivo no seu terminal, e irá perceber que o ```gyrate``` calcula o raio de giração para o peptídeo, e também o raio de giração sobre os eixos X, Y e Z, em função do tempo. Aqui, iremos adotar a segunda coluna do arquivo ```rg0vv.xvg``` (que corresponde ao raio de giração do peptídeo) para calcular a distribuição do raio de giração do peptídeo com o pacote StatsPlots, do Julia. Para instalar o pacote StatsPlots, basta digitar o comando ```]add StatsPlots``` no terminal do Julia.
 
 A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória do peptídeo em água e em solução de TFE. Após obter os arquivos ```rg0vv.xvg``` e ```rg60vv```, a distribuição do raio de giração poderá ser obtida com o script ```rg.jl```, disponível no diretório ```$repo/Analyses/radius-of-gyration/```. A figura obtida será parecida com:
 
