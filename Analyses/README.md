@@ -109,7 +109,7 @@ O efeito da adição do TFE (e qualquer outro cossolvente) à solução será qu
 
 Matematicamente, o Γ<sub>pc</sub> é dado por: 
 
-```Γ<sub>pc</sub> = ρ<sub>c</sub>(G<sub>pc</sub> − G<sub>wc</sub>)```
+Γ<sub>pc</sub> = ρ<sub>c</sub>(G<sub>pc</sub> − G<sub>wc</sub>)
 
 Em que ρ<sub>c</sub> é a densidade do TFE, e G<sub>pc</sub> e G<sub>wc</sub> as integrais de KB do TFE e da água no *bulk* da solução, respectivamente. O valor de ρ<sub>c</sub> pode ser obtido carregando o arquivo ```results-tfe-20.json``` da seguinte forma:
 
@@ -117,8 +117,9 @@ Em que ρ<sub>c</sub> é a densidade do TFE, e G<sub>pc</sub> e G<sub>wc</sub> a
 
 Em seguida, você irá identificar Concentration in bulk: 7,351558289632044 mol L <sup>-1</sup>, que corresponde a  ρ<sub>c</sub> . Para encontrar o valor de G<sub>pc</sub> você deverá digitar no terminal do Julia ```results.kb/1000```, e adotar o último valor da integral de KB, que será igual a -0,8052674557436698 L mol<sup>-1</sup>. Finalmente, para encontrar o valor de G<sub>wc</sub>, você deverá carregar o arquivo ```results-water-20.json```:
 
-```results = ComplexMixtures.load("./results-tfe-20.json")```
-```results.kb/1000```
+```results = ComplexMixtures.load("./results-tfe-20.json")
+
+results.kb/1000```
 
 Com isso, você irá perceber que o último valor da integral de KB corresponde a -0,9256393982359525 L mol<sup>-1</sup>. Portanto, o valor de Γ<sub>pc</sub> é igual a 0,8849.
 
