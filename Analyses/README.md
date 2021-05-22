@@ -76,7 +76,7 @@ Em seguida, precisamos selecionar como output o grupo 1, que corresponde ao pept
 
 O arquivo de saída será o ```radius-of-gyration.xvg```. Você poderá abrir esse arquivo no seu terminal, e irá perceber que o ```gyrate``` calcula o raio de giração para o peptídeo, e também o raio de giração sobre os eixos X, Y e Z, em função do tempo. Aqui, iremos adotar a segunda coluna do arquivo ```radius-of-gyration.xvg``` (que corresponde ao raio de giração do peptídeo) para calcular a distribuição do raio de giração do peptídeo com o pacote StatsPlots, do Julia. Para instalar o pacote StatsPlots, basta digitar o comando ```]add StatsPlots``` no terminal do Julia.
 
-A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória do peptídeo em água e em solução de TFE. Após obter o arquivo ```radius-of-gyration.xvg``` para os dois sistemas, a distribuição do raio de giração poderá ser obtida com o script ```rg.jl```, disponível no diretório ```Analyses```. 
+A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória do peptídeo em água e em solução de TFE. Após obter o arquivo ```radius-of-gyration.xvg``` para os dois sistemas, a distribuição do raio de giração poderá ser obtida com o script ```rg.jl```, disponível no diretório ```Analyses```. A figura obtida será parecida com:
 
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211705-1fff2480-ba8a-11eb-800a-b6c61c68ae67.png>
 
@@ -90,7 +90,7 @@ O cálculo das MDDFs pode ser feito com o software ```ComplexMixtures```. Você 
 
 Vale lembrar que o cálculo das MDDFs poderá ser realizado em paralelo, utilizando vários processadores do computador. Por exemplo, os scripts ```gmd-tfe.jl``` e ```gmd-water.jl``` poderão ser executados em paralelo com o comando ```julia -t 4 gmd-tfe.jl```. 
 
-A partir do cálculo das MDDFs, os resultados obtidos estarão salvos nos arquivos com o formato ```.json``` (```results-water-20.json```e ```results-water-20.json```, por exemplo). Portanto, os arquivos ```.json``` podem ser utilizados para plotar o perfil total das MDDFs, e também a constribuição de cada átomo (ou grupos de átomos). Os gráficos poderão ser plotados com o script ```mddf-kb-water.jl``` e ```mddf-kb-tfe.jl```. 
+A partir do cálculo das MDDFs, os resultados obtidos estarão salvos nos arquivos com o formato ```.json``` (```results-water-20.json```e ```results-water-20.json```, por exemplo). Portanto, os arquivos ```.json``` podem ser utilizados para plotar o perfil total das MDDFs, e também a constribuição de cada átomo (ou grupos de átomos). Os gráficos poderão ser plotados com o script ```mddf-kb-water.jl``` e ```mddf-kb-tfe.jl```, e as suas figuras devem ser parecidas com:
 
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211426-618ed000-ba88-11eb-8eae-8d66e8f9c037.png>
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211427-62276680-ba88-11eb-8db6-408a8d9af0f6.png>
@@ -103,4 +103,4 @@ A partir das MDDFs é possível calcular propriedades termodinâmicas macroscóp
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211424-605da300-ba88-11eb-94c7-5379f20d6bcd.png>
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211425-618ed000-ba88-11eb-8ece-fa06e2a4ca35.png>
 
-O efeito da adição do TFE (e qualquer outro cossolvente) à solução será quantificado pela diferença pelo Parâmetro de Solvatação Preferencial (Γ). O Γ está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γpc for negativo, a proteína é preferencialmente hidratada. 
+O efeito da adição do TFE (e qualquer outro cossolvente) à solução será quantificado pela diferença pelo Parâmetro de Solvatação Preferencial (Γ). O Γ está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada. 
