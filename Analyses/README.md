@@ -21,7 +21,7 @@ B = resíduo isolado em uma ponte-β;
 S = *bend*;
 C = *coil*;
 
-Como nosso interesse é avaliar a indução de hélices pelo TFE, vamos quantificar apenas o elemento de estrutura secundária "H" de acordo com as instruções a seguir. 
+Como nosso interesse é avaliar a indução de hélices pelo TFE, vamos quantificar apenas o elemento de estrutura secundária "H" de acordo com as instruções a seguir:
 
 Entre no diretório `AAQAA_0vv/0`, que contém a simulação sem aproximação no potencial
 para o peptídeo em água pura, e crie um diretório que conterá uma série de arquivos
