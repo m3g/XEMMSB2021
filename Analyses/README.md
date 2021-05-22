@@ -105,7 +105,7 @@ A partir das MDDFs é possível calcular propriedades termodinâmicas macroscóp
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211424-605da300-ba88-11eb-94c7-5379f20d6bcd.png>
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211425-618ed000-ba88-11eb-8ece-fa06e2a4ca35.png>
 
-O efeito da adição do TFE (e qualquer outro cossolvente) à solução será quantificado pela diferença pelo Parâmetro de Solvatação Preferencial (Γ). O Γ está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada.
+O efeito da adição do TFE (e qualquer outro cossolvente) à solução será quantificado pela diferença pelo Parâmetro de Solvatação Preferencial (```Γ```). O ```Γ``` está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (```Γ<sub>pc</sub>```) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada.
 
 Matematicamente, o ```Γ<sub>pc</sub>``` é dado por: 
 
@@ -115,10 +115,10 @@ Em que ```ρ<sub>c</sub>``` é a densidade do TFE, e ```G<sub>pc</sub>``` e ```G
 
 ```results = ComplexMixtures.load("./results-tfe-20.json")```
 
-Em seguida, você irá identificar ```Concentration in bulk: 7,351558289632044 mol L<sup>-1</sup>```, que corresponde a  ρ<sub>c</sub> . Para encontrar o valor de G<sub>pc</sub> você deverá digitar no terminal do Julia ```results.kb/1000```, e adotar o último valor da integral de KB, que será igual a ```-0,8052674557436698 L mol<sup>-1</sup>```. Finalmente, para encontrar o valor de ```G<sub>wc</sub>```, você deverá carregar o arquivo ```results-water-20.json```:
+Em seguida, você irá identificar ```Concentration in bulk: 7,351558289632044 mol L <sup>-1</sup>```, que corresponde a  ρ<sub>c</sub> . Para encontrar o valor de G<sub>pc</sub> você deverá digitar no terminal do Julia ```results.kb/1000```, e adotar o último valor da integral de KB, que será igual a ```-0,8052674557436698 L mol<sup>-1</sup>```. Finalmente, para encontrar o valor de ```G<sub>wc</sub>```, você deverá carregar o arquivo ```results-water-20.json```:
 
 ```results = ComplexMixtures.load("./results-tfe-20.json")```
 ```results.kb/1000```
 
-Com isso, você irá perceber que o último valor da integral de KB corresponde a ```-0,9256393982359525 L mol<sup>-1</sup>```. Portanto, o valor de ```Γ<sub>pc</sub>``` é igual a 0,8849.
+Com isso, você irá perceber que o último valor da integral de KB corresponde a ```-0,9256393982359525 L mol<sup>-1</sup>```. Portanto, o valor de ```Γ <sub>pc</sub>``` é igual a 0,8849.
 
