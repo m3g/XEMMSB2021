@@ -24,7 +24,7 @@ Alternativamente, pode fazer um clone do repositório usando
 
 ```
 cd $work
-git clone https://github.com/m3g/XEMMSB2021
+git clone https://github.com/m3g/XEMMSB2021 --depth 1
 ```
 
 Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir uma variável `$repo` que neste tutorial vai sempre se referir a esse diretório. Por exemplo:
@@ -33,7 +33,7 @@ Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir u
 % pwd
 /home/leandro/Documents/curso
 
-% git clone https://github.com/m3g/XEMMSB2021
+% git clone https://github.com/m3g/XEMMSB2021 --depth 1
 
 % repo=/home/leandro/Documents/curso/XEMMSB2021
 
