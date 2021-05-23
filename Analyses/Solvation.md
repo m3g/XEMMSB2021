@@ -247,6 +247,10 @@ Em uma primeira impressão, pode-se pensar que a água está formando mais liga�
 
 A partir das MDDFs é possível calcular propriedades termodinâmicas macroscópicas das soluções, usando a Teoria de Soluções de Kirkwood-Buff. Nos arquivos ```.json```, além das MDDFs, também há informação das integrais de Kirkwood-Buff (KB). As integrais de KB refletem a afinidade entre o soluto e as moléculas de solvente, e determinam se há excesso ou exclusão de cada componente do solvente nas vizinhanças do soluto. Dessa forma, avaliando o perfil das integrais de KB da água e do TFE, é possível dizer se cada componente é acumulado ou é excluído da região onde a proteína se encontra. Quando o solvente se encontra preferencialmente próximo à superfície da proteína, o valor de integral de KB deve ser positivo, e negativo caso seja preferencialmente excluído. Nas figuras a seguir, podemos analisar o perfil das integrais de KB para a água em relação à proteína em água pura e na solução com TFE, e do TFE na solução. 
 
+Os gráficos das integrais de KB em todas as soluções estudadas podem ser obtidos rodando:
+```
+julia $repo/Analyses/julia/kb.jl $repo $work
+```
 <img width=800px src=https://user-images.githubusercontent.com/31046348/119273376-10deba80-bbe1-11eb-8107-78f61266cc49.png>
 
 Vemos que as três curvas tem limites negativos em grandes distânicias, indicando que todos os solventes estão de forma global excluídos da região da proteína. Isto se deve a que às interações proteína-solventes não, em nenhum dos casos, suficientemente favoráveis para compensar a exclusão pelo volume da proteína, que se observa em distâncias curtas. Solventes desnaturantes, que interagem fortemente com a superfície da proteína, podem apresentar esse comportamento ([ref](https://pubs.rsc.org/en/content/articlelanding/2019/CP/C9CP05196A#!divAbstract),[ref](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.7b00599)). 
