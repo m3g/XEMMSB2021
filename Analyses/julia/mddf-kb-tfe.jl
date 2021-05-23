@@ -19,12 +19,13 @@ results = ComplexMixtures.load("$work/Simulations/cm_tfe60.json")
 
 # Default plot parameters
 default(fontfamily="Computer Modern",grid=false,framestyle=:box,linewidth=2)
+hline([0,10],color=:gray,linestyle=:dash) # draw an horizontal line at y=1
 
 # Will use moving averages for more pretty graphs
 ma(data) = movingaverage(data,10).x
 
 # Complete MDDF
-plot(results.d,ma(results.mddf),xlabel="r/Å",ylabel="mddf",label="Total")
+plot!(results.d,ma(results.mddf),xlabel="r/Å",ylabel="mddf",label="Total")
 
 # Fluorine atoms
 f_contrib = contrib(solvent,results.solvent_atom,
