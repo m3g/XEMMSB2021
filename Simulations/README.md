@@ -85,7 +85,158 @@ topology.top
 
 ### Peptídeo em solução de água e TFE
 
-Vinícius: explicar como fazer isto aqui.
+Para o sistema com TFE (e qualquer outro cossolvente, como a ureia ou TMAO), é necessário realizar algumas modificações no arquivo de topologia. O arquivo de topologia que o GROMACS gera contém os parâmetros apenas das moléculas (mais comuns) que estão contidas nos campos de força pré-instalados dentro do software. Sendo assim, é necessário obter os arquivos de topologia separados para o cossolvente em questão.
+
+Vamos entender como essa edição na topologia é feita tomando como exemplo o sistema trabalhado no curso.
+
+Inicialmente, é necessário gerar um arquivo de topologia para a proteína ou peptídeo de interesse. Supondo que o peptídeo de interesse é o (AAQAA)3.pdb, o comando que geraria a topologia para ele é:
+
+```
+gmx_mpi pdb2gmx -f (AAQAA)3.pdb -o AAQAA.gro -p topology.top
+
+```
+ 
+O arquivo de topologia “topology.top” terá a seguinte forma:
+
+```
+; Informações relacionadas ao computador, versão do GROMACS e diretório em que a topologia foi gerada. 
+
+
+; Include forcefield parameters
+#include "amber03.ff/forcefield.itp"
+
+[ moleculetype ]
+; Name            nrexcl
+Protein             3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 ALA rtp NALA q +1.0
+     1         N3      1    ALA      N      1  -0.589266      14.01
+     2          H      1    ALA     H1      2   0.446422      1.008
+     3          H      1    ALA     H2      3   0.446422      1.008
+     4          H      1    ALA     H3      4   0.446422      1.008
+     5         CT      1    ALA     CA      5   0.113871      12.01
+     6         HP      1    ALA     HA      6    0.06715      1.008
+     7         CT      1    ALA     CB      7  -0.204113      12.01
+     8         HC      1    ALA    HB1      8   0.063056      1.008
+     9         HC      1    ALA    HB2      9   0.063056      1.008
+    10         HC      1    ALA    HB3     10   0.063056      1.008
+    11          C      1    ALA      C     11   0.676687      12.01
+    12          O      1    ALA      O     12  -0.592764         16   ; qtot 1
+
+.
+.
+.
+
+; Include water topology
+#include "amber03.ff/tip3p.itp"
+
+
+
+; Include topology for ions
+#include "amber03.ff/ions.itp"
+
+[ system ]
+; Name
+GROningen MAchine for Chemical Simulation
+
+[ molecules ]
+; Compound        #mols
+Protein             1
+
+
+```
+
+As flags “#include” servem para incluir os arquivos de topologia para cada componente do sistema, como os parâmetros do campo de força para a água (#include "amber03.ff/tip3p.itp"), para os íons (#include "amber03.ff/ions.itp") e para o cossolvente. Entretanto, os arquivos de topologia para o cossolvente (“tfe_atomtypes.itp” e o  “tfe.itp”) devem ser incluídos manualmente no arquivo topology.top da seguinte forma:
+
+```
+; Informações relacionadas ao computador, versão do gromacs e diretório em que a topologia foi gerada. 
+
+; Include forcefield parameters
+#include "amber03.ff/forcefield.itp"
+
+; Include cosolvents topology
+#include "tfe_atomtypes.itp"
+#include "tfe.itp"
+
+[ moleculetype ]
+; Name            nrexcl
+Protein             3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 ALA rtp NALA q +1.0
+     1         N3      1    ALA      N      1  -0.589266      14.01
+     2          H      1    ALA     H1      2   0.446422      1.008
+     3          H      1    ALA     H2      3   0.446422      1.008
+     4          H      1    ALA     H3      4   0.446422      1.008
+     5         CT      1    ALA     CA      5   0.113871      12.01
+     6         HP      1    ALA     HA      6    0.06715      1.008
+     7         CT      1    ALA     CB      7  -0.204113      12.01
+     8         HC      1    ALA    HB1      8   0.063056      1.008
+     9         HC      1    ALA    HB2      9   0.063056      1.008
+    10         HC      1    ALA    HB3     10   0.063056      1.008
+    11          C      1    ALA      C     11   0.676687      12.01
+    12          O      1    ALA      O     12  -0.592764         16   ; qtot 1
+
+```
+
+A outra alteração manual que deve ser feita no arquivo topology.top é a introdução do número de cada componente no nosso sistema. Supondo que tenhamos 1 peptídeo, 1000 moléculas de água e 250 moléculas de TFE, deveríamos escrever:
+
+```
+; Informações relacionadas ao computador, versão do GROMACS e diretório em que a topologia foi gerada. 
+
+; Include forcefield parameters
+#include "amber03.ff/forcefield.itp"
+
+; Include cosolvents topology
+#include "tfe_atomtypes.itp"
+#include "tfe.itp"
+
+[ moleculetype ]
+; Name            nrexcl
+Protein             3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 ALA rtp NALA q +1.0
+     1         N3      1    ALA      N      1  -0.589266       14.01
+     2          H      1    ALA     H1      2   0.446422       1.008
+     3          H      1    ALA     H2      3   0.446422       1.008
+     4          H      1    ALA     H3      4   0.446422       1.008
+     5         CT      1    ALA     CA      5   0.113871     12.01
+     6         HP      1    ALA     HA      6    0.06715      1.008
+     7         CT      1    ALA     CB      7  -0.204113     12.01
+     8         HC      1    ALA    HB1      8   0.063056    1.008
+     9         HC      1    ALA    HB2      9   0.063056    1.008
+    10         HC      1    ALA    HB3     10   0.063056  1.008
+    11          C      1    ALA      C     11   0.676687      12.01
+    12          O      1    ALA      O     12  -0.592764       16   ; qtot 1
+
+.
+.
+.
+
+; Include water topology
+#include "amber03.ff/tip3p.itp"
+
+; Include topology for ions
+#include "amber03.ff/ions.itp"
+
+[ system ]
+; Name
+GROningen MAchine for Chemical Simulation
+
+[ molecules ]
+; Compound        #mols
+Protein             1
+SOL               1000
+TFE                250
+
+```
+Os nomes “SOL” e “TFE” representam algo semelhante ao que seria o nome de um resíduo para as proteínas. Portanto, todas as moléculas de água e cossolvente no arquivo .pdb do sistema devem ser nomeadas com SOL e TFE, respectivamente. Basicamente, essas alterações representam o que precisa ser feito para ter um arquivo de topologia para as simulações de um sistema contendo a proteína, água e cossolvente (neste caso, o TFE). 
+Como temos os pdbs individuais para o peptídeo, a água (deve ser um pdb compatível ao modelo escolhido para criar a topologia, no exemplo acima é TIP3P) e o TFE, podemos usar o packmol para criar uma caixa com o número desejado de cada componente. O pdb resultante deve ser utilizado juntamente da topologia editada como input do gromacs para gerar o arquivos necessários para rodar a simulação. Vale lembrar que a ordem em que os componentes do sistema são descritos no arquivo de topologia refletem a mesma ordem do arquivo .pdb do sistema. 
 
 ### <a name="min"></a> 3. Minimização da energia
 
