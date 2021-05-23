@@ -245,6 +245,8 @@ Em uma primeira impressão, pode-se pensar que a água está formando mais liga�
 
 ## <a name="equi"></a>4. Acúmulo e depleção dos solventes
 
+### Integrais de Kirkwood-Buff
+
 A partir das MDDFs é possível calcular propriedades termodinâmicas macroscópicas das soluções, usando a Teoria de Soluções de Kirkwood-Buff. Nos arquivos ```.json```, além das MDDFs, também há informação das integrais de Kirkwood-Buff (KB). As integrais de KB refletem a afinidade entre o soluto e as moléculas de solvente, e determinam se há excesso ou exclusão de cada componente do solvente nas vizinhanças do soluto. Dessa forma, avaliando o perfil das integrais de KB da água e do TFE, é possível dizer se cada componente é acumulado ou é excluído da região onde a proteína se encontra. Quando o solvente se encontra preferencialmente próximo à superfície da proteína, o valor de integral de KB deve ser positivo, e negativo caso seja preferencialmente excluído. Nas figuras a seguir, podemos analisar o perfil das integrais de KB para a água em relação à proteína em água pura e na solução com TFE, e do TFE na solução. 
 
 Os gráficos das integrais de KB em todas as soluções estudadas podem ser obtidos rodando:
@@ -258,6 +260,8 @@ Vemos que as três curvas tem limites negativos em grandes distânicias, indican
 A integral de KB da água na solução parece ser ligeiramente menor que a observada em água pura, mas não está muito bem convergida (deveria estar constante). Para melhorar esse gráfico, é necessário aumentar a distância de *bulk* do cálculo da MDDF. 
 
 O mais relevante aqui é que a integral de KB do TFE na solução mixta é *menos negativa* que a da água na mesma solução. Isto quer dizer que o TFE está menos excluído da região da proteína que a água. Ou, em outras palavras, que o TFE *solvata preferencialmente* a proteína. De fato, essa é a observação experimental: que o TFE se acumula na superfície da proteína em relação à água. Este efeito tem a consequência direta, vista acima, de que o TFE interage diretamente com a proteína, protegendo a proteína da interação com a água, mas também pode ter o efeito indireto, no qual a concentração de água nas vizinhanças da proteína diminui e, assim, esta tem seu poder desnaturante sobre as hélices reduzido.    
+
+### Parâmetro de solvatação preferencial
 
 Esta solvatação preferencial pode ser quantificada *Parâmetro de Solvatação Preferencial* (```Γ```). O ```Γ``` está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada.
 
