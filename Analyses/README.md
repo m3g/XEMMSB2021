@@ -150,47 +150,50 @@ julia -t5 -i $repo/Analyses/julia/cm_water0.jl $repo $work
 
 onde `-t5` indica que usaremos 5 *threads*, paralelizando o cálculo (só como ilustração, não é realmente necessário porque a trajetória não é muito longa aqui), e `-i` indica que vamos manter a seção de `julia` aberta no fim do cálculo, para estudar o resultado e entender as próximas etapas: 
 
-O script, passo a passo, contém os seguintes comandos:
+O script, passo a passo, contém os seguintes comandos, que podem ser executados contanto que o caminho para o arquivo de estrutura `system.pdb` e trajetória `production.xtc` estejam adequadamente definidos.
 
 1. Carregamento dos pacotes usados:
 ```julia
 using PDBTools, ComplexMixtures
 ```
 
-# Load PDB file of the system
+2. Ler o arquivo PDB to sistema:
+```julia
 atoms = readPDB("system.pdb")
+```
 
-# Select the protein and the solvents
+3. Selecionar a proteína e a água (a água, no modelo TIP4P2005 possui um átomo
+fictício, que será ignorado por não ter correlato físico):
+```julia
 protein = select(atoms,"protein")
-tfe = select(atoms,"resname TFE")
-water = select(atoms,"water")
+water = select(atoms,"resname SOL and not name MW")
+```
 
-# Setup solute (1 protein)
+4. Definir o soluto e o solvente para o cálculo das funções de distribuição:
+```julia
 solute = Selection(protein,nmols=1)
+solvent = Selection(water,natomspermol=9)
+```
 
-#
-# Compute MDDF for TFE
-#
-
-# Setup solvent (number of atoms of TFE molecule = 9)
-solvent = Selection(tfe,natomspermol=9)
-
-# Setup the Trajectory structure
+5. Abrir a trajetória
+```julia
 trajectory = Trajectory("production.xtc",solute,solvent)
+```
 
-# Options (dbulk: distance above which the solute does not
-# affect the structure of the solvent)
+6. Definição da distância de *bulk*:
+```julia
 options = Options(dbulk=10)
+```
 
-# Run the calculation and get results
+7. Calcular a função de distribuição e salvar na variável `results`:
+```julia
 results = mddf(trajectory,options)
+```
 
-# Save the reults to recover them later if required
+8. Salvar os resultados em arquivo no formato `json`:
+```julia
 save(results,"./cm-tfe.json")
-
-
-
-
+```
 
 
 
