@@ -241,16 +241,7 @@ julia $repo/Analyses/julia/mddf_water.jl $repo $work
 
 <img width=600px src=https://user-images.githubusercontent.com/31046348/119272657-6c0eae00-bbdd-11eb-839b-43ea14dfa482.png>
 
-
-Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
-
-Vale lembrar que o cálculo das MDDFs poderá ser realizado em paralelo, utilizando vários processadores do computador. Por exemplo, os scripts ```gmd-tfe.jl``` e ```gmd-water.jl``` poderão ser executados em paralelo com o comando ```julia -t 4 gmd-tfe.jl```. 
-
-A partir do cálculo das MDDFs, os resultados obtidos estarão salvos nos arquivos com o formato ```.json``` (```results-water-20.json```e ```results-tfe-20.json```). Portanto, os arquivos ```.json``` podem ser utilizados para plotar o perfil total das MDDFs, e também a constribuição de cada átomo (ou grupos de átomos). Os gráficos poderão ser plotados com o script ```mddf-kb-water.jl``` e ```mddf-kb-tfe.jl``` (disponíveis em ```$repo/Analyses/julia```), e as suas figuras devem ser parecidas com:
-
-<img width=400px src=https://user-images.githubusercontent.com/70027760/119211426-618ed000-ba88-11eb-8eae-8d66e8f9c037.png>
-<img width=400px src=https://user-images.githubusercontent.com/70027760/119211427-62276680-ba88-11eb-8db6-408a8d9af0f6.png>
-
+Em uma primeira impressão, pode-se pensar que a água está formando mais ligações de hidrogênio com o peptídeo na presença de TFE que na água pura. No entanto, note que a concentração de água é muito diferente nas duas simulações. Como vimos, em água pura a concentração ficou em `~55.3 mol/L`, enquanto que na simulação com TFE temos uma concentração de aproximadamente a metade (`27.1 mol/L`). Portanto, para que tivéssemos o mesmo *número* de ligações de hidrogênio com a água na solução com TFE, o pico em `~1.8AA` deveria ter aproximadamente o dobro da altura (ou o dobro da integral, mas precisamente). Este efeito de concentração pode ser explorado calculando diretamente o número de ligações de hidrogênio peptídeo-água em estudo complementar. 
 
 ## <a name="equi"></a>4. Acúmulo e depleção do TFE
 
