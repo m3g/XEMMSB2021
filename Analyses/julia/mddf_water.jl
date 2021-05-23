@@ -54,7 +54,7 @@ solute = Selection(protein,nmols=1)
 solvent = Selection(water,natomspermol=3) 
 
 # Load previously calculated results
-results = ComplexMixtures.load("$work/Simulations/cm_water0.json")
+results = ComplexMixtures.load("$work/Simulations/cm_water60.json")
 
 sp=2
 # Complete MDDF
