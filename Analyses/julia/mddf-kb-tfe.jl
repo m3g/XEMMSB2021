@@ -17,12 +17,12 @@ solvent = Selection(tfe,natomspermol=9)
 # Load previously calculated results
 results = ComplexMixtures.load("$work/Simulations/cm_tfe60.json")
 
-# Default plot parameters
-default(fontfamily="Computer Modern",grid=false,framestyle=:box,linewidth=2)
-hline([0,1],color=:gray,linestyle=:dash) # draw an horizontal line at y=1
-
 # Will use moving averages for more pretty graphs
 ma(data) = movingaverage(data,10).x
+
+# Default plot parameters
+default(fontfamily="Computer Modern",grid=false,framestyle=:box,linewidth=2)
+plot()
 
 # Complete MDDF
 plot!(results.d,ma(results.mddf),xlabel="r/Å",ylabel="mddf",label="Total")
@@ -51,6 +51,9 @@ plot!(results.d,ma(hy_contrib),label="Hydroxyl H")
 ho_contrib = contrib(solvent,results.solvent_atom,
                      select(atoms,"resname TFE and name O"))
 plot!(results.d,ma(hy_contrib),label="Hydroxyl O")
+
+# draw an horizontal line at y=1
+hline([0,1],color=:gray,linestyle=:dash)
 
 # Save figure
 savefig("$work/Simulations/mddf-tfe.pdf")
