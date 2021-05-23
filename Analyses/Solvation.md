@@ -193,6 +193,7 @@ julia> plot(results.d,results.kb,xlabel="d/Angs",ylabel="KB / cm³/mol",label="K
 ```
 
 Que produz a seguinte figura:
+
 ![image](https://user-images.githubusercontent.com/31046348/119265281-808e7e80-bbbc-11eb-8746-7a5c3c498f09.png)
 
 
