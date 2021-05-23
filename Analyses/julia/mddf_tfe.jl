@@ -1,7 +1,7 @@
 using Plots, LaTeXStrings, ComplexMixtures, PDBTools, EasyFit
 
 if (!isdir(ARGS[1])) || (!isdir(ARGS[2])) 
-  println("Run with: julia mddf_kb.jl \$repo \$work")
+  println("Run with: julia mddf_tfe.jl \$repo \$work")
   exit()
 end
 repo = ARGS[1]

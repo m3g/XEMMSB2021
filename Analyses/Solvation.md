@@ -211,9 +211,18 @@ No caso de um soluto em um solvente único, como neste caso, a integral obtida n
 
 Os resultados são muito mais interessantes quando comparamos as funções de distribuição e integrais de Kirkwood-Buff para soluções com mais de um solvente.
 
-## Funções de distribuição da água e do TFE
+## 4. Funções de distribuição da água e do TFE
 
-As funções de distribuição do TFE e da água em torno da proteína podem ser calculadas com os scripts que estão disponíveis na pasta `julia` desta seção. O seguinte comando vai gerar o MDDF do TFE decomposto em cada tipo de átomo:  
+As funções de distribuição do TFE e da água em torno da proteína podem ser calculadas com os scripts que estão disponíveis na pasta `julia` desta seção. Os seguintes comandos vão executar os script que fazem os cálculos para cada um dos sistemas e tipos de solvente:
+```julia
+julia -t5 $repo/Analyses/julia/cm_tfe60.jl $repo $work
+julia -t5 $repo/Analyses/julia/cm_water60.jl $repo $work
+julia -t5 $repo/Analyses/julia/cm_water0.jl $repo $work
+
+Estes scripts gerarão resultados que são salvos em três arquivos `.json` correspondentes. 
+
+Em seguida, podemos fazer os gráficos dos resultados obtidos com os outros scripts disponíveis.
+O seguinte comando vai gerar o gráfico MDDF do TFE decomposto em cada tipo de átomo:  
 ```julia
 julia $repo/Analyses/julia/mddf_tfe.jl $repo $work
 ```
@@ -223,6 +232,12 @@ julia $repo/Analyses/julia/mddf_tfe.jl $repo $work
 Nesta figura notamos os seguintes pontos:
 1. O TFE forma ligações de hidrogênio com a proteína.
 2. Praticamente todas as ligações de hidrogênio são através do seu hidrogênio da hidroxila. Isto é, praticamente não há ligações de hidrogênio nas quais o TFE atua como doador de par de elétrons. Evidentemente, isto se deve à baixa densidade eletrônica sobre o oxigênio que resulta dos átomos de flúor presentes na cadeia alifática.
+
+As funções de distribuição da água para os dois sistemas vão ser graficadas simultaneamente, com o script que será executado por:
+```julia
+julia $repo/Analyses/julia/mddf_water.jl $repo $work
+```
+
 
 
 
