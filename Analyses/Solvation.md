@@ -142,14 +142,44 @@ using Plots
 ```
 e, em seguida, podemos fazer o gráfico da função de distribuição de mínima distância obtida, com:
 ```julia
-plot(results.d,results.mddf,xlabel="d/Angs",ylabel="mddf")
+plot(results.d,results.mddf,xlabel="d/Angs",ylabel="mddf",label="MDDF")
 ```
 você deve notar um pico em aproximadamente `1.8AA` e outro pico em `2.6AA`, que são característicos da primeira e segunda camadas de solvatação da água. O pico em `2.6AA` é mais largo e contém também interações inespecíficas entre a água e o peptídeo. 
 
 ![image](https://user-images.githubusercontent.com/31046348/119264553-170d7080-bbba-11eb-927e-931cd79f5641.png)
 
+Podemos extrair a informação das interações da água com a cadeia principal da proteína, usando:
+```julia
+julia> backbone = select(atoms,"backbone")
+   Array{Atoms,1} with 59 atoms with fields:
+   index name resname chain   resnum  residue        x        y        z  beta occup model segname index_pdb
+       1    N     ALA              1        1   -5.112   10.286    0.360  0.00  1.00     1       1         1
+       5   CA     ALA              1        1   -5.682    9.046   -0.130  0.00  1.00     1       1         5
+      11    C     ALA              1        1   -4.682    8.256   -0.950  0.00  1.00     1       1        11
+                                                       ⋮ 
+     164    N     ALA             15       15    3.768   -9.894    2.110  0.00  1.00     1       1       164
+     166   CA     ALA             15       15    3.128  -11.114    2.600  0.00  1.00     1       1       166
+     172    C     ALA             15       15    3.258  -12.244    1.590  0.00  1.00     1       1       172
+```
 
-Podemos extrair 
+E, então, extrair dos resultados apenas a contribução dos átomos desta seleção: 
+
+```julia
+julia> bb_contrib = contrib(solute,results.solute_atom,backbone)
+500-element Vector{Float64}:
+ 0.0
+ 0.0
+ ⋮
+```
+
+e acrescentamos, finalmente, esta contribuição ao gráfico anterior:
+```julia
+julia> plot!(results.d,bb_contrib,label="backbone")
+```
+
+
+
+
 
 
 
