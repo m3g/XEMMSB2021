@@ -50,7 +50,7 @@ plot!(results.d,ma(hy_contrib),label="Hydroxyl H")
 # Hydroxyl oxygen
 ho_contrib = contrib(solvent,results.solvent_atom,
                      select(atoms,"resname TFE and name O"))
-plot!(results.d,ma(hy_contrib),label="Hydroxyl O")
+plot!(results.d,ma(ho_contrib),label="Hydroxyl O")
 
 # draw an horizontal line at y=1
 hline!([0,1],color=:gray,linestyle=:dash,label="")
