@@ -23,7 +23,7 @@ solute = Selection(protein,nmols=1)
 solvent = Selection(water,natomspermol=3)
 
 # Setup the Trajectory structure
-trajectory = Trajectory("production60.xtc",solute,solvent)
+trajectory = Trajectory("$repo/Simulations/Final/production60.xtc",solute,solvent)
 
 # Options
 options = Options(dbulk=10)
