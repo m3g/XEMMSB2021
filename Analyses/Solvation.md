@@ -7,10 +7,11 @@
 * [2. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3o)
 
 ### >> Parte 2
-* [3. Estrutura de solvatação](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
-* [4. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
+* [3. Estrutura de solvatação: Conceitos](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [4. Funções de distribuição da água e do TFE](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [5. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
 
-## <a name="solv"></a>3. Estrutura de solvatação
+## <a name="solv"></a>3. Estrutura de solvatação: Conceitos
 
 Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos e proteínas, o seu mecanismo de ação ainda é bastante discutido na literatura. Diferentes mecanismos têm sido propostos para explicar a indução de hélices pelo TFE, conhecidos como  mecanismos direto e indireto. 
 
@@ -208,6 +209,9 @@ O resultado final da integral de KB, que neste caso é `~-860 cc/L`, corresponde
 
 No caso de um soluto em um solvente único, como neste caso, a integral obtida nada mais é que o volume molar aparente da proteína (que é um parâmetro macroscópico mensurável). Ou seja, qual o volume que a proteína ocupa na solução, por mol. 
 
+Os resultados são muito mais interessantes quando comparamos as funções de distribuição e integrais de Kirkwood-Buff para soluções com mais de um solvente.
+
+## Funções de distribuição da água e do TFE
 
 
 
