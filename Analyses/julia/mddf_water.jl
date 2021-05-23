@@ -28,6 +28,7 @@ plot(layout=(1,2))
 
 sp=1
 # Complete MDDF
+plot!(title="pure Water",subplot=sp)
 plot!(results.d,ma(results.mddf),
       xlabel="r/Å",ylabel="mddf",label="Total",subplot=sp)
 
@@ -58,6 +59,7 @@ results = ComplexMixtures.load("$work/Simulations/cm_water60.json")
 
 sp=2
 # Complete MDDF
+plot!(title="Water/TFE",subplot=sp)
 plot!(results.d,ma(results.mddf),
       xlabel="r/Å",ylabel="mddf",label="Total",subplot=sp)
 
@@ -73,6 +75,9 @@ plot!(results.d,ma(o_contrib),label="Oxygen",subplot=sp)
 
 # draw an horizontal line at y=1
 hline!([1],color=:gray,linestyle=:dash,label="",subplot=sp)
+
+# Make all limits the same
+plot!(ylim=[0,2],xlim=[0,10])
 
 # Save figure
 savefig("$work/Simulations/mddf_water.pdf")
