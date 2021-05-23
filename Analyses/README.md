@@ -143,6 +143,12 @@ O cálculo das MDDFs pode ser feito com o software [ComplexMixtures.jl](http://m
 
 Os scripts que usam o pacote para calcular as estruturas de solvatação que estudaremos aqui estão disponíveis no diretório `Analyses/julia`. Vamos descrever um dos exemplos, em que calculamos a distribuição de TFE em torno do 
 
+
+```
+julia -t4 -i $repo/Analyses/julia/cm_tfe.jl $repo $work
+```
+
+
 ```julia
 using PDBTools, ComplexMixtures
 ```

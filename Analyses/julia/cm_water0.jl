@@ -1,8 +1,16 @@
 # Load packages
 using PDBTools, ComplexMixtures 
 
+# Repository dir
+if (! isdir(ARGS[1])) || (! isdir(ARGS[2]))
+  println("Run with: cm_water0.jl \$repo \$work")
+  exit()
+end
+repo = ARGS[1]
+work = ARGS[2]
+
 # Load PDB file of the system
-atoms = readPDB("system.pdb")
+atoms = readPDB("$repo/Simulations/Final/system0.pdb")
 
 # Select the protein and the solvents
 protein = select(atoms,"protein")
@@ -15,7 +23,7 @@ solute = Selection(protein,nmols=1)
 solvent = Selection(water,natomspermol=3)
 
 # Setup the Trajectory structure
-trajectory = Trajectory("production.xtc",solute,solvent)
+trajectory = Trajectory("production0.xtc",solute,solvent)
 
 # Options
 options = Options(dbulk=10)
@@ -24,5 +32,5 @@ options = Options(dbulk=10)
 results = mddf(trajectory,options)
 
 # Save the reults to recover them later if required
-save(results,"./cm_water.json")
+save(results,"$work/cm_water0.json")
 
