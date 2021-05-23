@@ -56,6 +56,6 @@ plot!(results.d,ma(ho_contrib),label="Hydroxyl O")
 hline!([1],color=:gray,linestyle=:dash,label="")
 
 # Save figure
-savefig("$work/Simulations/mddf-tfe.pdf")
-println("Wrote file: mddf-tfe.pdf")
+savefig("$work/Simulations/mddf_tfe.pdf")
+println("Wrote file: mddf_tfe.pdf")
 

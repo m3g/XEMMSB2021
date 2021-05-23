@@ -15,7 +15,7 @@ ma(data) = movingaverage(data,10).x
 #
 atoms = readPDB("$repo/Simulations/Final/system0.pdb")
 protein = select(atoms,"protein")
-water = select(atoms,"water and not name MW")
+water = select(atoms,"resname SOL and not name MW")
 solute = Selection(protein,nmols=1) 
 solvent = Selection(water,natomspermol=3) 
 
@@ -49,18 +49,14 @@ hline!([1],color=:gray,linestyle=:dash,label="",subplot=sp)
 #
 atoms = readPDB("$repo/Simulations/Final/system60.pdb")
 protein = select(atoms,"protein")
-water = select(atoms,"water and not name MW")
+water = select(atoms,"resname SOL and not name MW")
 solute = Selection(protein,nmols=1) 
 solvent = Selection(water,natomspermol=3) 
 
 # Load previously calculated results
 results = ComplexMixtures.load("$work/Simulations/cm_water0.json")
 
-# Default plot parameters
-default(fontfamily="Computer Modern",grid=false,framestyle=:box,linewidth=2)
-plot(layout=(1,2))
-
-subplot=1
+subplot=2
 # Complete MDDF
 plot!(results.d,ma(results.mddf),
       xlabel="r/Å",ylabel="mddf",label="Total",subplot=sp)
@@ -79,6 +75,6 @@ plot!(results.d,ma(ho_contrib),label="Oxygen",subplot=sp)
 hline!([1],color=:gray,linestyle=:dash,label="",subplot=sp)
 
 # Save figure
-savefig("$work/Simulations/mddf-tfe.pdf")
-println("Wrote file: mddf-tfe.pdf")
+savefig("$work/Simulations/mddf_water.pdf")
+println("Wrote file: mddf_water.pdf")
 
