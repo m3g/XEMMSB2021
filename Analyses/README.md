@@ -115,11 +115,27 @@ Neste caso, note que o raio de giração em água é maior, e talvez bimodal. Is
 
 ## <a name="min"></a>3. Estrutura de solvatação
 
-Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos e proteínas, o seu mecanismo de ação ainda é bastante discutido na literatura. Diferentes mecanismos têm sido propostos para explicar a indução de hélices pelo TFE, dentre eles os mecanismos direto e indireto. De forma resumida, o mecanismo direto consiste na interação direta entre os átomos de hidrogênio ácido do TFE e o oxigênio carbonílico da *backbone* da proteína por meio de ligações de hidrogênio intermolecular. Nesse caso, a ligação de hidrogênio intermolecular também contribui para fortalecer as ligações de hidrogênio intramoleculares entre os átomos de oxigênio carbonílico e o hidrogênio ligado ao nitrogênio da amida. Por outro lado, no mecanismo indireto, a adição de TFE ao sistema é responsável por 1) perturbar as moléculas de água em torno do soluto,  e então desestabilizá-lo; e, posteriormente, 2) induzir a formação de hélices por meio de interações específicas e inespecíficas com a superfície da proteína. 
+Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos e proteínas, o seu mecanismo de ação ainda é bastante discutido na literatura. Diferentes mecanismos têm sido propostos para explicar a indução de hélices pelo TFE, conhecidos como  mecanismos direto e indireto. 
 
-Para entendermos como o TFE contribuiu para a formação de hélices, precisamos, primeiramente, avaliar como as moléculas do solvente se distribuem na solução. A forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas funções de distribuição de mínima distância (MDDFs). As MDDFs adotam a distância mínima entre átomos do solvente e os átomos do soluto, resultando em funções de distribuição facilmente interpretáveis do ponto de vista das interações físico-químicas específicas. Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível formular hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
+1. O mecanismo direto consiste na interação direta entre os átomos de hidrogênio ácido do TFE e o oxigênio carbonílico da cadeia principal da proteína por meio de ligações de hidrogênio. Esta interação pode acontecer sem a ruptura da ligação ``N-H⋯O` que estabiliza a hélice. Ao mesmo tempo, o grupo trifluoro-metil impede a aproximação de moléculas de água ao ao nitrogênio amídico da cadeia principal. Com isto, o TFE impede que a água interaja com a cadeia principal competindo pelas ligações de hidrogênio que estabilizam sua estrutura. Assim, o TFE contribui para fortalecer as ligações de hidrogênio intramoleculares entre os átomos de oxigênio carbonílico e o hidrogênio ligado ao nitrogênio da amida. 
 
-O cálculo das MDDFs pode ser feito com o software ```ComplexMixtures```. Você poderá instalar o ```ComplexMixtures``` no terminal do Julia com o comando ```] add ComplexMixtures```. Também será necessário instalar o software PDBTools (```] add PDBTools```), que manipula os arquivos no formato .pdb. Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
+2. No mecanismo indireto, o TFE deve se acumular de forma inespecífica em torno da proteína e perturbar a estrutrua da água, diminiuindo suas interações com a proteína e, portanto, sua capacidade de competir pelas ligações de hidrogênio intra-moleculares que estabilizam as hélices. 
+
+Os dois mecanismos podem coexistir. O mecanismo (1) levanta as seguintes hipóteses:
+
+- Devem ocorrer ligações de hidrogênio entre o TFE e o oxigênio da cadeia principal da proteína. 
+- Não devem ocorrer ligações de hidrogênio entre o TFE e o nitrogênio da cadeia principal. 
+- O número de ligações de hidrogênio da água com a cadeia principal da proteína deve diminuir na presença de TFE.
+
+O mecanismo indireto (2), sugere que: 
+
+- O TFE deve, de forma geral, ser encontrado nos arredores da proteína, mas não necessariamente interagindo diretamente e de forma específica com sua estrutura. 
+- A água deve ser excluída das proximidades da proteína.
+- As ligações de hidrogênio água-cadeia principal da proteína devem ser desestabilizadas.   
+
+Estas hipóteses podem ser estudadas usando simulações, e funções de distribuição. Uma visão molecular da forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas [funções de distribuição de mínima distância (MDDFs)](http://leandro.iqm.unicamp.br/m3g/main/publications/2017_jctc.pdf). Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível testar as hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
+
+O cálculo das MDDFs pode ser feito com o software [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures). Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
 
 Vale lembrar que o cálculo das MDDFs poderá ser realizado em paralelo, utilizando vários processadores do computador. Por exemplo, os scripts ```gmd-tfe.jl``` e ```gmd-water.jl``` poderão ser executados em paralelo com o comando ```julia -t 4 gmd-tfe.jl```. 
 
