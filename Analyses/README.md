@@ -111,7 +111,7 @@ O resultado obtido deve ser similar a:
 
 <img width=500px src=https://user-images.githubusercontent.com/31046348/119245655-4b991200-bb51-11eb-9251-4bd427683119.png>
 
-Note que o raio de giração na solução com TFE é maior, o que se deve à maior extensão média da hélice em relação à de um peptídeo desordenado.
+Neste caso, note que o raio de giração em água é maior, e talvez bimodal. Isto é resultado da maior variabilidade conformacional do peptídeo em água pura que na solução com TFE. Note que o primeiro pico da distribuição em água coincide aproximadamente com o pico da distriubição em solução de TFE, indicando que estas conformações devem ser as que assumem a estrutura de hélice que é estabilizada na solução com o cossolvente.
 
 ## <a name="min"></a>3. Estrutura de solvatação
 
