@@ -283,7 +283,7 @@ julia> ρ = rtfe.density.solvent_bulk*(1e27/6.02e23)
 7.345259256367649
 ```
 
-A integral de KB de cada cossolvente é o último valor da tabela usada para fazer o gráfico em função
+3. A integral de KB de cada cossolvente é o último valor da tabela usada para fazer o gráfico em função
 da distância, e aqui é convertido de centímetros cúbicos por mol para litros por mol. Estes são os valores que correspondem aos limites do gráfico acima:
 ```julia
 julia> Gtfe = rtfe.kb[end]/1000
@@ -293,7 +293,7 @@ julia> Gw = rw.kb[end]/1000
 -1.0174709013326282
 ```
 
-E, por fim, podemos calcular o parâmetro de solvatação preferencial, 
+4. Por fim, podemos calcular o parâmetro de solvatação preferencial, 
 ```julia
 julia> Γ = ρ*(Gtfe - Gw)
 1.6385122278689006
