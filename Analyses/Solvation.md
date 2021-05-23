@@ -143,9 +143,9 @@ using Plots
 ```
 e, em seguida, podemos fazer o gráfico da função de distribuição de mínima distância obtida, com:
 ```julia
-plot(results.d,results.mddf,xlabel="d/Angs",ylabel="mddf",label="MDDF")
+plot(results.d,results.mddf,xlabel="d/Å",ylabel="mddf",label="MDDF")
 ```
-você deve notar um pico em aproximadamente `1.8AA` e outro pico em `2.6AA`, que são característicos da primeira e segunda camadas de solvatação da água. O pico em `2.6AA` é mais largo e contém também interações inespecíficas entre a água e o peptídeo. 
+você deve notar um pico em aproximadamente `1.8Å` e outro pico em `2.6Å`, que são característicos da primeira e segunda camadas de solvatação da água. O pico em `2.6Å` é mais largo e contém também interações inespecíficas entre a água e o peptídeo. 
 
 ![image](https://user-images.githubusercontent.com/31046348/119264899-3fe23580-bbbb-11eb-9a9c-7bf740903afa.png)
 
@@ -190,7 +190,7 @@ As integrais de Kirkwood-Buff são o parâmetro termodinâmico que permite conec
 
 Não é trivial, e é mais fácil entender com um exemplo. Com o seguinte código, fazemos um gráfico da integral de Kirkwood-Buff da água integrada em função da distância da superfície da proteína, no nosso exemplo.  
 ```julia
-julia> plot(results.d,results.kb,xlabel="d/Angs",ylabel="KB / cm³/mol",label="KB")
+julia> plot(results.d,results.kb,xlabel="d/Å",ylabel="KB / cm³/mol",label="KB")
 ```
 
 Que produz a seguinte figura:
@@ -201,7 +201,7 @@ A concentração de água no bulk, na solução é de `~55.3 mol/L`, como vimos 
 
 1. Em distâncias curtas a integral torna-se muito negativa, o que significa que há menos água nessa distância do que haveria em uma solução homogênea de água com concentração `55.3 mol/L`. Isto reflete diretamente o fato da proteína ocupar um volume na solução, e está relacionado com a função de distribuição vista anteriormente em toda a região onde MDDF(r) < 1. 
 
-2. A partir de aproximadamente 1.9AA, a sobre uma série de aumentos. Isto quer dizer que, nessas distâncias, a concentração de água é maior que `~55.3 mol/L`. Isto se deve às interações favoráveis, específicas (ligações de hidrogênio) e inespecíficas da água com a proteína. No MDDF vemos estes efeitos nas regiões em MDDF > 1.   
+2. A partir de aproximadamente `1.9Å`, a sobre uma série de aumentos. Isto quer dizer que, nessas distâncias, a concentração de água é maior que `~55.3 mol/L`. Isto se deve às interações favoráveis, específicas (ligações de hidrogênio) e inespecíficas da água com a proteína. No MDDF vemos estes efeitos nas regiões em MDDF > 1.   
 
 3. Em distâncias longas, a integral fica  constante, o que significa que as concentrações de água nessas distâncias são iguais à concentração de água no *bulk* (e, nesses casos, a MDDF converge para 1 ao mesmo tempo).
 
@@ -241,7 +241,7 @@ julia $repo/Analyses/julia/mddf_water.jl $repo $work
 
 <img width=600px src=https://user-images.githubusercontent.com/31046348/119272657-6c0eae00-bbdd-11eb-839b-43ea14dfa482.png>
 
-Em uma primeira impressão, pode-se pensar que a água está formando mais ligações de hidrogênio com o peptídeo na presença de TFE que na água pura. No entanto, note que a concentração de água é muito diferente nas duas simulações. Como vimos, em água pura a concentração ficou em `~55.3 mol/L`, enquanto que na simulação com TFE temos uma concentração de aproximadamente a metade (`27.1 mol/L`). Portanto, para que tivéssemos o mesmo *número* de ligações de hidrogênio com a água na solução com TFE, o pico em `~1.8AA` deveria ter aproximadamente o dobro da altura (ou o dobro da integral, mas precisamente). Este efeito de concentração pode ser explorado calculando diretamente o número de ligações de hidrogênio peptídeo-água em estudo complementar. 
+Em uma primeira impressão, pode-se pensar que a água está formando mais ligações de hidrogênio com o peptídeo na presença de TFE que na água pura. No entanto, note que a concentração de água é muito diferente nas duas simulações. Como vimos, em água pura a concentração ficou em `~55.3 mol/L`, enquanto que na simulação com TFE temos uma concentração de aproximadamente a metade (`27.1 mol/L`). Portanto, para que tivéssemos o mesmo *número* de ligações de hidrogênio com a água na solução com TFE, o pico em `~1.8Å` deveria ter aproximadamente o dobro da altura (ou o dobro da integral, mas precisamente). Este efeito de concentração pode ser explorado calculando diretamente o número de ligações de hidrogênio peptídeo-água em estudo complementar. 
 
 ## <a name="equi"></a>4. Acúmulo e depleção dos solventes
 
