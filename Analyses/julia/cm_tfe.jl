@@ -31,5 +31,5 @@ options = Options(dbulk=10)
 results = mddf(trajectory,options)
 
 # Save the reults to recover them later if required
-save(results,"./cm-tfe.json")
+save(results,"$work/cm_tfe60.json")
 
