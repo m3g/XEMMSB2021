@@ -134,7 +134,7 @@ O que nos pode imediatamente chamar a atenção são a concentração da água n
 
 A função de distribuição de mínima distância (MDDF) deve convergir para `1.0` em distâncias longas. Nas últimas linhas vemos se isto aconteceu. É importante que o erro seja maior que a diferença entre entre a média e `1.0`, indicando que o erro é aleatório. Se tivéssemos um erro sistemático e a função convergisse para um número maior ou menor que `1.0`, mesmo que pouco, teríamos problemas na análise da integral desta função, que estudaremos a seguir.  
 
-### 3.3. Explorando os resultados 
+### 3.3. Explorando os resultados: a função de distribuição
 
 Vamos fazer alguns gráficos para explorar os resultados obtidos no cálculo acima. Carregamos o pacote `Plots` com 
 ```julia
@@ -179,10 +179,11 @@ julia> plot!(results.d,bb_contrib,label="backbone")
 
 ![image](https://user-images.githubusercontent.com/31046348/119264941-61dbb800-bbbb-11eb-8ea4-e76671d32120.png)
 
+Note que, claramente, a água forma muitas ligações de hidrogênio com a cadeia principal da proteína. Estas ligações competem com as interações que estabilizam a &alpha;-hélice.  
 
+É possível decompor a MDDF em contribuições de qualquer tipo de átomo do solvente ou do soluto obtendo, assim, uma visão microscópica das interações que compõem o sistema.
 
-
-
+### 3.4. Explorando os resultados: a integral de Kirkwood-Buff
 
 
 
