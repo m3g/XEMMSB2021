@@ -245,6 +245,10 @@ Em uma primeira impressão, pode-se pensar que a água está formando mais liga�
 
 ## <a name="equi"></a>4. Acúmulo e depleção do TFE
 
+<img width=600px src=https://user-images.githubusercontent.com/31046348/119273376-10deba80-bbe1-11eb-8107-78f61266cc49.png>
+
+
+
 A partir das MDDFs é possível calcular propriedades termodinâmicas macroscópicas das soluções, usando a Teoria de Soluções de Kirkwood-Buff. Nos arquivos ```.json```, além das MDDFs, também há informação das integrais de Kirkwood-Buff (KB). As integrais de KB refletem a afinidade entre o soluto e as moléculas de solvente, e determinam se há excesso ou exclusão de cada componente do solvente nas vizinhanças do soluto. Dessa forma, avaliando o perfil das integrais de KB da água e do TFE, é possível dizer se cada componente é acumulado ou é excluído da superfície da proteína. Quando o solvente se encontra preferencialmente próximo à superfície da proteína, o valor de integral de KB deve ser positivo, e negativo caso seja preferencialmente excluído para o *bulk* da solução. Nas figuras a seguir, podemos analisar o perfil das integrais de KB para o TFE (azul) é a água (verde), na simulação contendo ~60% de TFE. Vale lembrar que estas figuras devem ter sido geradas na etapa anterior, juntamente com a das MDDFs. 
 
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211424-605da300-ba88-11eb-94c7-5379f20d6bcd.png>
