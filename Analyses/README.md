@@ -141,11 +141,12 @@ O cálculo das MDDFs pode ser feito com o software [ComplexMixtures.jl](http://m
 
 [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures) é um software que calcula funções de distribuição e parâmetros de solvatação preferencial a partir de simulações de dinâmica molecular. É usado para a compreensão das interações entre solutos e solventes complexos, sendo as proteínas um exemplo importante e comum de estrutura complexa altamente dependente de sua estrutura de solvatação. 
 
-Os scripts que usam o pacote para calcular as estruturas de solvatação que estudaremos aqui estão disponíveis no diretório `Analyses/julia`. Vamos descrever um dos exemplos, em que calculamos a distribuição de TFE em torno do 
+Os scripts que usam o pacote para calcular as estruturas de solvatação que estudaremos aqui estão disponíveis no diretório `Analyses/julia`. Vamos descrever um dos exemplos, em que calculamos a distribuição da água em torno da proteína, na simulação do peptídeo em água pura. O script é [`$repo/Analyses/julia/cm_water0.jl`](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/julia/cm_water0.jl) 
+ 
 
 
 ```
-julia -t4 -i $repo/Analyses/julia/cm_tfe.jl $repo $work
+julia -t5 -i $repo/Analyses/julia/cm_water0.jl $repo $work
 ```
 
 
