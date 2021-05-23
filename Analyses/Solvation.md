@@ -245,7 +245,7 @@ Em uma primeira impressão, pode-se pensar que a água está formando mais liga�
 
 ## <a name="equi"></a>4. Acúmulo e depleção do TFE
 
-<img width=600px src=https://user-images.githubusercontent.com/31046348/119273376-10deba80-bbe1-11eb-8107-78f61266cc49.png>
+<img width=800px src=https://user-images.githubusercontent.com/31046348/119273376-10deba80-bbe1-11eb-8107-78f61266cc49.png>
 
 
 
