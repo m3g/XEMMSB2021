@@ -214,6 +214,8 @@ Os resultados são muito mais interessantes quando comparamos as funções de di
 ## Funções de distribuição da água e do TFE
 
 
+![image](https://user-images.githubusercontent.com/31046348/119271660-da9d3d00-bbd8-11eb-8a13-f6920cc0dce5.png)
+
 
 
 Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
