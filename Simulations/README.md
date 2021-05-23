@@ -85,7 +85,7 @@ topology.top
 
 ### Peptídeo em solução de água e TFE
 
-Para o sistema com TFE (e qualquer outro cossolvente, como a ureia ou TMAO), é necessário realizar algumas modificações no arquivo de topologia. O arquivo de topologia que o GROMACS gera contém os parâmetros apenas das moléculas (mais comuns) que estão contidas nos campos de força pré-instalados dentro do software. Sendo assim, é necessário obter os arquivos de topologia separados para o cossolvente em questão.
+Para o sistema com TFE (e qualquer outro cossolvente, como a ureia ou TMAO), é necessário realizar algumas modificações no arquivo de topologia. O arquivo de topologia que o GROMACS gera contém os parâmetros apenas das moléculas (mais comuns) que estão contidas nos campos de força pré-instaladose. Sendo assim, é necessário obter os arquivos de topologia separados para o cossolvente de interesse.
 
 Vamos entender como essa edição na topologia é feita tomando como exemplo o sistema trabalhado no curso.
 
@@ -93,14 +93,12 @@ Inicialmente, é necessário gerar um arquivo de topologia para a proteína ou p
 
 ```
 gmx_mpi pdb2gmx -f (AAQAA)3.pdb -o AAQAA.gro -p topology.top
-
 ```
  
 O arquivo de topologia “topology.top” terá a seguinte forma:
 
 ```
 ; Informações relacionadas ao computador, versão do GROMACS e diretório em que a topologia foi gerada. 
-
 
 ; Include forcefield parameters
 #include "amber03.ff/forcefield.itp"
@@ -124,15 +122,12 @@ Protein             3
     10         HC      1    ALA    HB3     10   0.063056      1.008
     11          C      1    ALA      C     11   0.676687      12.01
     12          O      1    ALA      O     12  -0.592764         16   ; qtot 1
-
 .
 .
 .
 
 ; Include water topology
 #include "amber03.ff/tip3p.itp"
-
-
 
 ; Include topology for ions
 #include "amber03.ff/ions.itp"
@@ -144,11 +139,9 @@ GROningen MAchine for Chemical Simulation
 [ molecules ]
 ; Compound        #mols
 Protein             1
-
-
 ```
 
-As flags “#include” servem para incluir os arquivos de topologia para cada componente do sistema, como os parâmetros do campo de força para a água (#include "amber03.ff/tip3p.itp"), para os íons (#include "amber03.ff/ions.itp") e para o cossolvente. Entretanto, os arquivos de topologia para o cossolvente (“tfe_atomtypes.itp” e o  “tfe.itp”) devem ser incluídos manualmente no arquivo topology.top da seguinte forma:
+As flags `#include` servem para incluir os arquivos de topologia para cada componente do sistema, como os parâmetros do campo de força para a água (`#include "amber03.ff/tip3p.itp"`), para os íons (`#include "amber03.ff/ions.itp"`) e para o cossolvente. Entretanto, os arquivos de topologia para o cossolvente (`"tfe_atomtypes.itp"` e o  `"tfe.itp"`) devem ser incluídos manualmente no arquivo `topology.top` da seguinte forma:
 
 ```
 ; Informações relacionadas ao computador, versão do gromacs e diretório em que a topologia foi gerada. 
@@ -181,7 +174,6 @@ Protein             3
     12          O      1    ALA      O     12  -0.592764         16   ; qtot 1
 
 ```
-
 A outra alteração manual que deve ser feita no arquivo topology.top é a introdução do número de cada componente no nosso sistema. Supondo que tenhamos 1 peptídeo, 1000 moléculas de água e 250 moléculas de TFE, deveríamos escrever:
 
 ```
