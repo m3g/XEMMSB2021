@@ -14,7 +14,7 @@ atoms = readPDB("$repo/Simulations/Final/system0.pdb")
 
 # Select the protein and the solvents
 protein = select(atoms,"protein")
-water = select(system,"resname SOL and not name MW")
+water = select(atoms,"resname SOL and not name MW")
 
 # Setup solute
 solute = Selection(protein,nmols=1)
