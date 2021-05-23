@@ -6,6 +6,8 @@ if (! isdir(ARGS[1])) || (! isdir(ARGS[2]))
   println("Run with: cm_tfe.jl \$repo \$work") 
   exit()
 end
+repo = ARGS[1]
+work = ARGS[2]
 
 # Load PDB file of the system
 atoms = readPDB("$repo/Simulations/Final/system60.pdb")
