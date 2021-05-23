@@ -8,7 +8,7 @@
 * [2. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3
 o)
 
-### Parte 1
+### Parte 2
 * [3. Estrutura de solvatação](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
 * [4. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation
 .md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
