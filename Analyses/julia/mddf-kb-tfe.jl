@@ -53,7 +53,7 @@ ho_contrib = contrib(solvent,results.solvent_atom,
 plot!(results.d,ma(hy_contrib),label="Hydroxyl O")
 
 # draw an horizontal line at y=1
-hline([0,1],color=:gray,linestyle=:dash)
+hline!([0,1],color=:gray,linestyle=:dash)
 
 # Save figure
 savefig("$work/Simulations/mddf-tfe.pdf")
