@@ -135,7 +135,58 @@ O mecanismo indireto (2), sugere que:
 
 Estas hipóteses podem ser estudadas usando simulações, e funções de distribuição. Uma visão molecular da forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas [funções de distribuição de mínima distância (MDDFs)](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.7b00599). Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível testar as hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
 
-O cálculo das MDDFs pode ser feito com o software [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures). Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
+O cálculo das MDDFs pode ser feito com o software [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures). 
+
+### Usando ComplexMixtures.jl 
+
+[ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures) é um software que calcula funções de distribuição e parâmetros de solvatação preferencial a partir de simulações de dinâmica molecular. É usado para a compreensão das interações entre solutos e solventes complexos, sendo as proteínas um exemplo importante e comum de estrutura complexa altamente dependente de sua estrutura de solvatação. 
+
+Os scripts que usam o pacote para calcular as estruturas de solvatação que estudaremos aqui estão disponíveis no diretório `Analyses/julia`. Vamos descrever um dos exemplos, em que calculamos a distribuição de TFE em torno do 
+
+```julia
+using PDBTools, ComplexMixtures
+```
+
+# Load PDB file of the system
+atoms = readPDB("system.pdb")
+
+# Select the protein and the solvents
+protein = select(atoms,"protein")
+tfe = select(atoms,"resname TFE")
+water = select(atoms,"water")
+
+# Setup solute (1 protein)
+solute = Selection(protein,nmols=1)
+
+#
+# Compute MDDF for TFE
+#
+
+# Setup solvent (number of atoms of TFE molecule = 9)
+solvent = Selection(tfe,natomspermol=9)
+
+# Setup the Trajectory structure
+trajectory = Trajectory("production.xtc",solute,solvent)
+
+# Options (dbulk: distance above which the solute does not
+# affect the structure of the solvent)
+options = Options(dbulk=10)
+
+# Run the calculation and get results
+results = mddf(trajectory,options)
+
+# Save the reults to recover them later if required
+save(results,"./cm-tfe.json")
+
+
+
+
+
+
+
+
+
+Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
 
 Vale lembrar que o cálculo das MDDFs poderá ser realizado em paralelo, utilizando vários processadores do computador. Por exemplo, os scripts ```gmd-tfe.jl``` e ```gmd-water.jl``` poderão ser executados em paralelo com o comando ```julia -t 4 gmd-tfe.jl```. 
 

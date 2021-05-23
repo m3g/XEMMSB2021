@@ -33,7 +33,7 @@ for system in "AAQAA_0vv" "AAQAA_60vv"; do
   mkdir -p $system
   cd $system
 
-  julia $repo/Simulations/JuliaScripts/$system.jl
+  julia $repo/Simulations/julia/$system.jl
 
 done
 
