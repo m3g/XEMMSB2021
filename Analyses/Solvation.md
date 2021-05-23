@@ -218,7 +218,7 @@ As funções de distribuição do TFE e da água em torno da proteína podem ser
 julia $repo/Analyses/julia/mddf_tfe.jl $repo $work
 ```
 
-<img width=500px src=https://user-images.githubusercontent.com/31046348/119271660-da9d3d00-bbd8-11eb-8a13-f6920cc0dce5.png>
+<img width=600px src=https://user-images.githubusercontent.com/31046348/119271660-da9d3d00-bbd8-11eb-8a13-f6920cc0dce5.png>
 
 Nesta figura notamos os seguintes pontos:
 1. O TFE forma ligações de hidrogênio com a proteína.
