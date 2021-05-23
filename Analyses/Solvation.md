@@ -1,5 +1,18 @@
 # Simulação de enovelamento de proteínas e efeitos de solvente
 
+## Análise das simulações
+
+### Parte 1
+* [1. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da
+-helipticidade-do-pept%C3%ADdeo)
+* [2. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3
+o)
+
+### Parte 1
+* [3. Estrutura de solvatação](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [4. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation
+.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
+
 ## <a name="solv"></a>3. Estrutura de solvatação
 
 Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos e proteínas, o seu mecanismo de ação ainda é bastante discutido na literatura. Diferentes mecanismos têm sido propostos para explicar a indução de hélices pelo TFE, conhecidos como  mecanismos direto e indireto. 
