@@ -100,17 +100,17 @@ O arquivo de saída será o ```rg.xvg```. Você poderá abrir esse arquivo no se
 
 A fim de comparar o grau de compactação do peptídeo nos dois sistemas, o cálculo do raio de giração, de acordo com as instruções acima, deverá ser realizado para a trajetória do peptídeo em água e em solução de TFE. Repita o procedimento acima para o diretório `AAQAA_60vv`.
 
-Para produzir os gráficos, execute:
+Para produzir os gráficos, execute o script `rg.jl`:
 
 ```
 cd $work/Simulations
-julia $repo/julia/gr.jl $work
+julia $repo/Analyses/julia/rg.jl $work
 ```
 
+O resultado obtido deve ser similar a:
 
 
 
-<img width=400px src=https://user-images.githubusercontent.com/70027760/119211705-1fff2480-ba8a-11eb-800a-b6c61c68ae67.png>
 
 ## <a name="min"></a>3. Estrutura de solvatação
 
