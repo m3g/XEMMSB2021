@@ -146,6 +146,9 @@ plot(results.d,results.mddf,xlabel="d/Angs",ylabel="mddf")
 ```
 você deve notar um pico em aproximadamente `1.8AA` e outro pico em `2.6AA`, que são característicos da primeira e segunda camadas de solvatação da água. O pico em `2.6AA` é mais largo e contém também interações inespecíficas entre a água e o peptídeo. 
 
+![image](https://user-images.githubusercontent.com/31046348/119264553-170d7080-bbba-11eb-927e-931cd79f5641.png)
+
+
 Podemos extrair 
 
 
