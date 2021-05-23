@@ -477,6 +477,7 @@ mpirun -np 4 gmx_mpi mdrun -plumed plumed.dat -s production.tpr -v -deffnm produ
 As trajetórias geradas para cada uma das réplicas estarão contidas nos arquivos `production.tpr` em cada diretório. Para que a visualização seja mais bonita (com o peptídeo centrado na caixa), vamos criar um novo arquivo, com os seguintes comandos:  
 
 ```
+cd 0
 echo 1 0 |gmx_mpi trjconv -s production.tpr -f production.gro -o processed.gro -ur compact -pbc mol -center
 echo 1 0 |gmx_mpi trjconv -s production.tpr -f production.xtc -o processed.xtc -ur compact -pbc mol -center
 ```
@@ -485,6 +486,8 @@ Com os arquivos `processed.gro` e `processed.xtc` podemos usar o vmd para visual
 ```
 vmd processed.gro processed.xtc
 ```
+
+Lembre-se de repetir o procedimento para a simulação da mistura de água e TFE (`AAQAA_60vv`).
 
 ## Referências do método HREMD
 
