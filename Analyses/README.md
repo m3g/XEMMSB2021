@@ -197,6 +197,41 @@ onde `-t5` indica que usaremos 5 *threads*, paralelizando o cálculo (só como i
 
 Terminado o cálculo, execute o comando `results`, que vai simplesmente imprimir um resumo dos resultados na tela:
 
+```julia-repl
+julia> results
+
+-------------------------------------------------------------------------------
+
+ MDDF Overview: 
+
+ Solvent properties: 
+ ------------------- 
+
+ Simulation concentration: 54.86804877410611 mol L⁻¹
+ Molar volume: 18.225543323347235 cm³ mol⁻¹
+
+ Concentration in bulk: 55.317568428449 mol L⁻¹
+ Molar volume in bulk: 18.077439562323836 cm³ mol⁻¹ 
+
+ Solute properties: 
+ ------------------ 
+
+ Simulation Concentration: 0.009451860253937308 mol L⁻¹
+ Estimated solute partial molar volume: 860.9416831970985 cm³ mol⁻¹
+
+ Using with dbulk = 10.0Å: 
+ Molar volume of the solute domain: 15897.977955953416 cm³ mol⁻¹
+
+ Auto-correlation: false
+
+ Trajectory files and weights: 
+   /home/leandro/Documents/curso/XEMMSB2021/Simulations/Final/production0.xtc - w = 1.0
+
+ Long range MDDF mean (expected 1.0): 1.0067406427203667 +/- 0.019351948543982617
+ Long range RDF mean (expected 1.0): 1.0089598723940005 +/- 0.017961284832647764
+
+-------------------------------------------------------------------------------
+```
 
 
 
