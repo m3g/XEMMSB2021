@@ -53,10 +53,11 @@ ho_contrib = contrib(solvent,results.solvent_atom,
 plot!(results.d,ma(hy_contrib),label="Hydroxyl O")
 
 # draw an horizontal line at y=1
-hline!([0,1],color=:gray,linestyle=:dash)
+hline!([0,1],color=:gray,linestyle=:dash,label="")
 
 # Save figure
 savefig("$work/Simulations/mddf-tfe.pdf")
+println("Wrote file: mddf-tfe.pdf")
 
 # KB-integral
 #plot(results.d,results.kb/1000,xlabel=L"\mathrm{r} / \mathrm{\AA}", ylabel=L"{G_{pc}} \ (r) / \mathrm{L\ mol^{-1}}",#label=false,framestyle=:box,c=:navyblue,dpi=300,xtickfontsize=18,ytickfontsize=18,xguidefontsize=18,yguidefontsize=18,#legendfontsize=18,lw=3,minorticks=Integer)
