@@ -174,7 +174,7 @@ Protein             3
     12          O      1    ALA      O     12  -0.592764         16   ; qtot 1
 
 ```
-A outra alteração manual que deve ser feita no arquivo topology.top é a introdução do número de cada componente no nosso sistema. Supondo que tenhamos 1 peptídeo, 1000 moléculas de água e 250 moléculas de TFE, deveríamos escrever:
+A outra alteração manual que deve ser feita no arquivo `topology.top` é a introdução do número de moléculas de cada componente no nosso sistema. Supondo que tenhamos 1 peptídeo, 1000 moléculas de água e 250 moléculas de TFE, deveríamos escrever:
 
 ```
 ; Informações relacionadas ao computador, versão do GROMACS e diretório em que a topologia foi gerada. 
@@ -205,7 +205,6 @@ Protein             3
     10         HC      1    ALA    HB3     10   0.063056  1.008
     11          C      1    ALA      C     11   0.676687      12.01
     12          O      1    ALA      O     12  -0.592764       16   ; qtot 1
-
 .
 .
 .
@@ -227,8 +226,8 @@ SOL               1000
 TFE                250
 
 ```
-Os nomes “SOL” e “TFE” representam algo semelhante ao que seria o nome de um resíduo para as proteínas. Portanto, todas as moléculas de água e cossolvente no arquivo .pdb do sistema devem ser nomeadas com SOL e TFE, respectivamente. Basicamente, essas alterações representam o que precisa ser feito para ter um arquivo de topologia para as simulações de um sistema contendo a proteína, água e cossolvente (neste caso, o TFE). 
-Como temos os pdbs individuais para o peptídeo, a água (deve ser um pdb compatível ao modelo escolhido para criar a topologia, no exemplo acima é TIP3P) e o TFE, podemos usar o packmol para criar uma caixa com o número desejado de cada componente. O pdb resultante deve ser utilizado juntamente da topologia editada como input do gromacs para gerar o arquivos necessários para rodar a simulação. Vale lembrar que a ordem em que os componentes do sistema são descritos no arquivo de topologia refletem a mesma ordem do arquivo .pdb do sistema. 
+Os nomes `SOL` e `TFE` representam algo semelhante ao que seria o nome de um resíduo para as proteínas. Portanto, todas as moléculas de água e cossolvente no arquivo `.pdb` do sistema devem ser nomeadas com `SOL` e `TFE`, respectivamente. Basicamente, essas alterações representam o que precisa ser feito para ter um arquivo de topologia para as simulações de um sistema contendo a proteína, água e cossolvente (neste caso, o `TFE`). 
+Como temos os pdbs individuais para o peptídeo, a água (deve ser um pdb compatível ao modelo escolhido para criar a topologia, no exemplo acima é `TIP3P`) e o `TFE`, podemos usar o `packmol` para criar uma caixa com o número desejado de cada componente. O `pdb` resultante deve ser utilizado juntamente da topologia editada como input do gromacs para gerar o arquivos necessários para rodar a simulação. Vale lembrar que a ordem em que os componentes do sistema são descritos no arquivo de topologia devem estar na mesma ordem do arquivo `.pdb` do sistema. 
 
 ### <a name="min"></a> 3. Minimização da energia
 
