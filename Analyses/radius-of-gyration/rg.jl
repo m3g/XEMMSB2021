@@ -1,14 +1,44 @@
 using Plots, LaTeXStrings, StatsPlots
 
-include("read_files.jl")
+function readxvg(file)
+  t = Float64[]
+  rg = Float64[]
+  open(file,"r") do io
+    for line in eachline(io)
+      if line[1] in ['#','@'] # skip comments
+        continue
+      end
+      line = split(line)
+      push!(t,parse(Float64,line[1]))
+      push!(rg,parse(Float64,line[2]))
+    end
+  end
+  return t, rg
+end
 
-data1,x1,y1=readfile("./rg0vv.xvg")
-data2,x2,y2=readfile("./rg60vv.xvg")
+# Work dir
+if ! isdir(ARGS[1])
+  println("Run with julia rg.jl \$work")
+  exit()
+end
+work=ARGS[1]
 
-default(fontfamily="Computer Modern",linewidth=1,framestyle=:box)
+# Read data
+t0, rg0 = readxvg("$work/Simulations/AAQAA_0vv/0/rg0vv.xvg")
+t60, rg60 = readxvg("$work/Simulations/AAQAA_0vv/0/rg60vv.xvg")
 
-density(y1,framestyle=:box,c=:orangered1,dpi=300,xtickfontsize=18,ytickfontsize=18,xguidefontsize=18,yguidefontsize=18,legendfontsize=14,grid=false,xlabel=L"\mathrm{R_g} \ \mathrm{(nm)}",ylabel=L"\mathrm{Probability \ density}",lw=3,minorticks=Integer,label=L"\mathrm{(AAQAA)_3 \ in \ Water}")
+# Plot
+default(fontfamily="Computer Modern",linewidth=1,framestyle=:box,grid=false)
 
-density!(y2,framestyle=:box,c=:blue,dpi=300,xtickfontsize=18,ytickfontsize=18,xguidefontsize=18,yguidefontsize=18,legendfontsize=14,grid=false,xlabel=L"\mathrm{R_g} \ \mathrm{(nm)}",ylabel=L"\mathrm{Probability \ density}",lw=3,minorticks=Integer,label=L"\mathrm{(AAQAA)_3 \ in \ TFE}")
+density(rg0,xlabel="\mathrm{R_g / nm}",
+            ylabel="Probability densit",
+            label="(AAQAA)₃ in Water")
 
-savefig("./rg.png")
+density!(rg0,xlabel=L"\mathrm{R_g /nm}",
+             ylabel="Probability density",
+             label=L"(AAQAA)₃ in TFE")
+
+savefig("./rg.pdf")
+
+
+

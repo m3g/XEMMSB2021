@@ -234,7 +234,7 @@ Vamos instalar alguns pacotes que vamos usar em nossas análises, em Julia. Dent
 
 Para instalar os pacotes, use:
 ```julia
-(@v1.6) pkg> add PDBTools, ComplexMixtures
+(@v1.6) pkg> add PDBTools, ComplexMixtures, Plots, LaTeXStrings, StatsPlots
 ``` 
 
 e
@@ -242,7 +242,7 @@ e
 (@v1.6) pkg> add https://github.com/m3g/PackmolInputCreator.jl
 ``` 
 
-estes são pacotes desenvolvidos no nosso grupo para manipulação e análise de arquivos PDB, estudo da solvatação em soluções complexas, e um pacote acessorio para gerar os inputs do programa Packmol. Os dois primeiros estão registrados, por isso podem ser instalados diretmente, o terceiro está apenas hospedado no nosso repositório, e deve ser instalado com o domínio completo.
+alugns destes são pacotes desenvolvidos no nosso grupo para manipulação e análise de arquivos PDB, estudo da solvatação em soluções complexas, e um pacote acessorio para gerar os inputs do programa Packmol. Os dois primeiros estão registrados, por isso podem ser instalados diretmente, o último está apenas hospedado no nosso repositório, e deve ser instalado com o domínio completo. `Plots`, `LaTeXStrings` e `StatsPlots` são pacotes que nos ajudarão a fazer gráficos.
 
 Para sair da seção de Julia, use `Conrol-d` (ou digite `exit()`).
 
