@@ -233,6 +233,13 @@ julia> results
 -------------------------------------------------------------------------------
 ```
 
+O que nos pode imediatamente chamar a atenção são a concentração da água na simulação `~54,86` e a concentração da água no *bulk*, de `~55.31` mol/L. A concentração da água na caixa inteira é menor, porque a proteína ocupa uma parte da caixa, mas a concentração no bulk (a uma distância maior que 10A da proteína), deve ser similar à concentração da água na água pura. Se a água sofresse uma acumulação muito substancial em torno da proteína (como vai acontecer com muitos cossolventes), a concentração na caixa pode ser *maior* que a concentração no *bulk* da solução. Neste caso, podemos ver que o volume molar da água no *bulk*, de `~18` cc/mol, é adequado.
+
+A função de distribuição de mínima distância (MDDF) deve convergir para `1` em distâncias longas. Nas últimas linhas vemos se isto aconteceu. É importante que o erro seja maior que a diferença entre entre a média e `1.0`, indicando que o erro é aleatório. Se tivéssemos um erro sistemático e a função convergisse para um número maior ou menor que `1.0`, mesmo que pouco, teríamos problemas na análise da integral desta função, que estudaremos a seguir.  
+
+
+
+
 
 
 
