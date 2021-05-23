@@ -186,6 +186,7 @@ Note que, claramente, a água forma muitas ligações de hidrogênio com a cadei
 ### 3.4. Explorando os resultados: a integral de Kirkwood-Buff
 
 
+![image](https://user-images.githubusercontent.com/31046348/119265134-052ccd00-bbbc-11eb-853a-8ceb9b8a5fc9.png)
 
 
 
