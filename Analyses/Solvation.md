@@ -203,7 +203,7 @@ A concentração de água no bulk, na solução é de `~55.3 mol/L`, como vimos 
 
 2. A partir de aproximadamente 1.9AA, a sobre uma série de aumentos. Isto quer dizer que, nessas distâncias, a concentração de água é maior que `~55.3 mol/L`. Isto se deve às interações favoráveis, específicas (ligações de hidrogênio) e inespecíficas da água com a proteína. No MDDF vemos estes efeitos nas regiões em MDDF > 1.   
 
-3. Em distâncias longas, a integral fica  constante, o que significa que as concentrações de água nessas distânicias são iguais à concentração de água no *bulk* (e, nesses casos, a MDDF converge para 1 ao mesmo tempo).
+3. Em distâncias longas, a integral fica  constante, o que significa que as concentrações de água nessas distâncias são iguais à concentração de água no *bulk* (e, nesses casos, a MDDF converge para 1 ao mesmo tempo).
 
 O resultado final da integral de KB, que neste caso é `~-860 cc/L`, corresponde a quanto volume a água ocupa a mais, ou a menos, na solução, em relação ao que ela ocuparia se a solução fosse homogênea com concentração `~55.3 mol/L`. Neste caso o volume é negativo, indicando que há menos água no mesmo volume da solução do que haveria se a proteína não estivesse lá. Dado o grande volume ocupado por uma molécula como uma proteína, isto talvez soa esperado, mas não é sempre assim, devido às interações favoráveis entre solutos e solventes que provocam aumentos de densidade local.
 
