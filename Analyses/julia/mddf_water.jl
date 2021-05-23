@@ -39,7 +39,7 @@ plot!(results.d,ma(h_contrib),label="Hydrogens",subplot=sp)
 # Oxygen atoms
 o_contrib = contrib(solvent,results.solvent_atom,
                     select(atoms,"resname SOL and element O"))
-plot!(results.d,ma(ho_contrib),label="Oxygen",subplot=sp)
+plot!(results.d,ma(o_contrib),label="Oxygen",subplot=sp)
 
 # draw an horizontal line at y=1
 hline!([1],color=:gray,linestyle=:dash,label="",subplot=sp)
@@ -69,7 +69,7 @@ plot!(results.d,ma(h_contrib),label="Hydrogens",subplot=sp)
 # Oxygen atoms
 o_contrib = contrib(solvent,results.solvent_atom,
                     select(atoms,"resname SOL and element O"))
-plot!(results.d,ma(ho_contrib),label="Oxygen",subplot=sp)
+plot!(results.d,ma(o_contrib),label="Oxygen",subplot=sp)
 
 # draw an horizontal line at y=1
 hline!([1],color=:gray,linestyle=:dash,label="",subplot=sp)
