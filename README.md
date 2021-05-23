@@ -8,7 +8,7 @@
 ## Simulação do enovelamento de proteínas e efeitos de solvente
 
 <p align=center>
-  Leandro Martínez, Vinicius Piccoli e Ander F. Pereira<br>
+  Ander F. Pereira, Vinicius Piccoli e Leandro Martínez<br>
   <i>Instituto de Química e Centro de Computação em Engenharia e Ciências</i><br>
   <b>UNICAMP</b>
 </p>
