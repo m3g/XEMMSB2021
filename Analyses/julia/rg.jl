@@ -24,10 +24,12 @@ end
 work=ARGS[1]
 
 # Read data
+println("Reading data...")
 t0, rg0 = readxvg("$work/Simulations/AAQAA_0vv/0/rg.xvg")
 t60, rg60 = readxvg("$work/Simulations/AAQAA_60vv/0/rg.xvg")
 
 # Plot
+println("Plotting...")
 default(fontfamily="Computer Modern",linewidth=2,framestyle=:box,grid=false)
 scalefontsizes(1.4)
 
@@ -40,6 +42,7 @@ density!(rg60,xlabel=L"R_g/\mathrm{nm}",
               label="Water/TFE")
 
 savefig("./rg.pdf")
+println("Wrote file rg.pdf")
 
 
 
