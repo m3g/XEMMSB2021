@@ -146,7 +146,7 @@ plot(results.d,results.mddf,xlabel="d/Angs",ylabel="mddf",label="MDDF")
 ```
 você deve notar um pico em aproximadamente `1.8AA` e outro pico em `2.6AA`, que são característicos da primeira e segunda camadas de solvatação da água. O pico em `2.6AA` é mais largo e contém também interações inespecíficas entre a água e o peptídeo. 
 
-![image](https://user-images.githubusercontent.com/31046348/119264553-170d7080-bbba-11eb-927e-931cd79f5641.png)
+![image](https://user-images.githubusercontent.com/31046348/119264899-3fe23580-bbbb-11eb-9a9c-7bf740903afa.png)
 
 Podemos extrair a informação das interações da água com a cadeia principal da proteína, usando:
 ```julia
@@ -177,6 +177,7 @@ e acrescentamos, finalmente, esta contribuição ao gráfico anterior:
 julia> plot!(results.d,bb_contrib,label="backbone")
 ```
 
+![image](https://user-images.githubusercontent.com/31046348/119264941-61dbb800-bbbb-11eb-8ea4-e76671d32120.png)
 
 
 
