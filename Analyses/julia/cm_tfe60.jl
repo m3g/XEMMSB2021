@@ -3,7 +3,7 @@ using PDBTools, ComplexMixtures
 
 # Repository dir
 if (! isdir(ARGS[1])) || (! isdir(ARGS[2]))
-  println("Run with: cm_tfe.jl \$repo \$work") 
+  println("Run with: cm_tfe60.jl \$repo \$work") 
   exit()
 end
 repo = ARGS[1]
@@ -33,5 +33,5 @@ options = Options(dbulk=10)
 results = mddf(trajectory,options)
 
 # Save the reults to recover them later if required
-save(results,"$work/cm_tfe60.json")
+save(results,"$work/Simulations/cm_tfe60.json")
 

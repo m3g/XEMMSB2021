@@ -32,5 +32,5 @@ options = Options(dbulk=10)
 results = mddf(trajectory,options)
 
 # Save the reults to recover them later if required
-save(results,"$work/cm_water0.json")
+save(results,"$work/Simulations/cm_water0.json")
 
