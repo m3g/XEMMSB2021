@@ -36,7 +36,7 @@ density(rg0,xlabel=L"R_g/\mathrm{nm}",
 
 density!(rg60,xlabel=L"R_g/\mathrm{nm}",
               ylabel="Probability density",
-              label=L"(AAQAA)₃ in TFE")
+              label="(AAQAA)₃ in TFE")
 
 savefig("./rg.pdf")
 
