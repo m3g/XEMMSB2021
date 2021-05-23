@@ -2,8 +2,8 @@
 using PDBTools, ComplexMixtures 
 
 # Repository dir
-if ! isdir(ARGS[1])
-  println("Run with: cm_tfe.jl \$repo") 
+if (! isdir(ARGS[1])) || (! isdir(ARGS[2]))
+  println("Run with: cm_tfe.jl \$repo \$work") 
   exit()
 end
 
