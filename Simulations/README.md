@@ -48,7 +48,7 @@ Nosso peptídeo, de sequência `(AAQAA)₃` tem aproximadamete 26Å de comprimen
 
 Com essa aproximação, podemos estimar o volume ocupado pelo peptídeo se a densidade do sistema é a densidade da água (1.00 g/mL) ou a densidade da solução de água com TFE (1.33 g/mL). Em seguida, podemos calcular qual a fração do volume que a solução ocupa, a o número de moléculas de cossolvente e, por fim, o número de moléculas de água que cabem no volume restante da solução. 
 
-Um [pequeno programa](https://github.com/m3g/PackmolInputCreator.jl) que faz essas contas está disponível, caso queria ver os detalhes (é simples, mas muito fácil de errar nas contas). Este programa está sendo usado nos scripts [AAQAA_0vv.jl](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/AAQAA_0vv.jl) e [AAQAA_60v.jl](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/AAQAA_60vv.jl) que são executados quando você executou o comando `build_system.sh`. 
+Um [pequeno programa](https://github.com/m3g/PackmolInputCreator.jl) que faz essas contas está disponível, caso queria ver os detalhes (é simples, mas muito fácil de errar nas contas). Este programa está sendo usado nos scripts [AAQAA_0vv.jl](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/julia/AAQAA_0vv.jl) e [AAQAA_60v.jl](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/julia/AAQAA_60vv.jl) que são executados quando você executou o comando `build_system.sh`. 
 
 Para criar as caixas, entre cada um dos diretórios e execute:
 ```
@@ -237,9 +237,9 @@ onde `T₀` e `Tₘ` são as "temperaturas" de referência e temperatura máxima
 0.7058823529411764
 ```
 
-Neste caso ilustrativo são só 4 réplicas. Mas se tivéssemos mais e uma faixa mais ampla de "temperaturas" e mais réplicas, [obteríamos](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/JuliaScripts/lambda.jl) o seguinte perfil de parâmetros de escalonamento: 
+Neste caso ilustrativo são só 4 réplicas. Mas se tivéssemos mais e uma faixa mais ampla de "temperaturas" e mais réplicas, [obteríamos](https://github.com/m3g/XEMMSB2021/blob/main/Simulations/julia/lambda.jl) o seguinte perfil de parâmetros de escalonamento: 
 
-<img src=https://github.com/m3g/XEMMSB2021/raw/main/Simulations/JuliaScripts/lambda.png>
+<img src=https://github.com/m3g/XEMMSB2021/raw/main/Simulations/julia/lambda.png>
 
 Nele vemos que os parâmetros variam mais nas temperaturas menores e menos nas temperaturas maiores, onde as flutuações estruturais são maiores. Esta formula procura garantir uma taxa de troca de réplicas uniforme ao longo de toda a faixa de parâmetros estudada.
 

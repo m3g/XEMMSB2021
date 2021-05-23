@@ -57,7 +57,7 @@ Os arquivos `dsspX.pdb.dssp` gerados contém, para cada passo da simulação, a 
 Isto pode ser feito usando o script `dssp.jl`:  
 ```
 cd $work/Simulations
-julia $repo/Analyses/helicity/dssp.jl $work
+julia $repo/Analyses/julia/dssp.jl $work
 ```
 
 Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, que será parecida com:  
@@ -119,11 +119,11 @@ Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos 
 
 Para entendermos como o TFE contribuiu para a formação de hélices, precisamos, primeiramente, avaliar como as moléculas do solvente se distribuem na solução. A forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas funções de distribuição de mínima distância (MDDFs). As MDDFs adotam a distância mínima entre átomos do solvente e os átomos do soluto, resultando em funções de distribuição facilmente interpretáveis do ponto de vista das interações físico-químicas específicas. Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível formular hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
 
-O cálculo das MDDFs pode ser feito com o software ```ComplexMixtures```. Você poderá instalar o ```ComplexMixtures``` no terminal do Julia com o comando ```] add ComplexMixtures```. Também será necessário instalar o software PDBTools (```] add PDBTools```), que manipula os arquivos no formato .pdb. Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, respectivamente, disponíveis no diretório ```$repo/Analyses/mddf-kb/```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
+O cálculo das MDDFs pode ser feito com o software ```ComplexMixtures```. Você poderá instalar o ```ComplexMixtures``` no terminal do Julia com o comando ```] add ComplexMixtures```. Também será necessário instalar o software PDBTools (```] add PDBTools```), que manipula os arquivos no formato .pdb. Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
 
 Vale lembrar que o cálculo das MDDFs poderá ser realizado em paralelo, utilizando vários processadores do computador. Por exemplo, os scripts ```gmd-tfe.jl``` e ```gmd-water.jl``` poderão ser executados em paralelo com o comando ```julia -t 4 gmd-tfe.jl```. 
 
-A partir do cálculo das MDDFs, os resultados obtidos estarão salvos nos arquivos com o formato ```.json``` (```results-water-20.json```e ```results-tfe-20.json```). Portanto, os arquivos ```.json``` podem ser utilizados para plotar o perfil total das MDDFs, e também a constribuição de cada átomo (ou grupos de átomos). Os gráficos poderão ser plotados com o script ```mddf-kb-water.jl``` e ```mddf-kb-tfe.jl``` (disponíveis em ```$repo/Analyses/mddf-kb/```), e as suas figuras devem ser parecidas com:
+A partir do cálculo das MDDFs, os resultados obtidos estarão salvos nos arquivos com o formato ```.json``` (```results-water-20.json```e ```results-tfe-20.json```). Portanto, os arquivos ```.json``` podem ser utilizados para plotar o perfil total das MDDFs, e também a constribuição de cada átomo (ou grupos de átomos). Os gráficos poderão ser plotados com o script ```mddf-kb-water.jl``` e ```mddf-kb-tfe.jl``` (disponíveis em ```$repo/Analyses/julia```), e as suas figuras devem ser parecidas com:
 
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211426-618ed000-ba88-11eb-8eae-8d66e8f9c037.png>
 <img width=400px src=https://user-images.githubusercontent.com/70027760/119211427-62276680-ba88-11eb-8db6-408a8d9af0f6.png>
