@@ -185,7 +185,18 @@ Note que, claramente, a água forma muitas ligações de hidrogênio com a cadei
 
 ### 3.4. Explorando os resultados: a integral de Kirkwood-Buff
 
+As integrais de Kirkwood-Buff são o parâmetro termodinâmico que permite conectar as funções de distribuição com as propriedades macroscópicas das soluções. Para entender o que elas representam, podemos pensar assim: some, em toda a solução, o número de moléculas de um determinado componente, subtraia desse número o número de moléculas que haveria na solução se o componente estivesse puro na concentração da solução. Depois, transforme isso em unidades de volume dividindo pela densidade molar. Em outras palavras, as integrais de KB medem se há mais ou menos moléculas de uma espécie na solução do que haveria se a molécula estivesse homogeneamente distribuída em toda a solução, na concentração de estudo.  
+
+Não é trivial, e é mais fácil entender com um exemplo. Com o seguinte código, fazemos um gráfico da integral de Kirkwood-Buff da água integrada em função da distância da superfície da proteína, no nosso exemplo.  
+```julia
+julia> plot(results.d,results.kb,xlabel="d/Angs",ylabel="KB / cm³/mol",label="KB")
+```
+
+Que produz a seguinte figura:
 ![image](https://user-images.githubusercontent.com/31046348/119265281-808e7e80-bbbc-11eb-8746-7a5c3c498f09.png)
+
+
+
 
 
 Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
