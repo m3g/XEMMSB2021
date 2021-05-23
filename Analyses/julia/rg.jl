@@ -32,11 +32,11 @@ default(fontfamily="Computer Modern",linewidth=1,framestyle=:box,grid=false)
 
 density(rg0,xlabel=L"R_g/\mathrm{nm}",
             ylabel="Probability densit",
-            label="(AAQAA)₃ in Water")
+            label="pure Water")
 
 density!(rg60,xlabel=L"R_g/\mathrm{nm}",
               ylabel="Probability density",
-              label="(AAQAA)₃ in TFE")
+              label="Water/TFE")
 
 savefig("./rg.pdf")
 
