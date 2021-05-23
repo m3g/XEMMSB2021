@@ -1,4 +1,4 @@
-using Plots, LaTeXStrings, StatsPlots
+using StatsPlots, LaTeXStrings
 
 function readxvg(file)
   t = Float64[]
@@ -29,6 +29,7 @@ t60, rg60 = readxvg("$work/Simulations/AAQAA_60vv/0/rg.xvg")
 
 # Plot
 default(fontfamily="Computer Modern",linewidth=1,framestyle=:box,grid=false)
+scalefontsizes(1.3)
 
 density(rg0,xlabel=L"R_g/\mathrm{nm}",
             ylabel="Probability densit",
