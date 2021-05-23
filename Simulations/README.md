@@ -233,6 +233,12 @@ Como temos os pdbs individuais para o peptídeo, a água (deve ser um pdb compat
 
 ### 3.1. Gerando arquivos de entrada para as simulações
 
+Entre no diretório de uma das simulações, por exemplo na do peptídeo em água:
+```
+cd $work/Simulations/AAQAA_0vv
+```
+(você terá que repetir estas etapas para a outra simulação).
+
 Os arquivos de configuração das simulações do Gromacs têm extensão `.mdp`. A minimização será feita com este arquivo de configuração:
 
 ```
@@ -328,7 +334,6 @@ O comando acima copia os arquivos `nvt.mdp`, `npt.mdp`, `production.mdp` e `plum
 O programa que vai fazer as modificações no campo de força para simular as réplicas com diferentes Hamiltonianos é o `plumed`. Para indicar a quais átomos aplicaremos o método de aceleração de amostragem, temos que modificar o arquivo `processsed.top`, que contém todos os parâmetros da simulação. Vamos copiar este arquivo em um novo arquivo chamado `processed_.top`, porque precisamos acrescentar `_` em frente ao nome de todos os átomos que serão incluídos na aceleração de amostragem.
 ```
 cd $work/Simulations/AAQAA_0vv
-cp processed.top processed_.top
 ```
 
 Se você digitar `vim processed.top` e procurar por `atoms`, encontrará os átomos da proteína, em uma seção assim:
