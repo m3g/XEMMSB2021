@@ -299,27 +299,3 @@ julia> Γ = ρ*(Gtfe - Gw)
 1.6385122278689006
 ```
 que, como esperamos, é positivo, dado que a integral de KB do TFE é menos negativa que a da água.  
-
-
-
-
-
-
-
-
-
-
-
-
-O valor de ρ<sub>c</sub> pode ser obtido carregando o arquivo ```results-tfe-20.json``` da seguinte forma:
-
-```results = ComplexMixtures.load("./results-tfe-20.json")```
-
-Em seguida, você irá identificar Concentration in bulk: 7,351558289632044 mol L <sup>-1</sup>, que corresponde a  ρ<sub>c</sub> . Para encontrar o valor de G<sub>pc</sub> você deverá digitar no terminal do Julia ```results.kb/1000```, e adotar o último valor da integral de KB, que será igual a -0,8052674557436698 L mol<sup>-1</sup>. Finalmente, para encontrar o valor de G<sub>wc</sub>, você deverá carregar o arquivo ```results-water-20.json```:
-
-```results = ComplexMixtures.load("./results-tfe-20.json")```
-
-```results.kb/1000```
-
-Com isso, você irá perceber que o último valor da integral de KB corresponde a -0,9256393982359525 L mol<sup>-1</sup>. Portanto, o valor de Γ<sub>pc</sub> é igual a 0,8849.
-
