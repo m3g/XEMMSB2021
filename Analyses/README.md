@@ -5,8 +5,8 @@
 
 * [1. Cálculo da helipticidade](#helix)
 * [2. Raio de giração](#config)
-* [3. Estrutura de solvatação](#min)
-* [4. Acúmulo e depleção do TFE](#equi)
+* [3. Estrutura de solvatação](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [4. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
 
 ## <a name="helix"></a>1. Cálculo da helipticidade do peptídeo
 
