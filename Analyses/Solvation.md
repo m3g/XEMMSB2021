@@ -255,12 +255,11 @@ julia $repo/Analyses/julia/kb.jl $repo $work
 
 Vemos que as três curvas tem limites negativos em grandes distânicias, indicando que todos os solventes estão de forma global excluídos da região da proteína. Isto se deve a que às interações proteína-solventes não, em nenhum dos casos, suficientemente favoráveis para compensar a exclusão pelo volume da proteína, que se observa em distâncias curtas. Solventes desnaturantes, que interagem fortemente com a superfície da proteína, podem apresentar esse comportamento ([ref](https://pubs.rsc.org/en/content/articlelanding/2019/CP/C9CP05196A#!divAbstract),[ref](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.7b00599)). 
 
+A integral de KB da água na solução parece ser ligeiramente menor que a observada em água pura, mas não está muito bem convergida (deveria estar constante). Para melhorar esse gráfico, é necessário aumentar a distância de *bulk* do cálculo da MDDF. 
 
+O mais relevante aqui é que a integral de KB do TFE na solução mixta é *menos negativa* que a da água na mesma solução. Isto quer dizer que o TFE está menos excluído da região da proteína que a água. Ou, em outras palavras, que o TFE *solvata preferencialmente* a proteína. De fato, essa é a observação experimental: que o TFE se acumula na superfície da proteína em relação à água. Este efeito tem a consequência direta, vista acima, de que o TFE interage diretamente com a proteína, protegendo a proteína da interação com a água, mas também pode ter o efeito indireto, no qual a concentração de água nas vizinhanças da proteína diminui e, assim, esta tem seu poder desnaturante sobre as hélices reduzido.    
 
-<img width=400px src=https://user-images.githubusercontent.com/70027760/119211424-605da300-ba88-11eb-94c7-5379f20d6bcd.png>
-<img width=400px src=https://user-images.githubusercontent.com/70027760/119211425-618ed000-ba88-11eb-8ece-fa06e2a4ca35.png>
-
-O efeito da adição do TFE (e qualquer outro cossolvente) à solução será quantificado pela diferença pelo Parâmetro de Solvatação Preferencial (```Γ```). O ```Γ``` está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada.
+Esta solvatação preferencial pode ser quantificada *Parâmetro de Solvatação Preferencial* (```Γ```). O ```Γ``` está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada.
 
 Matematicamente, o Γ<sub>pc</sub> é dado por: 
 
