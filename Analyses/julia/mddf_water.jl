@@ -26,7 +26,7 @@ results = ComplexMixtures.load("$work/Simulations/cm_water0.json")
 default(fontfamily="Computer Modern",grid=false,framestyle=:box,linewidth=2)
 plot(layout=(1,2))
 
-subplot=1
+sp=1
 # Complete MDDF
 plot!(results.d,ma(results.mddf),
       xlabel="r/Å",ylabel="mddf",label="Total",subplot=sp)
@@ -56,7 +56,7 @@ solvent = Selection(water,natomspermol=3)
 # Load previously calculated results
 results = ComplexMixtures.load("$work/Simulations/cm_water0.json")
 
-subplot=2
+sp=2
 # Complete MDDF
 plot!(results.d,ma(results.mddf),
       xlabel="r/Å",ylabel="mddf",label="Total",subplot=sp)
