@@ -41,7 +41,7 @@ Atenção ao nome do diretório onde os arquivos foram copiados. Vamos definir u
 
 Assumimos aqui que você tem instalado algum programa de visualização de trajetórias de simulação, como o [VMD](https://www.ks.uiuc.edu/Research/vmd/).  
 
-### 1.3 Estou com sorte
+### 1.3. Estou com sorte
 
 Se você usa `bash`, uma distribuição Linux de 64bits derivada do Debian (Ubuntu, Mint, etc.), e acha que está com sorte, execute apenas (após definir o diretório acima):
 
@@ -134,7 +134,7 @@ cd packmol
 make
 ```
 
-## 5. Instalação de Julia
+## 6. Instalação de Julia
 
 [Julia](https://julialang.org) é uma linguagem de programação dinâmica e de alto desempenho na qual foram escritos alguns scripts e o principal programa de análise que usaremos. Pode ser instalada com:
 
@@ -144,7 +144,7 @@ wget https://julialang-s3.julialang.org/bin/linux/x64/1.6/julia-1.6.0-linux-x86_
 tar -xzf julia-1.6.0-linux-x86_64.tar.gz
 ```
 
-## 6. Variáveis de ambiente:
+## 7. Variáveis de ambiente:
 
 É necessário definir as variáveis de ambiente para usar os programas. Há duas alternativas: colocar tudo no `.bashrc`, ou no arquivo de configuração da `shell` que você estiver usando. Ou manter um arquivo de ambiente local. Por padrão, aqui vamos criar o arquivo `setenv.sh`, que executado definirá as variáveis de ambiente na `shell` em uso: 
 
@@ -170,9 +170,9 @@ Além das variáveis de ambiente, este script colocará no `PATH` os diretórios
 
 <a name="testes">
 
-## 7. Teste
+## 8. Teste
 
-### 7.1 Gromacs e plumed
+### 8.1. Gromacs e plumed
 
 Se tudo correu bem, execute o comando:
 
@@ -191,7 +191,7 @@ Deverá aparecer no terminal uma série de comandos da função `mdrun`. Note se
 Se esta opção não aparece em absoluto, houve algum problema com a instalação acoplada ao `plumed`.
 
 
-### 7.2 Packmol
+### 8.2. Packmol
 
 Execute o comando:
 
@@ -219,7 +219,7 @@ Você deve ver esta saída (aperte Control-C) para sair:
 
 ```
 
-### 7.3 Julia
+### 8.3. Julia
 
 Execute o comando:
 ```
