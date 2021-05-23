@@ -185,9 +185,7 @@ Note que, claramente, a água forma muitas ligações de hidrogênio com a cadei
 
 ### 3.4. Explorando os resultados: a integral de Kirkwood-Buff
 
-
-![image](https://user-images.githubusercontent.com/31046348/119265134-052ccd00-bbbc-11eb-853a-8ceb9b8a5fc9.png)
-
+![image](https://user-images.githubusercontent.com/31046348/119265281-808e7e80-bbbc-11eb-8746-7a5c3c498f09.png)
 
 
 Finalmente, as MDDFs para o TFE e para a água, podem ser calculadas a partir dos scripts ```gmd-tfe.jl``` e ```gmd-water.jl```, disponíveis no diretório ```$repo/Analyses/julia```.  Por meio desse script você poderá observar várias opções de cálculo, dentre elas, o parâmetro ```dbulk=20```. Esse parâmetro define a distância do soluto, em que assumimos que o soluto não influencia significativamente na estrutura do solvente.
