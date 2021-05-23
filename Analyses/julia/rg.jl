@@ -24,8 +24,8 @@ end
 work=ARGS[1]
 
 # Read data
-t0, rg0 = readxvg("$work/Simulations/AAQAA_0vv/0/rg0vv.xvg")
-t60, rg60 = readxvg("$work/Simulations/AAQAA_0vv/0/rg60vv.xvg")
+t0, rg0 = readxvg("$work/Simulations/AAQAA_0vv/0/rg.xvg")
+t60, rg60 = readxvg("$work/Simulations/AAQAA_0vv/0/rg.xvg")
 
 # Plot
 default(fontfamily="Computer Modern",linewidth=1,framestyle=:box,grid=false)
