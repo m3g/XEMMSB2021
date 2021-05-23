@@ -218,6 +218,7 @@ As funções de distribuição do TFE e da água em torno da proteína podem ser
 julia -t5 $repo/Analyses/julia/cm_tfe60.jl $repo $work
 julia -t5 $repo/Analyses/julia/cm_water60.jl $repo $work
 julia -t5 $repo/Analyses/julia/cm_water0.jl $repo $work
+```
 
 Estes scripts gerarão resultados que são salvos em três arquivos `.json` correspondentes. 
 
