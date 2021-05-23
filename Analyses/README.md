@@ -15,7 +15,7 @@
 As análises serão feitas em trajetórias mais longas que foram feitas anteriormente em um cluster de computadores. Para copiar os arquivos desta trajetória para seu diretório de trabalho, faça:
 
 ```
-$repo/Simulations/fina.sh $repo $work
+$repo/Simulations/final.sh $repo $work
 ```
 
 ## <a name="helix"></a>1. Cálculo da helipticidade do peptídeo
