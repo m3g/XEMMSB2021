@@ -25,13 +25,13 @@ fi
 
 work=$(readlink -f $work) # expand path if necessary
 
-\cp -f $repo/Simulations/Final/production0.xtc $work/AAQAA_0vv/0/
-\cp -f $repo/Simulations/Final/production0.tpr $work/AAQAA_0vv/0/
-\cp -f $repo/Simulations/Final/system0.pdb $work/AAQAA_0vv/
+\cp -f $repo/Simulations/Final/production0.xtc $work/Simulations/AAQAA_0vv/0/
+\cp -f $repo/Simulations/Final/production0.tpr $work/Simulations/AAQAA_0vv/0/
+\cp -f $repo/Simulations/Final/system0.pdb $work/Simulations/AAQAA_0vv/
 
-\cp -f $repo/Simulations/Final/production60.xtc $work/AAQAA_60vv/0/
-\cp -f $repo/Simulations/Final/production60.tpr $work/AAQAA_60vv/0/
-\cp -f $repo/Simulations/Final/system60.pdb $work/AAQAA_60vv/
+\cp -f $repo/Simulations/Final/production60.xtc $work/Simulations/AAQAA_60vv/0/
+\cp -f $repo/Simulations/Final/production60.tpr $work/Simulations/AAQAA_60vv/0/
+\cp -f $repo/Simulations/Final/system60.pdb $work/Simulations/AAQAA_60vv/
 
 cd $current_dir
 
