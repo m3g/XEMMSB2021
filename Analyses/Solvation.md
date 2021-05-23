@@ -213,8 +213,17 @@ Os resultados são muito mais interessantes quando comparamos as funções de di
 
 ## Funções de distribuição da água e do TFE
 
+As funções de distribuição do TFE e da água em torno da proteína podem ser calculadas com os scripts que estão disponíveis na pasta `julia` desta seção. O seguinte comando vai gerar o MDDF do TFE decomposto em cada tipo de átomo:  
+```julia
+julia $repo/Analyses/julia/mddf_tfe.jl $repo $work
+```
 
-![image](https://user-images.githubusercontent.com/31046348/119271660-da9d3d00-bbd8-11eb-8a13-f6920cc0dce5.png)
+<img width=500px src=https://user-images.githubusercontent.com/31046348/119271660-da9d3d00-bbd8-11eb-8a13-f6920cc0dce5.png>
+
+Nesta figura notamos os seguintes pontos:
+1. O TFE forma ligações de hidrogênio com a proteína.
+2. Praticamente todas as ligações de hidrogênio são através do seu hidrogênio da hidroxila. Isto é, praticamente não há ligações de hidrogênio nas quais o TFE atua como doador de par de elétrons. Evidentemente, isto se deve à baixa densidade eletrônica sobre o oxigênio que resulta dos átomos de flúor presentes na cadeia alifática.
+
 
 
 
