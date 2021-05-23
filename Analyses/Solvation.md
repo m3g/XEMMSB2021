@@ -265,7 +265,53 @@ Matematicamente, o Γ<sub>pc</sub> é dado por:
 
 Γ<sub>pc</sub> = ρ<sub>c</sub>(G<sub>pc</sub> − G<sub>wc</sub>)
 
-Em que ρ<sub>c</sub> é a densidade do TFE, e G<sub>pc</sub> e G<sub>wc</sub> as integrais de KB do TFE e da água no *bulk* da solução, respectivamente. O valor de ρ<sub>c</sub> pode ser obtido carregando o arquivo ```results-tfe-20.json``` da seguinte forma:
+Em que ρ<sub>c</sub> é a densidade do TFE, e G<sub>pc</sub> e G<sub>wc</sub> as integrais de KB do TFE e da água no *bulk* da solução, respectivamente. Podemos calcular ```Γ``` a partir do resultado da simulação, diretamente, fazendo:
+
+1. Carregando os resultados do cálculo de MDDF da água e do TFE na mistura:
+```julia
+julia> using ComplexMixtures
+
+julia> rw = load("./cm_water60.json");
+
+julia> rtfe = load("./cm_tfe60.json");
+```
+
+2. A densidade do TFE é a densidade convertida, aqui, em mol/L (é o mesmo número que é reportado quando você lê
+o resultado, como concentração do solvente no bulk):
+```julia
+julia> ρ = rtfe.density.solvent_bulk*(1e27/6.02e23)
+7.345259256367649
+```
+
+A integral de KB de cada cossolvente é o último valor da tabela usada para fazer o gráfico em função
+da distância, e aqui é convertido de centímetros cúbicos por mol para litros por mol. Estes são os valores que correspondem aos limites do gráfico acima:
+```julia
+julia> Gtfe = rtfe.kb[end]/1000
+-0.7944001871916039
+
+julia> Gw = rw.kb[end]/1000
+-1.0174709013326282
+```
+
+E, por fim, podemos calcular o parâmetro de solvatação preferencial, 
+```julia
+julia> Γ = ρ*(Gtfe - Gw)
+1.6385122278689006
+```
+que, como esperamos, é positivo, dado que a integral de KB do TFE é menos negativa que a da água.  
+
+
+
+
+
+
+
+
+
+
+
+
+O valor de ρ<sub>c</sub> pode ser obtido carregando o arquivo ```results-tfe-20.json``` da seguinte forma:
 
 ```results = ComplexMixtures.load("./results-tfe-20.json")```
 
