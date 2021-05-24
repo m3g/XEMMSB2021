@@ -3,14 +3,16 @@
 ## Análise das simulações
 
 ### >> Parte 1
-* [1. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da-helipticidade-do-pept%C3%ADdeo)
-* [2. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3o)
+* [1. Substituição das trajetórias](#subs)
+
+* [2. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da-helipticidade-do-pept%C3%ADdeo)
+* [3. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3o)
 
 ### Parte 2
-* [3. Estrutura de solvatação](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
-* [4. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
+* [4. Estrutura de solvatação](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [5. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
 
-## Substituição das trajetórias
+## <a name="subs"></a>1. Substituição das trajetórias
 
 As análises serão feitas em trajetórias mais longas que foram feitas anteriormente em um cluster de computadores. Para copiar os arquivos desta trajetória para seu diretório de trabalho, faça:
 
@@ -44,7 +46,7 @@ Repl      .59  .68  .58  .67  .56  .66  .65  .64  .75
 ```
 De acordo com o resultado acima é possível perceber que a maior taxa de troca ocorreu entre as réplicas 8 e 9, possivelmente porque estes sistemas são mais móveis que os sistemas das outras réplicas.
 
-## <a name="helix"></a>1. Cálculo da helipticidade do peptídeo
+## <a name="helix"></a>2. Cálculo da helipticidade do peptídeo
 
 O trifluoretanol (TFE) é um cossolvente conhecido por induzir a formação de hélices em peptídeos e proteínas. Portanto, vamos iniciar nossas análises avaliando o conteúdo de alfa-hélices nos sistemas na presença e ausência de TFE. A atribuição de estrutura secundária para os resíduos do peptídeo pode ser feita com o Dicionário de Estrutura Secundária de Proteínas (do inglês, *Dictionary of Secondary Structure of Proteins, DSSP*). Existe uma plataforma online para o DSSP (http://bioinformatica.isa.cnr.it/SUSAN/DSSP-web/), mas o software também pode ser facilmente instalado com o ```sudo apt install dssp```. O DDSP atribui elementos de estrutura secundária para os resíduos da proteína por meio de alguns caracteres, por exemplo:
 
@@ -102,7 +104,7 @@ Este script lê os arquivos de saída do DSSP, e gera a figura `helicity.pdf`, q
 
 Note que, como esperado, o conteúdo de &alpha;-hélices do peptídeo na simulação com TFE é maior, ilustrando o papel estabilizador deste cossolvente sobre esta estrutura secundária.
 
-## <a name="config"></a>2. Raio de giração
+## <a name="config"></a>3. Raio de giração
 
 Seguindo as análises do conteúdo de alfa-hélices do peptídeo por água e solução de TFE, vamos também calcular o seu raio de giração nos dois sistemas. O raio de giração é um parâmetro estrutural que permite avaliar o grau de compactação do peptídeo durante a simulação. Para isso, usaremos a ferramenta ```gyrate``` disponível no software GROMACS:
 
