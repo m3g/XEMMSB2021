@@ -39,6 +39,12 @@ Este é o material do curso ministrado na XEMMSB de 2021.
 <img height=80px src=https://user-images.githubusercontent.com/31046348/119070710-e9a8a300-b9be-11eb-9528-445cd28df6f3.png>
 </p>
 
+## Aulas
+
+Aula introdutória: https://www.youtube.com/watch?v=O3MCr4R6CqY
+
+
+
 
 
 
