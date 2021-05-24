@@ -227,10 +227,10 @@ SOL               2415
 TFE                868
 
 ```
-Os nomes `SOL` e `TFE` representam algo semelhante ao que seria o nome de um resíduo para as proteínas. Portanto, todas as moléculas de água e cossolvente no arquivo `.pdb` do sistema devem ser nomeadas com `SOL` e `TFE`, respectivamente. Basicamente, essas alterações representam o que precisa ser feito para ter um arquivo de topologia para as simulações de um sistema contendo a proteína, água e cossolvente (neste caso, o `TFE`). 
+Os nomes `SOL` e `TFE` representam algo semelhante ao que seria o nome de um resíduo para as proteínas. Portanto, todas as moléculas de água e cossolvente no arquivo `system.pdb` do sistema devem ser nomeadas com `SOL` e `TFE`, respectivamente. Basicamente, essas alterações representam o que precisa ser feito para ter um arquivo de topologia para as simulações de um sistema contendo a proteína, água e cossolvente (neste caso, o `TFE`). 
 Como temos os pdbs individuais para o peptídeo (`AAQAA.pdb`), a água (`tip4p2005.pdb`) e o TFE (`tfe.pdb`), podemos usar o `packmol` para criar uma caixa com o número desejado de cada componente. 
 
-O `.pdb` resultante deve ser utilizado juntamente da topologia editada como input do gromacs para gerar o arquivos necessários para rodar a simulação. Vale lembrar que a ordem em que os componentes do sistema são descritos no arquivo de topologia devem estar na mesma ordem do arquivo `.pdb` do sistema. 
+O `system.pdb` resultante deve ser utilizado juntamente da topologia editada como input do gromacs para gerar o arquivos necessários para rodar a simulação. Vale lembrar que a ordem em que os componentes do sistema são descritos no arquivo de topologia devem estar na mesma ordem do arquivo `system.pdb`. 
 
 ### <a name="min"></a> 3. Minimização da energia
 
