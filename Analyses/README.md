@@ -23,10 +23,8 @@ $repo/Simulations/final.sh $repo $work
 Após o término da simulação, é interessante verificar as taxas de aceitação de trocas a cada tentativa (400 passos). Esse resultado pode ser facilmente obtido do arquivo ```production.log```. Para observar esses resultados diretamente no seu terminal, basta executar o comando a seguir:
 
 ```
-
 cd $work/Simulations/AAQAA_0vv/0
 grep -A9 "exchange statistics" production.log
-
 ```
 
 O resultado que irá aparecer na sua tela deve ser algo parecido com:
