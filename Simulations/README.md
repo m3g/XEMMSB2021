@@ -88,10 +88,12 @@ topology.top
 Para o sistema com TFE (e qualquer outro cossolvente, como a ureia ou TMAO), é necessário realizar algumas modificações no arquivo de topologia. O arquivo de topologia que o GROMACS gera contém os parâmetros apenas das moléculas (mais comuns) que estão contidas nos campos de força pré-instalados. Sendo assim, é necessário obter os arquivos de topologia separados para o cossolvente de interesse. Vamos entender como essa edição na topologia é feita tomando como exemplo o sistema trabalhado no curso.
 
 
-Inicialmente, é necessário gerar um arquivo de topologia para a proteína ou peptídeo de interesse. O peptídeo que iremos trabalhar no curso é o (AAQAA)3, cujo arquivo de coordenadas disponível no diretório `$repo/Simulations/InputData/PDB/` é o `AAQAA.pdb`. Então, execute o comando a seguir para gerar o arquivo de topologia desejado: 
+Inicialmente, é necessário gerar um arquivo de topologia para a proteína ou peptídeo de interesse. O peptídeo que iremos trabalhar no curso é o (AAQAA)3, cujo arquivo de coordenadas disponível no diretório `$repo/Simulations/InputData/PDB/` é o `AAQAA.pdd`. Portanto, você precisa executar os seguintes comandos: 
 
 ```
-gmx_mpi pdb2gmx -f (AAQAA)3.pdb -o AAQAA.gro -p topology.top
+cd $work/Simulations/AAQAA_60vv
+cp $repo/Simulations/InputData/PDB/AAQAA.pdb .
+gmx_mpi pdb2gmx -f AAQAA.pdb -o AAQAA.gro -p topology.top
 ```
  
 O arquivo de topologia “topology.top” terá a seguinte forma:
