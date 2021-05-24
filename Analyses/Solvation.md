@@ -3,8 +3,8 @@
 ## Análise das simulações
 
 ### Parte 1
-* [1. Taxas de trocas](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-Taxas-de-trocas)
-
+* [1. Taxas de trocas]
+ 
 Após o término da simulação, é interessante verificar as taxas de aceitação de trocas a cada tentativa (400 passos). Esse resultado pode ser facilmente obtido do arquivo ```production.log```. Para observar esses resultados diretamente no seu terminal, basta executar o comando a seguir:
 
 ```cd $work/Simulations/AAQAA_0vv/0```
