@@ -28,7 +28,7 @@ work=$(readlink -f $work) # expand path if necessary
 \cp -f $repo/Simulations/Final/production0.xtc $work/Simulations/AAQAA_0vv/0/production.xtc
 \cp -f $repo/Simulations/Final/production0.tpr $work/Simulations/AAQAA_0vv/0/production.tpr
 \cp -f $repo/Simulations/Final/system0.pdb $work/Simulations/AAQAA_0vv/system.pdb
-\cp -f $repo/Simulations/Final/production.log $work/Simulations/AAQAA_0vv/production.log
+\cp -f $repo/Simulations/Final/production0.log $work/Simulations/AAQAA_0vv/production.log
 
 \cp -f $repo/Simulations/Final/production60.xtc $work/Simulations/AAQAA_60vv/0/production.xtc
 \cp -f $repo/Simulations/Final/production60.tpr $work/Simulations/AAQAA_60vv/0/production.tpr
