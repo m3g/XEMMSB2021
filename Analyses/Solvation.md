@@ -2,8 +2,7 @@
 
 ## Análise das simulações
 
-### Parte 1
-## Taxas de trocas
+### Taxas de trocas
 
  
 Após o término da simulação, é interessante verificar as taxas de aceitação de trocas a cada tentativa (400 passos). Esse resultado pode ser facilmente obtido do arquivo ```production.log```. Para observar esses resultados diretamente no seu terminal, basta executar o comando a seguir:
