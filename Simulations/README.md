@@ -228,7 +228,6 @@ GROningen MAchine for Chemical Simulation
 Protein             1
 SOL               2415
 TFE                868
-
 ```
 Os nomes `SOL` e `TFE` representam algo semelhante ao que seria o nome de um resíduo para as proteínas. Portanto, todas as moléculas de água e cossolvente no arquivo `system.pdb` do sistema devem ser nomeadas com `SOL` e `TFE`, respectivamente. Basicamente, essas alterações representam o que precisa ser feito para ter um arquivo de topologia para as simulações de um sistema contendo a proteína, água e cossolvente (neste caso, o `TFE`). 
 Como temos os pdbs individuais para o peptídeo (`AAQAA.pdb`), a água (`tip4p2005.pdb`) e o TFE (`tfe.pdb`), podemos usar o `packmol` para criar uma caixa com o número desejado de cada componente. 
@@ -403,8 +402,8 @@ plumed partial_tempering 1.00 < processed.top > ./0/topology.top
 plumed partial_tempering 0.89 < processed.top > ./1/topology.top
 plumed partial_tempering 0.79 < processed.top > ./2/topology.top
 plumed partial_tempering 0.71 < processed.top > ./3/topology.top
-   
 ```
+
 Mais informações podem ser obtidas em [plumed](https://www.plumed.org/doc-v2.6/user-doc/html/hrex.html).
 
 O método que está sendo utilizado consiste em uma simulação de dinâmica molecular com amostragem conformacional ampliada. Basicamente, os potenciais de interação intramolecular da proteína e as interações inter-moleculares proteína-solvente são multiplicados por um fator, comumente representado pela letra grega λ. Desta forma, a multiplicação dos potenciais pelo λ fará com que o sistema seja mais móvel, aproximadamente como se estivesse sendo simulado a uma temperatura mais alta (se a temperatura for o parâmetro efetivamente alterado, o método é o clássico método de trocas de réplicas).
