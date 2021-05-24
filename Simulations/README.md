@@ -92,8 +92,9 @@ Inicialmente, é necessário gerar um arquivo de topologia para a proteína ou p
 
 ```
 cd $work/Simulations/AAQAA_60vv
+cp -r $repo/Simulations/InputData/amber03w.ff ./
 cp $repo/Simulations/InputData/PDB/AAQAA.pdb .
-gmx_mpi pdb2gmx -f AAQAA.pdb -o AAQAA.gro -p topology.top
+echo 6 | gmx_mpi pdb2gmx -f AAQAA.pdb -o AAQAA.gro -p topology.top -ff amber03w
 ```
  
 O arquivo de topologia “topology.top” terá a seguinte forma:
