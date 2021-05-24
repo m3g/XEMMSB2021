@@ -140,10 +140,9 @@ GROningen MAchine for Chemical Simulation
 Protein             1
 ```
 
-As flags `#include` servem para incluir arquivos com os parâmetros do campo de força utilizado para cada componente do sistema. Por exemplo,  para a água a flag é `#include "./amber03w.ff/tip4p2005.itp"` e para os íons é  `#include "./amber03w.ff/ions.itp"`. Portanto, o mesmo deve ser feito para o TFE.
+As flags `#include` servem para incluir arquivos com os parâmetros do campo de força utilizado para cada componente do sistema. Por exemplo,  para a água a flag é `#include "./amber03w.ff/tip4p2005.itp"` e para os íons é  `#include "./amber03w.ff/ions.itp"`. Portanto, o mesmo deve ser feito para o TFE. 
 
-Agora, você deve editar o arquivo `topology.top` adicionando as expressões `#include "./amber03w.ff/tfe_atomtypes.itp"` e `#include "./amber03w.ff/tfe.itp"`. Esses termos devem ser incluídos de forma igual ao exemplo abaixo.
-
+Para incluir os arquivos de parâmetros do TFE no arquivo `topology.top`, você deverá adicionar as expressões `#include "./amber03w.ff/tfe_atomtypes.itp"` e `#include "./amber03w.ff/tfe.itp"` de acordo com o exemplo abaixo. É importante mencionar que os arquivos `tfe_atomtypes.itp` e `tfe.itp` fornecidos foram retirados de um [trabalho publicado previamente](https://pubs.acs.org/doi/10.1021/jp505861b). Entretanto, caso seja de seu interesse estudar outros cossolventes, você poderá construir o seu próprio arquivo de parâmetros, assim como mencionado no arquivo AdditionalInfo.md, no tópico dos Cossolventes, em $repo/Simulations/AdditionalInfo.md.
 
 ```
 ; Informações relacionadas ao computador, versão do gromacs e diretório em que a topologia foi gerada. 
