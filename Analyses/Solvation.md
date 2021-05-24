@@ -3,15 +3,17 @@
 ## Análise das simulações
 
 ### Parte 1
-* [1. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da-helipticidade-do-pept%C3%ADdeo)
-* [2. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3o)
+* [1. Substituição das trajetórias](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#subs)
+
+* [2. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da-helipticidade-do-pept%C3%ADdeo)
+* [3. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3o)
 
 ### Parte 2
-* [3. Estrutura de solvatação: Conceitos](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
-* [4. Funções de distribuição da água e do TFE](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
-* [5. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
+* [4. Estrutura de solvatação: Conceitos](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [5. Funções de distribuição da água e do TFE](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
+* [6. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
 
-## <a name="solv"></a>3. Estrutura de solvatação: Conceitos
+## <a name="solv"></a>4. Estrutura de solvatação: Conceitos
 
 Embora seja conhecido o potencial do TFE na indução de hélices em peptídeos e proteínas, o seu mecanismo de ação ainda é bastante discutido na literatura. Diferentes mecanismos têm sido propostos para explicar a indução de hélices pelo TFE, conhecidos como  mecanismos direto e indireto. 
 
@@ -35,7 +37,7 @@ Estas hipóteses podem ser estudadas usando simulações, e funções de distrib
 
 A computação das MDDFs dos componentes dos sistemas pode ser realizada por meio do pacote [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures). 
 
-### 3.1. Usando ComplexMixtures.jl 
+### 4.1. Usando ComplexMixtures.jl 
 
 [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures) é um software que calcula funções de distribuição e parâmetros de solvatação preferencial a partir de simulações de dinâmica molecular. É usado para a compreensão das interações entre solutos e solventes complexos, sendo as proteínas um exemplo importante e comum de estrutura complexa altamente dependente de sua estrutura de solvatação. 
 
@@ -85,7 +87,7 @@ results = mddf(trajectory,options)
 save(results,"./cm-tfe.json")
 ```
 
-### 3.2. Executando o exemplo:
+### 4.2. Executando o exemplo:
 
 O script completo é [`$repo/Analyses/julia/cm_water0.jl`](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/julia/cm_water0.jl), e será executado assim:
 ```
@@ -135,7 +137,7 @@ O que nos pode imediatamente chamar a atenção são a concentração da água n
 
 A função de distribuição de mínima distância (MDDF) deve convergir para `1.0` em distâncias longas. Nas últimas linhas vemos se isto aconteceu. É importante que o erro seja maior que a diferença entre entre a média e `1.0`, indicando que o erro é aleatório. Se tivéssemos um erro sistemático e a função convergisse para um número maior ou menor que `1.0`, mesmo que pouco, teríamos problemas na análise da integral desta função, que estudaremos a seguir.  
 
-### 3.3. Explorando os resultados: a função de distribuição
+### 4.3. Explorando os resultados: a função de distribuição
 
 Vamos fazer alguns gráficos para explorar os resultados obtidos no cálculo acima. Carregamos o pacote `Plots` com 
 ```julia
@@ -184,7 +186,7 @@ Note que, claramente, a água forma muitas ligações de hidrogênio com a cadei
 
 É possível decompor a MDDF em contribuições de qualquer tipo de átomo do solvente ou do soluto obtendo, assim, uma visão microscópica das interações que compõem o sistema.
 
-### 3.4. Explorando os resultados: a integral de Kirkwood-Buff
+### 4.4. Explorando os resultados: a integral de Kirkwood-Buff
 
 As integrais de Kirkwood-Buff são o parâmetro termodinâmico que permite conectar as funções de distribuição com as propriedades macroscópicas das soluções. Para entender o que elas representam, podemos pensar assim: some, em toda a solução, o número de moléculas de um determinado componente, subtraia desse número o número de moléculas que haveria na solução se o componente estivesse puro na concentração da solução. Depois, transforme isso em unidades de volume dividindo pela densidade molar. Em outras palavras, as integrais de KB medem se há mais ou menos moléculas de uma espécie na solução do que haveria se a molécula estivesse homogeneamente distribuída em toda a solução, na concentração de estudo.  
 
@@ -211,7 +213,7 @@ No caso de um soluto em um solvente único, como neste caso, a integral obtida n
 
 Os resultados são muito mais interessantes quando comparamos as funções de distribuição e integrais de Kirkwood-Buff para soluções com mais de um solvente.
 
-## 4. Funções de distribuição da água e do TFE
+## 5. Funções de distribuição da água e do TFE
 
 As funções de distribuição do TFE e da água em torno da proteína podem ser calculadas com os scripts que estão disponíveis na pasta `julia` desta seção. Os seguintes comandos vão executar os script que fazem os cálculos para cada um dos sistemas e tipos de solvente:
 ```julia
@@ -243,9 +245,9 @@ julia $repo/Analyses/julia/mddf_water.jl $repo $work
 
 Em uma primeira impressão, pode-se pensar que a água está formando mais ligações de hidrogênio com o peptídeo na presença de TFE que na água pura. No entanto, note que a concentração de água é muito diferente nas duas simulações. Como vimos, em água pura a concentração ficou em `~55.3 mol/L`, enquanto que na simulação com TFE temos uma concentração de aproximadamente a metade (`27.1 mol/L`). Portanto, para que tivéssemos o mesmo *número* de ligações de hidrogênio com a água na solução com TFE, o pico em `~1.8Å` deveria ter aproximadamente o dobro da altura (ou o dobro da integral, mas precisamente). Este efeito de concentração pode ser explorado calculando diretamente o número de ligações de hidrogênio peptídeo-água em estudo complementar. 
 
-## <a name="equi"></a>4. Acúmulo e depleção dos solventes
+## <a name="equi"></a>6. Acúmulo e depleção dos solventes
 
-### Integrais de Kirkwood-Buff
+### 6.1. Integrais de Kirkwood-Buff
 
 A partir das MDDFs é possível calcular propriedades termodinâmicas macroscópicas das soluções, usando a Teoria de Soluções de Kirkwood-Buff. Nos arquivos ```.json```, além das MDDFs, também há informação das integrais de Kirkwood-Buff (KB). As integrais de KB refletem a afinidade entre o soluto e as moléculas de solvente, e determinam se há excesso ou exclusão de cada componente do solvente nas vizinhanças do soluto. Dessa forma, avaliando o perfil das integrais de KB da água e do TFE, é possível dizer se cada componente é acumulado ou é excluído da região onde a proteína se encontra. Quando o solvente se encontra preferencialmente próximo à superfície da proteína, o valor de integral de KB deve ser positivo, e negativo caso seja preferencialmente excluído. Nas figuras a seguir, podemos analisar o perfil das integrais de KB para a água em relação à proteína em água pura e na solução com TFE, e do TFE na solução. 
 
@@ -261,7 +263,7 @@ A integral de KB da água na solução parece ser ligeiramente menor que a obser
 
 O mais relevante aqui é que a integral de KB do TFE na solução mixta é *menos negativa* que a da água na mesma solução. Isto quer dizer que o TFE está menos excluído da região da proteína que a água. Ou, em outras palavras, que o TFE *solvata preferencialmente* a proteína. De fato, essa é a observação experimental: que o TFE se acumula na superfície da proteína em relação à água. Este efeito tem a consequência direta, vista acima, de que o TFE interage diretamente com a proteína, protegendo a proteína da interação com a água, mas também pode ter o efeito indireto, no qual a concentração de água nas vizinhanças da proteína diminui e, assim, esta tem seu poder desnaturante sobre as hélices reduzido.    
 
-### Parâmetro de solvatação preferencial
+### 6.2. Parâmetro de solvatação preferencial
 
 Esta solvatação preferencial pode ser quantificada *Parâmetro de Solvatação Preferencial* (```Γ```). O ```Γ``` está diretamente relacionado com a variação do potencial químico do soluto pela adição de um cossolvente à solução. De modo geral, se o parâmetro de solvatação preferencial do cossolvete (Γ<sub>pc</sub>) apresenta um valor positivo, o soluto é preferencialmente solvatado pelo cossolvente. Por outro lado, se o Γ<sub>pc</sub> for negativo, a proteína é preferencialmente hidratada.
 
