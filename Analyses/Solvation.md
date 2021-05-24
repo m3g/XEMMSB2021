@@ -3,12 +3,17 @@
 ## Análise das simulações
 
 ### Parte 1
-* [1. Taxas de trocas]
+## Taxas de trocas
+
  
 Após o término da simulação, é interessante verificar as taxas de aceitação de trocas a cada tentativa (400 passos). Esse resultado pode ser facilmente obtido do arquivo ```production.log```. Para observar esses resultados diretamente no seu terminal, basta executar o comando a seguir:
 
-```cd $work/Simulations/AAQAA_0vv/0```
-```grep -A9 "exchange statistics" production.log```
+```
+
+cd $work/Simulations/AAQAA_0vv/0
+grep -A9 "exchange statistics" production.log
+
+```
 
 O resultado que irá aparecer na sua tela deve ser algo parecido com:
 
@@ -31,7 +36,7 @@ De acordo com o resultado acima é possível perceber que a maior taxa de troca 
 * [1. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da-helipticidade-do-pept%C3%ADdeo)
 * [2. Raio de giração](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#2-raio-de-gira%C3%A7%C3%A3o)
 
-### >> Parte 2
+### Parte 2
 * [3. Estrutura de solvatação: Conceitos](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
 * [4. Funções de distribuição da água e do TFE](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md)
 * [5. Acúmulo e depleção dos solventes](https://github.com/m3g/XEMMSB2021/blob/main/Analyses/Solvation.md#4-ac%C3%BAmulo-e-deple%C3%A7%C3%A3o-do-tfe)
@@ -58,7 +63,7 @@ O mecanismo indireto (2), sugere que:
 
 Estas hipóteses podem ser estudadas usando simulações, e funções de distribuição. Uma visão molecular da forma com que as moléculas do solvente se distribuem na solução pode ser descrita pelas [funções de distribuição de mínima distância (MDDFs)](http://pubs.acs.org/doi/abs/10.1021/acs.jctc.7b00599). Por meio das MDDFs podemos avaliar tanto a distribuição total das moléculas do solvente em torno do soluto, quanto a contribuição de cada átomo (ou grupos de átomos) do solvente. Com isso, é possível testar as hipóteses a respeito das interações que possivelmente justificam a forma do soluto na solução.
 
-O cálculo das MDDFs pode ser feito com o software [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures). 
+A computação das MDDFs dos componentes dos sistemas pode ser realizada por meio do pacote [ComplexMixtures.jl](http://m3g.iqm.unicamp.br/ComplexMixtures). 
 
 ### 3.1. Usando ComplexMixtures.jl 
 
