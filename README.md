@@ -43,9 +43,7 @@ Este é o material do curso ministrado na XEMMSB de 2021.
 
 Aula introdutória: https://www.youtube.com/watch?v=O3MCr4R6CqY
 
-
-
-
+Dia 2: https://www.youtube.com/watch?v=DePitCjh7ys
 
 
 
