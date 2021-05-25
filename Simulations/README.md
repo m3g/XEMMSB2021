@@ -24,8 +24,7 @@ Vamos criar um diretório onde as simulações vão ser realizadas, e vamos defi
 
 ```
 cd $work
-simulations=Simulations
-mkdir -p $simulations
+mkdir -p Simulations
 ```
 
 ## <a name="config"></a>2. Configuração inicial do sistema
