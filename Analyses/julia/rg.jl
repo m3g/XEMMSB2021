@@ -34,7 +34,7 @@ default(fontfamily="Computer Modern",linewidth=2,framestyle=:box,grid=false)
 scalefontsizes(1.4)
 
 density(rg0,xlabel=L"R_g/\mathrm{nm}",
-            ylabel="Probability densit",
+            ylabel="Probability density",
             label="pure Water")
 
 density!(rg60,xlabel=L"R_g/\mathrm{nm}",
