@@ -44,7 +44,7 @@ Repl  average number of exchanges:
 Repl     0    1    2    3    4    5    6    7    8    9
 Repl      .59  .68  .58  .67  .56  .66  .65  .64  .75
 ```
-De acordo com o resultado acima é possível perceber que a maior taxa de troca ocorreu entre as réplicas 8 e 9, possivelmente porque estes sistemas são mais móveis que os sistemas das outras réplicas.
+De acordo com o resultado acima é possível perceber que a maior taxa de troca ocorreu entre as réplicas 8 e 9, possivelmente porque estes sistemas são mais móveis que os sistemas das outras réplicas. Entretanto, é importante destacar que todas as taxas de trocas são bastante eficientes. Como regra geral, uma taxa de troca de [0,2-0,3](https://link.springer.com/protocol/10.1007/978-1-4939-7811-3_5) é considerada boa. Além disso, um outro estudo realizado no mesmo intervalo de temperatura que nós adotamos no presente trabalho (300 K - 425 K), mostrou que uma taxa de troca de [0,4](https://www.nature.com/articles/s42003-021-01759-1.pdf) foi suficiente para obter uma boa amostragem do sistema.
 
 ## <a name="helix"></a>2. Cálculo da helipticidade do peptídeo
 
