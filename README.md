@@ -45,6 +45,6 @@ Aula introdutória: https://www.youtube.com/watch?v=O3MCr4R6CqY
 
 Dia 2: https://www.youtube.com/watch?v=DePitCjh7ys
 
-
+Dia 3: https://www.youtube.com/watch?v=8eSySXMDnWs
 
 
