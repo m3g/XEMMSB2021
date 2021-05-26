@@ -58,7 +58,7 @@ Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, 
 
 ```
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake dssp
+sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake dssp gawk
 ```
 
 Os cinco primeiros pacotes são para compilação e desenvolvimento de dependências, e [`dssp`](https://swift.cmbi.umcn.nl/gv/dssp/) é um pacote

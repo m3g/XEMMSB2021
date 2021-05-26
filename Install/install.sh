@@ -19,7 +19,7 @@ fi
 cd $work
 mkdir -p Downloads
 sudo apt-get update -y
-sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake dssp
+sudo apt-get install -y gfortran gcc libopenmpi-dev openmpi-bin cmake dssp gawk
 
 ## 2. Instalação do Plumed
 
