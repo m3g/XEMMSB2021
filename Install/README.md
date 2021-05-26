@@ -54,7 +54,7 @@ Vai ser requisitada a sua senha, mas é só para instalar, se necessário, algun
 
 Vá direto aos [Testes](#testes) se a instalação funcionou. Alternativamente, siga o passo-a-passo abaixo.
 
-## 2. Instalação das dependências: `openmpi`, `gfortran`, `gcc`, `cmake`, `dssp`
+## 2. Instalação das dependências: `openmpi`, `gfortran`, `gcc`, `cmake`, `dssp`, `gawk`
 
 ```
 sudo apt-get update -y
