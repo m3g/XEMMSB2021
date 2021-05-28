@@ -41,11 +41,13 @@ Este é o material do curso ministrado na XEMMSB de 2021.
 
 ## Aulas
 
-Aula introdutória: https://www.youtube.com/watch?v=O3MCr4R6CqY
+Aula introdutória: https://www.youtube.com/watch?v=O3MCr4R6CqY (Simulações HREMD)
 
 Dia 2: https://www.youtube.com/watch?v=DePitCjh7ys
 
-Dia 3: https://www.youtube.com/watch?v=8eSySXMDnWs
+Dia 3: https://www.youtube.com/watch?v=8eSySXMDnWs (Explicação do ComplexMixtures.jl)
 
 Dia 4: https://www.youtube.com/watch?v=Sw7kDwnjH1M
+
+Dia 5: https://www.youtube.com/watch?v=9sZ1tMUPQb4
 
