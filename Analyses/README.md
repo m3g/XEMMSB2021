@@ -2,7 +2,7 @@
 
 ## Análise das simulações
 
-### >> Parte 1
+### Parte 1
 * [1. Substituição das trajetórias](#subs)
 
 * [2. Cálculo da helipticidade](https://github.com/m3g/XEMMSB2021/tree/main/Analyses#1-c%C3%A1lculo-da-helipticidade-do-pept%C3%ADdeo)
