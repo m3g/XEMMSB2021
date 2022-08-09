@@ -20,7 +20,7 @@ metodologias de amostragem por troca de cópias, em particular usando aproximaç
 energia. As simulações serão realizadas usando Gromacs e Plumed. Efeitos de solvente sobre o equilíbrio
 conformacional serão estudados usando funções de
 distribuição de mínima distância e a teoria de Kirkwood-Buff de soluções, calculadas com o software
-[ComplexMixtures.jl](https://m3g.iqm.unicamp.br/ComplexMixtures).
+[ComplexMixtures.jl](https://github.com/m3g/ComplexMixtures.jl).
 
 Este é o material do curso ministrado na XEMMSB de 2021.  
 
